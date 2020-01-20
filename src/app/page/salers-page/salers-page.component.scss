@@ -1,0 +1,42 @@
+.container-fluit{
+  background-color: #ecf0f5;
+}
+#left-admin{
+  width: 6%;
+  transition: 0.5s;
+}
+#right-admin{
+  width: 94%;
+  transition: 0.5s;
+}
+@media screen and (max-width: 1100px) {
+  #left-admin{
+    width: 8%;
+    transition: 0.5s;
+  }
+  #right-admin{
+    width: 92%;
+    transition: 0.5s;
+  }
+}
+
+@media screen and (max-width: 876px) {
+  #left-admin{
+    width: 8%;
+    transition: 0.5s;
+  }
+  #right-admin{
+    width: 92%;
+    transition: 0.5s;
+  }
+}
+@media screen and (max-width: 776px) {
+  #left-admin{
+    width: 10%;
+    transition: 0.5s;
+  }
+  #right-admin{
+    width: 90%;
+    transition: 0.5s;
+  }
+}

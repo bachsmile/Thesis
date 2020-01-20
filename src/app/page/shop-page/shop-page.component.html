@@ -1,0 +1,14 @@
+<div class="top">
+    <!-- <app-header class="fulls w-100" id="header"></app-header> -->
+  <router-outlet></router-outlet>
+</div>
+<div class="px-5 py-3 bg-dark">
+  <ngx-slick-carousel class="carousel w-100"
+      #slickModal="slick-carousel"
+      [config]="slideConfig">
+    <div ngxSlickItem *ngFor="let slide of slides" class="slide p-2 shadow  ">
+       <img  class="img" src="{{ slide.Img1 }}" alt="" width="100%" [routerLink]="['/Shop/info',slide.ID_Product]" (click)="Load()">
+    </div>
+</ngx-slick-carousel>
+</div>
+

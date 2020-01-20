@@ -1,0 +1,118 @@
+<div class="row">
+  <div class="item">
+    <a class="btn btn-primary"
+    data-toggle="collapse"
+    href="#contentId"
+    aria-expanded="false"
+    aria-controls="contentId"
+    (click)="checkT()" class="button-23">
+        <div class="front">Room Chat</div>
+        <div class="back">Room Chat</div>
+    </a>
+</div>
+</div>
+<div class="collapse" id="contentId">
+  <div class="a">
+    <mat-sidenav-container fullscreen>
+      <mat-sidenav #sidenav>
+        <mat-nav-list>
+          <div *ngFor="let item of listChat">
+            <a mat-list-item href="" target="_blank">
+              <mat-icon mat-list-icon>person</mat-icon>
+              <span mat-line>{{ item.name }}</span>
+            </a>
+          </div>
+        </mat-nav-list>
+      </mat-sidenav>
+
+      <div class="contents">
+        <mat-toolbar color="primary">
+          <button mat-icon-button (click)="sidenav.toggle()" (click)="c()">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span>Room Chat</span>
+        </mat-toolbar>
+
+        <div class="app-content">
+          <a id="ask" class="ask" (click)="openDialog()">
+            <p>Do you want to join the chat in the room?</p>
+            <a class="bg-primary d-flex justify-content-center">Join</a>
+          </a>
+          <div class="smsBox" *ngIf="check">
+            <button mat-fab (click)="onClickUserInfo()">
+              <mat-icon>person</mat-icon>
+            </button>
+            <div  class="chat-container">
+              <mat-card class="main-card">
+                <mat-list class="chat-list">
+                  <mat-list-item
+                    *ngFor="let message of messages"
+                    [ngClass]="[
+                      message.action === undefined &&
+                      message.from.id === user.id
+                        ? 'chat-list-item'
+                        : ''
+                    ]"
+                  >
+                    <img
+                      mat-list-avatar
+                      *ngIf="message.action === undefined"
+                      [src]="message.from.avatar"
+                    />
+                    <h4 mat-line *ngIf="message.action === undefined">
+                      <b>{{ message.from.name }}</b>
+                    </h4>
+                    <p mat-line *ngIf="message.action === undefined">
+                      <span> {{ message.content }} </span>
+                    </p>
+                    <p
+                      mat-line
+                      *ngIf="message.action === action.JOINED"
+                      class="chat-notification"
+                    >
+                      <span>
+                        <b>{{ message.from.name }}</b> joined to the
+                        conversation.
+                      </span>
+                    </p>
+                    <p
+                      mat-line
+                      *ngIf="message.action === action.RENAME"
+                      class="chat-notification"
+                    >
+                      <span>
+                        <b>{{ message.content.previousUsername }}</b> is now
+                        <b>{{ message.content.username }}</b>
+                      </span>
+                    </p>
+                  </mat-list-item>
+                </mat-list>
+                <div class="chat-footer-container">
+                  <mat-icon>message</mat-icon>
+                  <mat-form-field class="chat-input">
+                    <input
+                      matInput
+                      #inputMessage
+                      maxlength="140"
+                      placeholder="Type your message"
+                      [(ngModel)]="messageContent"
+                      (keyup.enter)="sendMessage(messageContent)"
+                    />
+                    <mat-hint align="end"
+                      >{{ inputMessage.value.length }}/140</mat-hint
+                    >
+                  </mat-form-field>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+          <!-- <a (click)="a()">a</a>
+          <a (click)="b()">b</a> -->
+          <br />
+        </div>
+      </div>
+    </mat-sidenav-container>
+  </div>
+</div>
+
+

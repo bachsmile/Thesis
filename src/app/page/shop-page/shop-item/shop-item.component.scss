@@ -1,0 +1,57 @@
+.fixImg{
+  width: 100%;
+  height: 315px;
+}
+.card-titles{
+  opacity: 0.5;
+  font-size: 0.8rem;
+  font-family: AdihausDIN,Helvetica,Arial,sans-serif;
+}
+.card-name, .card-price {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: AdihausDIN,Helvetica,Arial,sans-serif !important;
+  font-weight: 400;
+  color: inherit;
+  font-size: 0.9rem;
+}
+a{
+  color: gray;
+}
+.bot{
+  position: relative;
+  bottom:   0px;
+}
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+.pagination a:hover:not(.active) {background-color: #ddd;}
+.card-img-top{
+  height: 315px;
+  object-fit: cover;
+}
+.card-price{
+  text-decoration: line-through;
+  color: red;
+}
+.card-price-sale{
+  color: green;
+}
+.sale{
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: white;
+  background-image: linear-gradient(to bottom right, red, yellow);
+  border-radius: 10px;
+  padding: 0.5rem;
+}

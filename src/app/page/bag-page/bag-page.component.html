@@ -1,0 +1,249 @@
+<div class="container-fluit page bg-dark">
+    <div class=" container p-3 ">
+        <div   class="row text-white border-bottom py-4 d-flex justify-content-between">
+          <div class="row m-0 point" (click)="change(1)">
+              <i class="fa fa-4x fa-cart-plus mr-3" aria-hidden="true"></i><h2 class=" d-flex align-items-center">Shopping cart</h2>
+          </div>
+          <div class="row m-0 point" (click)="change(2)">
+              <img class="iconAuction" src="/assets/img/icons/auction-icon-20.png" alt=""><h2 class=" d-flex align-items-center">Auction   </h2>
+          </div>
+          <div class="row m-0 point" (click)="change(3)">
+              <i class="fa fa-4x fa-cart-arrow-down mr-3" aria-hidden="true"></i><h2 class=" d-flex align-items-center">Ordered  </h2>
+          </div>
+        </div>
+        <div *ngIf="type=='cart'" class="bag-container mt-3">
+            <div class="row m-0 p-3" *ngFor="let item of BagItem; let i=index" >
+                <div class="bag col-md-8 border p-3">
+                    <div class="row">
+                      <div class="col-md-4">
+                          <div class="card text-left">
+                              <img id="{{i}}" class="card-img-top" src="{{item.Img1}}" (mouseenter)="in(i,item.Img2)" (mouseleave)="out(i,item.Img1)" alt="">
+                              <div class="card-body">
+                                <h4 class="card-title">{{item.Name_Product}}</h4>
+                                <p class="card-text">{{item.Category}}</p>
+                              </div>
+                            </div>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="row">
+                          <label class="text-white">Number: </label>
+                          <input type="number" value="{{item.Number}}" [(ngModel)]="item.Number" class="mx-2" >
+                        </div>
+                        <div class="row no-row my-3">
+                            <input id="trigger{{i}}" type="radio" value="value1" name="group1"  class="rd d-flex align-items-center" (click)="radioStyle('yellow',i)" >
+                            <label id="lbtrigger{{i}}" for="trigger{{i}}" class="checker d-flex align-items-center justify-content-center text-yellow  mr-2  " >Vàng</label>
+                            <input id="trigger1{{i}}" type="radio" value="value2" name="group1"  class="rd d-flex align-items-center" (click)="radioStyle('blue',i)">
+                            <label id="lbtrigger1{{i}}" for="trigger1{{i}}" class="checker d-flex align-items-center justify-content-center text-blues  mr-2 ">Xanh</label>
+                            <input id="trigger2{{i}}" type="radio" value="value3" name="group1"  class="rd d-flex align-items-center"(click)="radioStyle('white',i)">
+                            <label id="lbtrigger2{{i}}" for="trigger2{{i}}" class="checker d-flex align-items-center justify-content-center text-whites ">Trắng</label>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="price-total col-md-4 border p-3">
+                    <div class="div d-flex justify-content-between align-items-center border-bottom">
+                        <label class="text-white">TOTAL MONEY</label>
+                        <label *ngIf="maCode==false" class="text-danger ts1">{{(item.price*item.Number-item.price*item.Number*item.Sale/100+item.price*item.Number*10/100).toFixed(2)}}$</label>
+                        <label *ngIf="maCode && i==id" class="text-danger ts1">{{(item.price*item.Number-item.price*item.Number*item.Sale/100+item.price*item.Number*10/100-item.price*item.Number*15/100).toFixed(2)}}$</label>
+                      </div>
+                    <div  class="div d-flex justify-content-between align-items-center ">
+                      <label class="text-white">Total:</label>
+                      <span class="text-danger">{{item.price*item.Number}}</span>
+                    </div>
+                    <div  class="div d-flex justify-content-between align-items-center ">
+                      <label class="text-white">Sale:</label>
+                      <span class="text-success">-{{item.price*item.Number*item.Sale/100}}</span>
+                    </div>
+                    <div  class="div d-flex justify-content-between align-items-center ">
+                      <label class="text-white">Vat 10%:</label>
+                      <span class="text-danger">+{{item.price*item.Number*10/100}}</span>
+                    </div>
+                    <div   class="div d-flex justify-content-between align-items-center " *ngIf="maCode && i==id" >
+                      <label class="text-white">Code 15%:</label>
+                      <span class="text-success">-{{item.price*item.Number*15/100}}</span>
+                    </div>
+                    <div  class="div d-flex justify-content-between align-items-center border-top border-bottom ">
+                      <label class="text-white">Total Charity:</label>
+                      <span class="text-warning">{{item.price*item.Number*item.Charity/100}}</span>
+                    </div>
+                    <p (click)="collap(i)" class="my-2">
+                      <a  class="btn btn-primary" data-toggle="collapse" href="#en{{i}}" aria-expanded="false" aria-controls="contentId">
+                        Code
+                      </a>
+                    </p>
+                    <div class="collapse" id="en{{i}}">
+                      <div  class="div d-flex justify-content-between align-items-center border-top border-bottom ">
+                        <label class="text-white">Discount code:</label>
+                        <input id="enterCode{{i}}" type="text" placeholder="Enter code" name="k{{i}}" [(ngModel)]="code" (keydown.enter)="codeDIS(i)">
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-between row m-0">
+                      <a type="button" class="p-2 bg-blue text-white" (click)="Order(item,i,(maCode && i==id)?0:1 )">Buy</a>
+                      <a type="button" class="p-2 bg-blue text-white" (click)="delete(item,i)">Delete</a>
+                    </div>
+                </div>
+              </div>
+        </div>
+        <div *ngIf="type=='auctions'" class="bag-container2 mt-3">
+            <div class="row m-0 p-3" *ngFor="let item of orderAuc; let i=index" >
+                <div class="bag col-md-8 border p-3">
+                    <div class="row">
+                      <div class="col-md-4">
+                          <div class="card text-left">
+                              <img id="{{i}}" class="card-img-top" src="{{item.Img1}}" (mouseenter)="in(i,item.Img2)" (mouseleave)="out(i,item.Img1)" alt="">
+                              <div class="card-body">
+                                <h4 class="card-title">{{item.Nameproduct}}</h4>
+                                <div class="row m-0 d-flex justify-content-between"><p class="card-text">{{item.Category}}</p><p class="card-text">{{item.ID_Shop}}</p></div>
+                              </div>
+                            </div>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="row no-row my-3">
+                            <input id="trigger{{i}}" type="radio" value="value1" name="group1"  class="rd d-flex align-items-center" (click)="radioStyle('yellow',i)" >
+                            <label id="lbtrigger{{i}}" for="trigger{{i}}" class="checker d-flex align-items-center justify-content-center text-yellow  mr-2  " >Vàng</label>
+                            <input id="trigger1{{i}}" type="radio" value="value2" name="group1"  class="rd d-flex align-items-center" (click)="radioStyle('blue',i)">
+                            <label id="lbtrigger1{{i}}" for="trigger1{{i}}" class="checker d-flex align-items-center justify-content-center text-blues  mr-2 ">Xanh</label>
+                            <input id="trigger2{{i}}" type="radio" value="value3" name="group1"  class="rd d-flex align-items-center"(click)="radioStyle('white',i)">
+                            <label id="lbtrigger2{{i}}" for="trigger2{{i}}" class="checker d-flex align-items-center justify-content-center text-whites ">Trắng</label>
+                        </div>
+                        <div class="table-responsive">
+                          <table class="table table-hover">
+                            <tbody>
+                              <tr>
+                                <td><span class="text-white">Name:</span></td>
+                                <td><span class="px-3">{{item.Nameproduct}}</span></td>
+                              </tr>
+                              <tr>
+                                  <td><span class="text-white">ID:</span></td>
+                                  <td><span class="px-3">{{item.ID_Product}}</span></td>
+                              </tr>
+                              <tr>
+                                  <td><span class="text-white">Time:</span></td>
+                                  <td><span class="px-3">{{item.time}}</span></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                      </div>
+                    </div>
+                </div>
+                <div class="price-total col-md-4 border p-3">
+                    <div class="div d-flex justify-content-between align-items-center ">
+                        <label class="text-white">TOTAL MONEY</label>
+                        <label class="text-success ts1">{{item.price*item.Number}}$</label>
+                    </div>
+
+                    <div class="table-responsive">
+                      <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <td><span class="text-white">Number:</span></td>
+                                <td><span class="px-3">{{item.Number}}</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="text-white">Price:</span></td>
+                                <td><span class="px-3">{{item.price}}/item</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="text-white">Transport:</span></td>
+                                <td><span class="px-3">{{item.Transport}}</span></td>
+                            </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <!-- <div>
+                      <a type="button" class="p-2 bg-blue text-white" (click)="Order(item,i)">Buy</a>
+                    </div> -->
+                </div>
+              </div>
+        </div>
+        <div *ngIf="type=='orders'" class="bag-container1 mt-3">
+            <div class="row m-0 p-3" *ngFor="let item of orderCus; let i=index" >
+                <div class="bag col-md-8 border p-3">
+                    <div class="row">
+                      <div class="col-md-4">
+                          <div class="card text-left">
+                              <img id="{{i}}" class="card-img-top" src="{{item.Img1}}" (mouseenter)="in(i,item.Img2)" (mouseleave)="out(i,item.Img1)" alt="">
+                              <div class="card-body">
+                                <h4 class="card-title">{{item.Nameproduct}}</h4>
+                                <div class="row m-0 d-flex justify-content-between"><p class="card-text">{{item.Category}}</p><p class="card-text">{{item.ID_Shop}}</p></div>
+                              </div>
+                            </div>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="row no-row my-3">
+                            <input id="trigger{{i}}" type="radio" value="value1" name="group1"  class="rd d-flex align-items-center" (click)="radioStyle('yellow',i)" >
+                            <label id="lbtrigger{{i}}" for="trigger{{i}}" class="checker d-flex align-items-center justify-content-center text-yellow  mr-2  " >Vàng</label>
+                            <input id="trigger1{{i}}" type="radio" value="value2" name="group1"  class="rd d-flex align-items-center" (click)="radioStyle('blue',i)">
+                            <label id="lbtrigger1{{i}}" for="trigger1{{i}}" class="checker d-flex align-items-center justify-content-center text-blues  mr-2 ">Xanh</label>
+                            <input id="trigger2{{i}}" type="radio" value="value3" name="group1"  class="rd d-flex align-items-center"(click)="radioStyle('white',i)">
+                            <label id="lbtrigger2{{i}}" for="trigger2{{i}}" class="checker d-flex align-items-center justify-content-center text-whites ">Trắng</label>
+                        </div>
+                        <div class="table-responsive">
+                          <table class="table table-hover">
+                            <tbody>
+                              <tr>
+                                <td><span class="text-white">Name:</span></td>
+                                <td><span class="px-3">{{item.Nameproduct}}</span></td>
+                              </tr>
+                              <tr>
+                                  <td><span class="text-white">ID:</span></td>
+                                  <td><span class="px-3">{{item.ID_Product}}</span></td>
+                              </tr>
+                              <tr>
+                                  <td><span class="text-white">Time:</span></td>
+                                  <td><span class="px-3">{{item.time}}</span></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                      </div>
+                    </div>
+                </div>
+                <div class="price-total col-md-4 border p-3">
+                    <div class="div d-flex justify-content-between align-items-center ">
+                        <label class="text-white">TOTAL MONEY</label>
+                        <label class="text-success ts1">{{item.price}}$</label>
+                    </div>
+                    <div  class="div d-flex justify-content-between align-items-center border-top border-bottom ">
+                      <label class="text-white">Total Charity:</label>
+                      <span class="text-warning">{{item.price*item.Charity/100}}</span>
+                    </div>
+                    <div class="table-responsive">
+                      <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <td><span class="text-white">Number:</span></td>
+                                <td><span class="px-3">{{item.Number}}</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="text-white">Price:</span></td>
+                                <td><span class="px-3">{{item.price/item.Number}}/item</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="text-white">Transport:</span></td>
+                                <td><span class="px-3">{{item.Transport}}</span></td>
+                            </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <!-- <div>
+                      <a type="button" class="p-2 bg-blue text-white" (click)="Order(item,i)">Buy</a>
+                    </div> -->
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+<div>
+  <!-- <div class="row">
+    <div class="w-95" id="a"></div>
+    <div class="w-5" id='b'></div>
+  </div>
+</div>
+<a class="btn bg-black" (click)="add(1)">aaaaaaaaa</a>
+<a class="btn bg-black" (click)="add(2)">nnnnnnnnn</a> -->

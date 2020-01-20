@@ -1,0 +1,65 @@
+<div id="admin1">
+    <div class="row my-5 m-0 justify-content-center d-flex">
+        <h1>Place Charity</h1>
+    </div>
+    <div class="my-3 row d-flex justify-content-center">
+      <a class="p-2 add" [routerLink]="['/sale-page/Add-Place']">Add Place Charity</a>
+    </div>
+  <div class="row mx-0 list-order text-center bg-gray-s py-3 d-flex align-items-center justify-content-center font-weight-bold bg-dark">
+    <div class="w-10"> ID Place</div>
+    <div class="w-20"> Place</div>
+    <div class="w-20"> Address</div>
+    <div class="w-10"> Point</div>
+    <div class="w-10"> Money Charity</div>
+    <div class="w-10">Time</div>
+    <div class="w-10">Status</div>
+    <div class="w-10">Action</div>
+  </div>
+  <div class="row py-2 mx-0 list-order text-center py-3 d-flex align-items-center border justify-content-center text-blues bg-light" *ngFor="let item of ListPlace ; let i = index">
+    <div class="w-10 ">{{item.ID_Place}}</div>
+    <div class="w-20">{{item.Place}}</div>
+    <div class="w-20">{{item.Address}}</div>
+    <div class="w-10">{{item.Point}}</div>
+    <div class="w-10">{{item.Money}}</div>
+    <div class="w-10">{{item.Time}}</div>
+    <div class="w-10">{{item.Status}}</div>
+    <div class="w-10 py-2 mb-3">
+        <a  title="Extend watch info" class="add2 bg-success text-white p-2" data-toggle="collapse" href="#extend{{i}}" aria-expanded="false" aria-controls="contentId">Extend</a>
+    </div>
+    <div class="collapse w-100 bg-dark text-white panel-collapse" id="extend{{i}}">
+            <div class="row m-0 py-2">
+                <img class="col-sm-6 col-xs-12 col-lg-6" src={{item.Img}}>
+                <div id="infoSOS" class="col-sm-6 col-xs-12 col-lg-6">
+                        <h6 class="white">Thông tin liên lạc</h6>
+                        <hr>
+                        <p><strong>Văn phòng quốc gia</strong></p>
+
+                        <p>Ngõ 1 Phạm Văn Đồng, P.Mai Dịch, Q.Cầu Giấy, Hà Nội<br>
+                        Tel&nbsp; &nbsp; : +84.24.37644019<br>
+                        Email: office@sosvietnam.org</p>
+
+                        <p><strong>VP Truyền thông &amp; Phát triển quỹ</strong></p>
+
+                        <p>45 Phạm Ngọc Thạch, P.6, Q.3, HCM<br>
+                        25/68 Nguyễn Bỉnh Khiêm, Phường Bến Nghé, Q1, HCM<br>
+                        Tel&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;+84.28.38227227/ 66822068<br>
+                        Email: phattrienquy@sosvietnam.org</p>
+                        <div>
+                            <div>&nbsp;</div>
+                        </div>
+                </div>
+            </div>
+    </div>
+    <div>
+        <a class="add text-white bg-success p-2" (click)="Vote(item)">Vote</a>
+    </div>
+  </div>
+</div>
+<div class="bg-loading" id="load1">
+  <div id="demo1"></div>
+  <div class="center-s">
+    <div class="container ">
+      <div class="box"></div>
+    </div>
+  </div>
+</div>

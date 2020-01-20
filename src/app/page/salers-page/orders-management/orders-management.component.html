@@ -1,0 +1,26 @@
+<div id="admin1">
+  <span [ngSwitch]="layout">
+    <p *ngSwitchCase="'All'">
+      <app-all-orders [signalReturn]="false"></app-all-orders>
+    </p>
+    <p *ngSwitchCase="'Batch'">
+      <app-batch-processing></app-batch-processing>
+    </p>
+    <p *ngSwitchCase="'Return'">
+            <app-all-orders [signalReturn]="true"></app-all-orders>
+    </p>
+
+    <p *ngSwitchDefault>
+        <app-all-orders></app-all-orders>
+    </p>
+  </span>
+</div>
+<div class="bg-loading" id="load1">
+
+  <div id="demo1"></div>
+  <div class="center-s">
+    <div class="container ">
+      <div class="box"></div>
+    </div>
+  </div>
+</div>

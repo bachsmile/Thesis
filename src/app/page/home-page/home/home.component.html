@@ -1,0 +1,265 @@
+<ng-container *ngIf="thems; else elseTemplate">
+  <div class="home-fix">
+      <header>
+        <div class="wrapper">
+          <a class="logo"> SBS SHOP </a>
+          <!-- <nav>
+            <ul>
+              <li><a href="">Services</a></li>
+              <li><a href="">Our Story</a></li>
+              <li><a href="">Work</a></li>
+              <li><a href="">Journal</a></li>
+              <li><a href="">Contact</a></li>
+            </ul>
+          </nav> -->
+        </div>
+
+      </header><!-- End Header -->
+
+      <section class="billboard">
+        <section class="caption">
+          <p class="cap_title">SBS Click Buy</p>
+          <p class="cap_desc">Let's sell together for charityt</p>
+          <a [routerLink]="['/Shop']">Start here <i></i></a>
+        </section>
+      </section><!-- End billboard -->
+
+      <section class="services wrapper">
+        <ul class="p-0">
+          <li class="pointer" [routerLink]="['/home/design-now']">
+            <img class="s_icons" src="/assets/img/icons/s1_icon.png" title="" alt=""/>
+            <h3>Design now</h3>
+            <p>Everyone can make their site the most beautiful.</p>
+          </li>
+          <li class="pointer"[routerLink]="['/Auction']">
+            <img class="s_icons"  src="/assets/img/icons/s2_icon.png" title="" alt=""/>
+            <h3>Auction</h3>
+            <p>A small part of you can become the dream of others, please join hands for kindness!.</p>
+          </li>
+          <li class="pointer" [routerLink]="['/Shop']" >
+            <img class="s_icons" src="/assets/img/icons/s3_icon.png" title="" alt=""/>
+            <h3>Try it on</h3>
+            <p>Try it out to suit your taste, even if it's meticulous.</p>
+          </li>
+        </ul>
+      </section><!-- End services -->
+
+
+      <section class="video wrapper">
+        <h3>Beauty in fashion is your soul</h3>
+        <p>Every beautiful item you buy from us you may not know but you really contributed to the small souls and beautiful dreams.</p>
+        <div class="ex_video">
+          <a href="#"><img src="/assets/img/img/2.jpg" alt="" title=""/></a>
+        </div>
+      </section>	<!-- End video -->
+
+
+      <div class="body3">
+          <div class="row d-flex justify-content-center p-5"><div class="mr-3">SBS HAVE</div>
+          <div class="dropping-texts">
+            <div>Auction</div>
+            <div>Shoes</div>
+            <div>Clothes</div>
+            <div>Charity!</div>
+            <div>Wellcome!</div>
+          </div></div>
+          <div class=" img1 mt-5">
+            <img src="http://tbdn.com.vn/data/data/dinhkhuong/2019/01/10/anh123.jpg">
+          </div>
+          <div class=" img3 row m-0 h-40  pb-4" [routerLink]="['/Shop/mall','ShoesMen']">
+            <!-- <img class="img-grid shadowm1" src="https://assets.adidas.com/images/w_2000,h_2000,f_auto,q_auto:sensitive,fl_lossy/f4859bd39a0843e8aadfaae7018a4f7d_9366/D.O.N._Issue_1_Star_Wars_Lightsaber_Shoes_Black_FU7156_012_hover_standard.jpg" alt=""> -->
+            <video class="img-grid shadowm1" loop="" autoplay="" playsinline="" src="https://brand.assets.adidas.com/video/upload/q_auto,vc_auto/video/upload/global%20brand%20publishing/Star%20Wars/AlphaedgeTeaserCardDesktop.mp4"></video>
+          </div>
+          <div class=" img2 mt-5">
+              <img src="http://kingssleeve.com/wp-content/uploads/2016/10/men-style-stripe-fashion-7.jpg">
+          </div>
+          <div class=" img4 mt-5">
+                <img src="https://www.moneywise.co.uk/sites/default/files/styles/node_main/public/charity-donate.jpg?itok=DhYKPb55">
+          </div>
+          <div class=" img5 mt-5">
+              <img src="http://cise-egypt.com/wp-content/uploads/2019/09/WELCOME-ST-IVES.jpg">
+         </div>
+  </div>
+
+      <section class="recent_work wrapper mt-5">
+        <h3 class="S_title">Recent Work</h3>
+
+        <div class="work" [routerLink]="['/Shop/type/Shoes']">
+          <a class="work_img">
+              <img class="img_gif"  src="/assets/gif/SHOES1.gif" loading="auto">
+          </a>
+          <a [routerLink]="['/Shop/type/Shoes']" class="work_title">
+            Shop Shoes
+            <i></i>
+          </a>
+        </div>
+        <div class="work" [routerLink]="['/Shop/type/Trousers']">
+          <a class="work_img">
+            <img class="img_gif" src="/assets/gif/bottom.gif" alt="" title=""/>
+          </a>
+          <a [routerLink]="['/Shop/type/Trousers']" class="work_title">
+            SHOP Trousers
+            <i></i>
+          </a>
+        </div>
+        <div class="work" [routerLink]="['/Shop/type/Shirt']">
+          <a class="work_img">
+            <img class="img_gif" src="/assets/gif/tops.gif" alt="" title=""/>
+          </a>
+          <a [routerLink]="['/Shop/type/Shirt']" class="work_title">
+            SHOP Shirt
+            <i></i>
+          </a>
+        </div>
+        <div class="work" [routerLink]="['/Shop/type/Dress']">
+          <a  class="work_img">
+              <img class="img_gif" src="/assets/gif/tranning.gif" alt="" title=""/>
+          </a>
+          <a [routerLink]="['/Shop/type/Dress']" class="work_title">
+            SHOP Dress<i></i>
+          </a>
+        </div>
+      </section><!-- End recent_work -->
+
+
+
+      <section class="subscription">
+        <div class="wrapper">
+            <div class="container bodys">
+                <div class="animate seven">
+                    <span class="text-warning">$</span>
+                    <span>*</span>
+                    <span>C</span>
+                    <span>h</span>
+                    <span>a</span>
+                    <span>r</span>
+                    <span>i</span>
+                    <span>t</span>
+                    <span>y</span>&nbsp;
+                    <span>F</span>
+                    <span>u</span>
+                    <span>n</span>
+                    <span>d</span>
+                    <span>*</span>
+                </div>
+            </div>
+
+          <p class="desc">"Journey of Life "- Bring joy to disadvantaged children</p>
+            <h1 class="fund text-warning mb-5">{{allMoney}}<span class="text-success">$</span></h1>
+         <div class="row d-flex justify-content-center">
+          <a  class="start_btn" [routerLink]="['/ChatRoom/room/chat']">Do charity now</a>
+          <a  class="start_btn" [routerLink]="['/List-fund-public']">List fund charity management</a>
+         </div>
+        </div>
+      </section><!-- End subscription -->
+
+
+
+      <section class="social">
+          <a href="https://www.facebook.com/TRAN.XUAN.BACH.IT" target="_blank" class="fb"></a>
+          <a href="https://twitter.com/bachmatri2" target="_blank" class="t"></a>
+          <a href="https://dribbble.com/sbsWeb" target="_blank" class="d"></a>
+          <a [routerLink]="['/Contact']"  class="g"></a>
+
+        </section><!-- End social -->
+      <div id="lightbox"></div>
+      <div id="box">
+        <a href="" class="close"></a>
+        <form method="" action="">
+          <input type="text" id="email" placeholder="Email"/>
+          <input type="text" id="name" placeholder="Name"/>
+          <input type="submit" id="submit" value="Subscribe Now"/>
+        </form>
+      </div>
+  </div>
+  <!-- <app-form-ad
+    [Link1]="
+      'https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/running-fw19-rfto-launch-hp-mh-medium-d_tcm221-363310.jpg'
+    "
+    [Link2]="'https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/running-fw19-rfto-launch-hp-mh-medium-t_tcm221-363312.jpg'"
+    [Link3]="'https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/running-fw19-rfto-launch-hp-mh-medium-m_tcm221-363311.jpg'"
+    [img]="'https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/running-fw19-rfto-launch-hp-mh-medium-d_tcm221-363310.jpg'"
+    [title]="'It`s on! Join the fight against marine plastic pollution by signing up via the Runtastic app and get running.'"
+    [lable]="'RUN FOR THE OCEANS'"
+    [bt1]="'join now'"
+    [bt2]="'shop now'"
+    ></app-form-ad>
+    <div class="page">
+      <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <picture
+            ><source
+              media="(min-width: 960px)"
+              class="img" srcset="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/4x1_Desktop_Teaser_red_tcm221-379916.jpg"/>
+            <source
+            class="img" srcset="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/4x1_M_T_Teaser_red_tcm221-379920.jpg"/>
+            <img
+            class="img" src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/4x1_Desktop_Teaser_red_tcm221-379916.jpg"
+          /></picture>
+          <div class="diplay-bot"><app-button-now-white [btname]="'SHOP SHOES'" [routerLink]="['/shop/shopItem/shop-men/shop-shoes']"></app-button-now-white> </div>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <picture
+            ><source
+            class="img"
+              media="(min-width: 960px)"
+              srcset="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/4x1_Desktop_Teaser_blue_tcm221-379914.jpg"/>
+            <source
+            class="img"
+              srcset="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/4x1_M_T_Teaser_blue_tcm221-379918.jpg"/>
+            <img
+            class="img"
+              src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/4x1_Desktop_Teaser_blue_tcm221-379914.jpg"
+          /></picture>
+          <div class="diplay-bot"><app-button-now-white [btname]="'SHOP Apparel'" [routerLink]="['/shop/shopItem/shop-men/shop-Apparel']"></app-button-now-white> </div>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <picture
+            ><source
+            class="img"
+              media="(min-width: 960px)"
+              srcset="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/4x1_Desktop_Teaser_orange_tcm221-379915.jpg"/>
+            <source
+            class="img"
+              srcset="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/4x1_M_T_Teaser_orange_tcm221-379919.jpg"/>
+            <img
+            class="img"
+              src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/4x1_Desktop_Teaser_orange_tcm221-379915.jpg"
+          /></picture>
+          <div class="diplay-bot"><app-button-now-white [btname]="'SHOP BOTTOMS'" ></app-button-now-white> </div>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <picture
+            ><source
+            class="img"
+              media="(min-width: 960px)"
+              srcset="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/4x1_Desktop_Teaser_yellow_tcm221-379917.jpg"/>
+            <source
+            class="img"
+              srcset="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/4x1_M_T_Teaser_yellow_tcm221-379921.jpg"/>
+            <img
+            class="img"
+              src="https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/4x1_Desktop_Teaser_yellow_tcm221-379917.jpg"
+          /></picture>
+          <div class="diplay-bot"><app-button-now-white [btname]="'SHOP ALL MEN`S'" [routerLink]="['/shop/shopItem/shop-men/shop-all']"></app-button-now-white> </div>
+        </div>
+      </div>
+    </div>
+    <app-form-ad
+    [Link1]="
+      'https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/running-fw19-rfto-launch-hp-mh-medium-d_tcm221-363310.jpg'
+    "
+    [Link2]="'https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/running-fw19-rfto-launch-hp-mh-medium-t_tcm221-363312.jpg'"
+    [Link3]="'https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/running-fw19-rfto-launch-hp-mh-medium-m_tcm221-363311.jpg'"
+    [img]="'https://brand.assets.adidas.com/image/upload/f_auto,q_auto,fl_lossy/enUS/Images/running-fw19-rfto-launch-hp-mh-medium-d_tcm221-363310.jpg'"
+    [title]="'It`s on! Join the fight against marine plastic pollution by signing up via the Runtastic app and get running.'"
+    [lable]="'RUN FOR THE OCEANS'"
+    [bt1]="'join now'"
+    [bt2]="'shop now'"
+    ></app-form-ad> -->
+</ng-container>
+<ng-template #elseTemplate>
+  <app-layout1></app-layout1>
+</ng-template>
+
+

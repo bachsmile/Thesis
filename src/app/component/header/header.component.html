@@ -1,0 +1,244 @@
+<div class="">
+  <div class="web container-fluid px-0 fix-top">
+    <div class="blackToWhite ">
+      <div class="textWhite ts1 d-flex justify-content-end container py-2">
+        <a class="border-right px-2 colorWhite" *ngIf="checkID"  [routerLink]="['/admin']" (click)="header()">Admin</a>
+        <a class="border-right px-2 colorWhite" [routerLink]="['/sale-page']" (click)="header()">Page for sellers</a>
+        <div class="dropdown ">
+          <a class="d-flex align-items-center px-2 colorWhite"><span class="mr-1"> <i class="fa fa-user-o" aria-hidden="true"></i> </span> {{check ? user : 'LOGIN'}}</a>
+          <div class="dropdown-content">
+              <div class="menu">
+                  <ul>
+                    <li *ngIf="check===true" (click)="logout()"><a> Logout</a></li>
+                    <li *ngIf="check===true" [routerLink]="['/infor']"><a> Info</a></li>
+                    <li *ngIf="check===true" data-toggle="modal" data-target="#ResetPassword" [routerLink]="['/infor']"><a> Reset Password</a></li>
+                    <li *ngIf="check===false" [routerLink]="['/login']" (click)="header()"><a> Login</a></li>
+                    <li *ngIf="check===false" data-toggle="modal" data-target="#myModal"><a> Register</a></li>
+                  </ul>
+              </div>
+              <!-- <a class="dropdown-item"  *ngIf="check===true" (click)="logout()">Logout</a>
+              <a class="dropdown-item"  *ngIf="check===true"  [routerLink]="['/info']" >Info</a>
+              <a class="dropdown-item"  *ngIf="check===true" data-toggle="modal" data-target="#ResetPassword" >Reset Password</a>
+              <a class="dropdown-item"  *ngIf="check===false" [routerLink]="['/login']" (click)="header()">Login</a>
+              <a class="dropdown-item"  *ngIf="check===false" data-toggle="modal" data-target="#myModal" >Register</a> -->
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluit bg-black">
+    <div class="ml-5 icon-sq" [routerLink]="['/home']"><app-load1></app-load1></div>
+    <div class="container">
+      <div class="a ">
+        <div class="d-flex justify-content-between w-100">
+          <div class=" textWhite ts2 d-flex  align-items-center">
+            <div class="dropdown">
+              <a class="px-1 h-100 d-flex align-items-center dropbtn" [routerLink]="['/Shop/Shop-Gender','men']" (change)="go('men')">Men</a>
+              <div class="dropdown-content">
+                  <div class="menu" >
+                    <ul>
+                      <li><a [routerLink]="['/Shop/mall','ClothesMen']"> Clothes Men</a>
+                        <ul class=""><p [routerLink]="['/Shop/mall','ClothesMen']">Clothes</p>
+                                <div  >
+                                    <li class="childe py-2" [routerLink]="['/Shop/mall','TrousersMen']"><i class="fa fa-circle-o text-danger mr-2" ></i>Trousers</li>
+                                    <li class="childe py-2" [routerLink]="['/Shop/mall','ShirtMen']"><i class="fa fa-circle-o text-danger mr-2" ></i>Shirt</li>
+                                    <li class="childe py-2" [routerLink]="['/Shop/mall','SetMen']"><i class="fa fa-circle-o text-danger mr-2" ></i>Set</li>
+                                </div>
+                          </ul>
+                      </li>
+                      <li [routerLink]="['/Shop/mall','ShoesMen']"><a> Shoes Men</a></li>
+                      <li [routerLink]="['/Shop/mall','HatMen']"><a> Hat Men</a></li>
+                      <li ><a [routerLink]="['/Shop/mall','watchMen']"> watch Men</a>
+                        <ul class=""><p [routerLink]="['/Shop/mall','watchMen']">watch</p>
+                                <div  >
+                                    <li class="childe py-2" [routerLink]="['/Shop/mall','BasicWatchMen']"><i class="fa fa-circle-o text-danger mr-2"></i>basic Watch</li>
+                                    <li class="childe py-2" [routerLink]="['/Shop/mall','SmartWatchMen']"><i class="fa fa-circle-o text-danger mr-2"></i>smart watch </li>
+                                </div>
+                          </ul>
+                      </li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+            <div class="dropdown">
+              <a class="px-1 h-100 d-flex align-items-center dropbtn" [routerLink]="['/Shop/Shop-Gender','women']" (change)="go('women')">Women</a>
+              <div class="dropdown-content">
+                  <div class="menu" >
+                      <ul>
+                        <li><a [routerLink]="['/Shop/mall','ClothesWomen']"> Clothes Woment</a>
+                          <ul class=""><p [routerLink]="['/Shop/mall','ClothesWomen']">Clothes</p>
+                                  <div  >
+                                      <li class="childe py-2" [routerLink]="['/Shop/mall','TrousersWomen']"><i class="fa fa-circle-o text-danger mr-2" ></i>Trousers</li>
+                                      <li class="childe py-2" [routerLink]="['/Shop/mall','ShirtWomen']"><i class="fa fa-circle-o text-danger mr-2" ></i>Shirt</li>
+                                      <li class="childe py-2" [routerLink]="['/Shop/mall','SetWomen']"><i class="fa fa-circle-o text-danger mr-2" ></i>Set</li>
+                                  </div>
+                            </ul>
+                        </li>
+                        <li [routerLink]="['/Shop/mall','ShoesWomen']"><a> Shoes Women</a></li>
+                        <li [routerLink]="['/Shop/mall','HatWomen']"><a> Hat Women</a></li>
+                        <li ><a [routerLink]="['/Shop/mall','watchWomen']"> watch Women</a>
+                          <ul class=""><p [routerLink]="['/Shop/mall','watch']">watch</p>
+                                  <div  >
+                                      <li class="childe py-2" [routerLink]="['/Shop/mall','BasicWatchWomen']"><i class="fa fa-circle-o text-danger mr-2"></i>basic Watch</li>
+                                      <li class="childe py-2" [routerLink]="['/Shop/mall','SmartWatchWomen']"><i class="fa fa-circle-o text-danger mr-2"></i>smart watch </li>
+                                  </div>
+                            </ul>
+                        </li>
+                      </ul>
+                  </div>
+              </div>
+            </div>
+            <div class="dropdown">
+              <a class="px-1 h-100 d-flex align-items-center dropbtn" [routerLink]="['/Shop/Shop-Gender','kids']" (click)="go('kids')">
+                <a class="border-rights d-flex align-items-center pr-2"> Kids </a>
+              </a>
+              <div class="dropdown-content">
+                  <div class="menu" >
+                      <ul>
+                        <li><a [routerLink]="['/Shop/mall','ClothesKids']"> Clothes Kids</a>
+                          <ul class=""><p [routerLink]="['/Shop/mall','ClothesKids']">Clothes</p>
+                                  <div  >
+                                      <li class="childe py-2" [routerLink]="['/Shop/mall','TrousersKids']"><i class="fa fa-circle-o text-danger mr-2" ></i>Trousers</li>
+                                      <li class="childe py-2" [routerLink]="['/Shop/mall','ShirtKids']"><i class="fa fa-circle-o text-danger mr-2" ></i>Shirt</li>
+                                      <li class="childe py-2" [routerLink]="['/Shop/mall','SetKids']"><i class="fa fa-circle-o text-danger mr-2" ></i>Set</li>
+                                  </div>
+                            </ul>
+                        </li>
+                        <li [routerLink]="['/Shop/mall','ShoesKids']"><a> Shoes Kids</a></li>
+                        <li [routerLink]="['/Shop/mall','HatKids']"><a> Hat Kids</a></li>
+                        <li ><a [routerLink]="['/Shop/mall','watchKids']"> watch Kids</a>
+                          <ul class=""><p [routerLink]="['/Shop/mall','watchKids']">watch</p>
+                                  <div  >
+                                      <li class="childe py-2" [routerLink]="['/Shop/mall','BasicWatchKids']"><i class="fa fa-circle-o text-danger mr-2"></i>basic Watch</li>
+                                      <li class="childe py-2" [routerLink]="['/Shop/mall','SmartWatchKids']"><i class="fa fa-circle-o text-danger mr-2"></i>smart watch </li>
+                                  </div>
+                            </ul>
+                        </li>
+                      </ul>
+                  </div>
+              </div>
+            </div>
+            <div class="dropdown">
+              <a class="px-1 h-100 d-flex align-items-center dropbtn">Category</a>
+              <div class="dropdown-content width-content">
+                  <div *ngFor="let item of arrList  ; let i=index">
+                      <div class="menu" >
+                          <ul>
+                            <li><a [routerLink]="['/Shop/type',item.parent[0].DanhMuc]"> {{item.parent[0].DanhMuc}}</a>
+                              <ul class=""><p [routerLink]="['/Shop/type',item.parent[0].DanhMuc]">{{item.parent[0].DanhMuc}}</p>
+                                      <div *ngFor="let item1 of item.children" >
+                                          <li class="childe py-2" [routerLink]="['/Shop/type',item1.DanhMuc]"><i class="fa fa-circle-o text-danger mr-2" ></i>{{item1.DanhMuc}}</li>
+                                      </div>
+                                </ul>
+                            </li>
+                          </ul>
+                      </div>
+                      <ng-container *ngIf="item.id_childe =='0'; else elseTemplates">
+                          <div class="menu">
+                              <ul>
+                                <li><a> {{item.parent[0].DanhMuc}}</a>
+                                  <ul class=""><p >Kids</p>
+                                           <li class="childe"><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+                                           <li class="childe"><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+                                    </ul>
+                                </li>
+                              </ul>
+                          </div>
+                        </ng-container>
+                  </div>
+                  <ng-template #elseTemplates>
+                      <div class="none"></div>
+                    </ng-template>
+                <!-- <div class="row">
+
+                  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                      <a href="#">Link 1</a>
+                      <a href="#">Link 2</a>
+                      <a href="#">Link 3</a>
+                  </div>
+                  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                      <a href="#">Link 1</a>
+                      <a href="#">Link 2</a>
+                      <a href="#">Link 3</a>
+                  </div>
+                  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                      <a href="#">Link 1</a>
+                      <a href="#">Link 2</a>
+                      <a href="#">Link 3</a>
+                  </div>
+                  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                      <a href="#">Link 1</a>
+                      <a href="#">Link 2</a>
+                      <a href="#">Link 3</a>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+            <div class="dropdown">
+              <a class="px-1 h-100 d-flex align-items-center dropbtn">Brands</a>
+              <div class="dropdown-content">
+                  <div class="menu">
+                      <ul>
+                        <li [routerLink]="['/Shop/Shop-Gender','men']"><a> MEN</a></li>
+                        <li [routerLink]="['/Shop/Shop-Gender','women']"><a> WOMEN</a></li>
+                        <li [routerLink]="['/Shop/Shop-Gender','kids']"><a> KIDS</a></li>
+                      </ul>
+                  </div>
+              </div>
+            </div>
+            <div class="dropdown">
+              <a class="px-1 h-100 d-flex align-items-center dropbtn"  [routerLink]="['/home/design-now']">Layout</a>
+            </div>
+            <div class="dropdown">
+                <a class="px-1 h-100 d-flex align-items-center dropbtn"  [routerLink]="['/ChatRoom/room/chat']">Auction</a>
+              </div>
+          </div>
+          <div
+            class="input-group md-form form-sm form-1 pl-0 search  d-flex justify-content-end k"
+          >
+            <!-- <div class="input-group-prepend  border-right-0 ">
+              <span
+                class="input-group-text purple lighten-3 bg-white bgRD point "
+                id="basic-text1"
+                ><i class="fa fa-search  " aria-hidden="true"></i
+              ></span>
+            </div>
+            <input
+              class=" my-0 py-1 border-0"
+              type="text"
+              placeholder="Search"
+              aria-label="Search"
+            /> -->
+            <a [routerLink]="['/bag']" class="notification">
+              <div class="bag point"></div>
+              <span class="badge">{{lenghtBag}}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class=" mobile topnav d-flex justify-content-between bg-black diplays" id="myTopnav">
+    <a  class="openbtn" (click)="openNav()">
+        <i class="fa fa-bars"></i>
+      </a>
+      <a><app-load1></app-load1></a>
+
+  <div class="mt-2"><a class="fa fa-search searchs " aria-hidden="true"></a>
+  <a class="bag point "></a>
+</div>
+</div>
+<div id="mySidebar" class="sidebar diplays" style="display: inline !important">
+    <a  class="closebtn" (click)="closeNav()">×</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+    <a href="#">help</a>
+    <a href="#">order tracker and returns</a>
+    <a href="#">Newsletter Signup</a>
+    <a href="#">Creators club</a>
+  </div>
+  <div class="d-flex align-self-center">
+      <app-form-register></app-form-register>
+  </div>

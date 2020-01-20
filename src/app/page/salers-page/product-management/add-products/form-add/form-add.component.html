@@ -1,0 +1,242 @@
+<div class=" bg-black p-3">
+  <div class="wapper my-3 bg-white" >
+      <h3>Info basic</h3>
+      <div class="row pl-4 my-2">
+
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          Name product
+        </div>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+          <input name="two" class="form-control" type="text" placeholder="Name" [(ngModel)]="product.Name_Product">
+        </div>
+
+      </div>
+      <div class="row pl-4 my-2">
+
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          Details product
+        </div>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+
+          <div class="form-group">
+              <textarea name="" id="textarea" class="form-control" rows="3" required="required" [(ngModel)]="product.Details"></textarea>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="row pl-4 my-2">
+
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          Category
+        </div>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+            <nav class="breadcrumb">
+              <a class="breadcrumb-item"  href="#" >{{product.Catefory1}}</a>
+              <a class="breadcrumb-item" href="#" >{{product.Catefory2}}</a>
+            </nav>
+        </div>
+
+      </div>
+      <div class="row pl-4 my-2">
+
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          Trademark
+        </div>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+          <input type="text" class="form-control" [(ngModel)]="product.Trademark">
+        </div>
+
+      </div>
+      <div class="row pl-4 my-2">
+
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          Material
+        </div>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+          <input type="text" class="form-control" [(ngModel)]="product.Material">
+        </div>
+
+      </div>
+      <div class="row pl-4 my-2">
+
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          Origin
+        </div>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+          <input type="text" class="form-control" [(ngModel)]="product.Origin">
+        </div>
+
+      </div>
+    </div>
+    <div class="wapper bg-white my-4">
+        <h3>Sales information</h3>
+        <div class="row pl-4 my-2">
+
+          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            Price
+          </div>
+          <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+            <input type="text" class="form-control" [(ngModel)]="product.Price">
+          </div>
+
+        </div>
+        <div class="row pl-4 my-2">
+
+          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            Warehose
+          </div>
+          <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+            <input type="text" class="form-control" [(ngModel)]="product.Warehose">
+          </div>
+
+        </div>
+        <div class="row pl-4 my-2">
+
+          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            Sale
+          </div>
+          <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+            <input type="text" class="form-control" [(ngModel)]="product.Sale">
+          </div>
+
+        </div>
+        <div class="row pl-4 my-2">
+
+          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            Charity
+          </div>
+          <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 row m-0">
+            <div class="form-group "  [formGroup]="addForm">
+              <div class="">
+                <select name="" id="input"  class="form-control" required="required" formControlName="Charity" >
+                  <option  value="5">5%</option>
+                  <option  value="10">10%</option>
+                  <option  value="15">15%</option>
+                  <option  value="20">20%</option>
+                  <option  value="25">25%</option>
+                  <option  value="30">30%</option>
+                  <option  value="35">35%</option>
+                  <option  value="40">40%</option>
+                  <option  value="45">45%</option>
+                  <option  value="50">50%</option>
+                  <option  value="55">55%</option>
+                  <option  value="60">60%</option>
+                  <option  value="65">65%</option>
+                  <option  value="70">70%</option>
+                  <option  value="75">75%</option>
+                  <option  value="80">80%</option>
+                  <option  value="85">85%</option>
+                  <option  value="90">90%</option>
+                  <option  value="95">95%</option>
+                  <option  value="100">100%</option>
+                </select>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              Gender
+            </div>
+            <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 row m-0">
+              <div class="form-group "  [formGroup]="addForm">
+                <div class="">
+                  <select name="" id="input1"  class="form-control" required="required" formControlName="Gender" >
+                    <option  value="all">all</option>
+                    <option  value="men">men</option>
+                    <option  value="women">women</option>
+                    <option  value="kids">kids</option>
+                  </select>
+                </div>
+
+              </div>
+
+            </div>
+        </div>
+        <div class="row pl-4 my-2">
+
+          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            img1
+          </div>
+          <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+            <input type="text" class="form-control " disabled [(ngModel)]="product.Img1">
+          </div>
+
+        </div>
+        <div class="row pl-4 my-2">
+
+          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            img2
+          </div>
+          <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+              <input type="text" class="form-control " disabled [(ngModel)]="product.Img2">
+
+        </div>
+      </div>
+    </div>
+    <div class="wapper bg-white">
+      <h3>Sales information</h3>
+      <div class="row pl-4 my-2">
+
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          Images
+        </div>
+        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+
+
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+              <div>
+                <form [formGroup]="form "  class="w-70 d-flex justify-content-between">
+                  <input
+                    type="file"
+                    name="avatar"
+                    (change)="processSelectedFiles($event)"
+                  />
+                  <div class="ml-5">
+                      <!-- *ngIf="uploadResponse.status === 'progress'" -->
+                      <div
+                        role="progressbar"
+                        [style.width.%]="uploadResponse.message"
+                        aria-valuenow="25"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        class="text-success mb-2"
+                      >
+                        {{success }}
+                      </div>
+                    </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <form [formGroup]="form "  class="w-70 d-flex justify-content-between">
+                    <input
+                      type="file"
+                      name="avatar"
+                      (change)="processSelectedFiles1($event)"
+                    />
+                    <div class="ml-5">
+                        <!-- *ngIf="uploadResponse.status === 'progress'" -->
+                        <div
+                          role="progressbar"
+                          [style.width.%]="uploadResponse.message"
+                          aria-valuenow="25"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                          class="text-success mb-2"
+                        >
+                          {{success1 }}
+                        </div>
+                      </div>
+                  </form>
+            </div>
+        </div>
+
+      </div>
+      <div class="row my-3 pl-4 ">
+        <a type="button" class="px-3 bg-orangess" (click)="AddNewItem()"  >Submit</a>
+      </div>
+    </div>
+
+</div>

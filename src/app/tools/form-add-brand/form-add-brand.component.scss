@@ -1,0 +1,141 @@
+.b{
+  position: relative;
+}
+
+.imgFix{
+  position: relative;
+  width: 100%;
+  object-fit: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.a{
+  position: absolute;
+  top: 0;
+}
+.left-img{
+  position: relative;
+}
+.right-img{
+  position: relative;
+}
+.in{
+  position: relative;
+    bottom: 45px;
+    width: 100%;
+}
+.row{
+  margin-right: 0;margin-left: 0;
+}
+.imgFix-50{
+  position: relative;
+  width: 50%;
+  object-fit: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.ts1 {
+  font-size: 2rem;
+  text-shadow: 1px 1px #000;
+}
+.ts4{
+  font-size: 0.8rem;
+}
+.tsWhite{
+  text-shadow: 1px 1px #000;
+  color: white;
+}
+@media (max-width: 160px) {
+  .ts1{
+    font-size: 0.5rem !important;
+  }
+  .ts4{
+    font-size: 0.4rem !important;
+  }
+  .ab{
+    font-size: 4px !important;
+  }
+  .ts3{
+    font-size: 0.3rem !important;
+  }
+  .pd0{
+    padding: 0 !important;;
+  }
+ }
+ @media (max-width: 260px) {
+  .rp260{
+    display: none;
+  }
+
+
+ }
+@media (max-width: 350px) {
+
+  .ts4{
+    font-size: 0.4rem !important;
+  }
+  .ab{
+    font-size: 6px;
+  }
+  .ts3{
+    font-size: 0.6rem;
+  }
+  .bg-light{
+    padding: 0 !important;
+  }
+  .in{
+    bottom: 30px;
+  }
+  .ts1{
+    font-size: 0.8rem !important;
+  }
+  .ts2{
+    font-size: 0.5rem !important;
+  }
+  .pd1{
+    padding: 0 !important;
+  }
+ }
+@media (max-width: 576px) {
+  .ts1{
+    font-size: 1.4rem ;
+  }
+  .ts2{
+    font-size: 0.8rem ;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 768px) {
+
+  }
+
+// Large devices (desktops, 992px and up)
+@media (max-width: 992px) {
+  .mobie{
+    display: none !important;
+  }
+  .pd1{
+    display:  flex !important;
+  }
+  .pd0{
+    display:  flex !important;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (max-width: 1200px) {
+  .pd1{
+    display:  none ;
+  }
+  .pd0{
+    display:  none ;
+  }
+ }
+@media (min-width: 1200px) {
+  .pd1{
+  display:  none !important;
+}
+.pd0{
+  display:  none !important;
+} }

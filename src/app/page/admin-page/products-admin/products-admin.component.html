@@ -1,0 +1,61 @@
+<div id="admin3" class="p-4">
+    <div class="d-flex justify-content-lg-between py-5">
+        <h3 class="">MANAGE PRODUCT</h3>
+        <!-- Button trigger modal -->
+        <!-- <a class="fa fa-plus bg-success p-2 text-white"   data-toggle="modal" data-target="#myModal3" aria-hidden="true" (click)="addItem()">Add Product</a> -->
+      </div>
+    <table class="table table-hover bg-white">
+      <thead class="bg-black text-white">
+        <tr>
+          <th>Id_sp</th>
+          <th>Id_Shop</th>
+          <th>Name</th>
+          <th>Img</th>
+          <th>Img2</th>
+          <th>Price</th>
+          <th>Warehose</th>
+          <th>Charity</th>
+          <th>Title</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of product; let i=index">
+          <td>{{item.ID_Product}}</td>
+          <td>{{item.ID_Shop}}</td>
+          <td>{{item.Name_Product}}</td>
+          <td><img class="imgAvatar" src="{{item.Img1}}"></td>
+          <td><img class="imgAvatar" src="{{item.Img2}}"></td>
+          <td>{{item.Warehose}}</td>
+          <td>{{item.Price}}</td>
+          <td>{{item.Charity}}</td>
+          <td>{{item.Catefory2}}</td>
+          <td>
+            <a class="fa fa-trash   bg-danger p-2"  aria-hidden="true" (click)="deleteProd(item.ID_Product)"></a>
+            <a class="fa fa-wrench bg-warning p-2" aria-hidden="true" (click)="sentIdUpdate(i,item)"  [routerLink]="['/admin/Update-Product',item.ID_Product]"></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="bg-loading" id="load3">
+        <div
+          id="radial-gradient3"
+          class="radial-gradient"
+          style=""
+        ></div>
+        <div id="demo2"></div>
+        <div class="center-s">
+          <div class="container ">
+            <div class="box"></div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex align-self-center">
+          <app-form-register (sent)="updateDB($event)"></app-form-register>
+      </div>
+      <div class="success1">
+          <app-form-update [prod]="prod"></app-form-update>
+      </div>
+
+

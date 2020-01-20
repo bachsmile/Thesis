@@ -1,0 +1,1967 @@
+<div class="container">
+  <div class="order">
+      <div class="order-list">
+          <div class="top-card">
+              <ul class="pt-3">
+                  <li id="All"><a  (click)="typeChooses('All')" data-text="All">All</a></li>
+                  <li id="Confirmation" (click)="typeChooses('Confirmation')"><a   data-text="Wait for confirmation">Wait for confirmation </a></li>
+                  <li id="Waiting"><a  (click)="typeChooses('Waiting')" data-text="Delivered to shipping unit">Delivered to shipping unit</a></li>
+                  <li id="Delivering" (click)="typeChooses('Delivering')"><a   data-text="Delivering">Delivering</a></li>
+                  <li id="Delivered" (click)="typeChooses('Delivered')"><a   data-text="Already delivered">Already delivered</a></li>
+                  <li id="Canceled" (click)="typeChooses('Canceled')"><a data-text="Canceled">Canceled</a></li>
+                  <li id="Return" (click)="typeChooses('Return')" ><a   data-text="Return / Refund">Return / Refund</a></li>
+              </ul>
+          </div>
+      </div>
+
+      <div  class="p-3">
+          <div [ngSwitch]="type_order">
+
+              <div *ngSwitchCase="'All'">
+                  <div class="row mx-0 mt-3 mb-5 d-flex justify-content-between">
+                      <div class="search">
+                          <div class="input-group">
+                              <input type="text" class="form-control" placeholder="Find orders" aria-label="Input group example" aria-describedby="btnGroupAddon" [(ngModel)]="searchId" (keyup)="Search($event,'0')">
+                              <!-- <div class="input-group-prepend">
+                                  <div class="input-group-text" id="btnGroupAddon"><i class="fa fa-search"></i></div>
+                              </div> -->
+                          </div>
+                      </div>
+                      <div class="time row mx-0 ">
+                          <div class="d-flex align-items-center font-weight-bold">Date</div>
+                          <div class="ml-2">
+                              <input type="date" class="form-control" [value]="now | date:'yyyy-MM-dd'" [(ngModel)]="dateStart">
+                          </div>
+                          <span class=" d-flex align-items-center mx-2 font-weight-bold">-</span>
+                          <div>
+                              <input type="date" class="form-control" [value]="now | date:'yyyy-MM-dd'"  [(ngModel)]="dateEnd">
+                          </div>
+                          <div  (click)="searchDate($event)" class="input-group-text" id="btnGroupAddon1"><i class="fa fa-search"></i></div>
+                      </div>
+                  </div>
+                  <div *ngIf="listSearch.length>0">
+                    <div class="row font-size-2r text-success d-flex justify-content-center">Items Search</div>
+                  </div>
+                  <div class=" row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item of listSearch ">
+                    <div class="w-30 ">
+                        <div class="row m-0">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <img class="img-pro" src="{{item.Img1}}">
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <div class="bg-warning p-2 m-1 point">{{item.Nameproduct}}</div>
+                                <div class="bg-success p-2 m-1 point" >Total Money: {{item.price}}</div>
+                                <div class="bg-primary  p-2 m-1 point">ID: {{item.id}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-10">
+                        {{item.Number*item.price}}
+                    </div>
+                    <div class="w-10">
+                        {{item.Status}}
+                    </div>
+                    <div class="w-10">
+                      {{item.time}}
+                  </div>
+                    <div class="w-10">
+                        Countdown
+                    </div>
+                    <div class="w-10 " >
+                            <div class="dropdown">
+                                    <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                        {{item.Transport}}
+                                    </div>
+                                    <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                    <a class="dropdown-item active" href="#"> J&T Express </a>
+                                    <a class="dropdown-item " href="#"> Viettel Post </a>
+                                    <a class="dropdown-item " href="#"> Fast delivery </a>
+                                    <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                    <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                    <a class="dropdown-item " href="#"> VNPost Express </a>
+                                    <a class="dropdown-item " href="#"> Other</a>
+                                    </div>
+                            </div>
+                    </div>
+                    <div class="w-20">
+                        <div *ngIf="item.Status=='1'">
+                            <a type="button" class="bg-danger w-40" (click)="sent(item)">Confirm</a>
+                        </div>
+                        <div *ngIf="item.Status=='2'|| item.Status=='2.1'">
+                            <a type="button" class="bg-oranges w-40" (click)="sent(item)">Sent</a>
+                        </div>
+                        <div *ngIf="item.Status=='3'">
+                            <a type="button" class="bg-aqua  w-40" (click)="sent(item)">Info</a>
+                        </div>
+                        <div *ngIf="item.Status=='4'">
+                            <a type="button" class="bg-success  w-40" (click)="sent(item)">Success</a>
+                        </div>
+                        <div *ngIf="item.Status=='5'">
+                            <a type="button" class="bg-reds  w-40" (click)="sent(item)">Cancel</a>
+                        </div>
+                        <div *ngIf="item.Status=='6'|| item.Status=='6.1' || item.Status=='6.3'">
+                            <a type="button" class="addWn  w-40" (click)="sent(item)">return</a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="row mx-0 my-3 d-flex justify-content-between">
+                      <div class="font-size-2r font-weight-bold">
+                          <span class="mr-3">{{listOrder.length}}</span>
+                          <span>Odders</span>
+                      </div>
+                      <div>
+                          <a type="button" class=" form-control bg-orangess">
+                              Select date / Print batch delivery form</a>
+                      </div>
+                  </div>
+                  <div class="row mx-0 list-order text-center bg-gray-s py-3 d-flex align-items-center">
+
+                      <div class="w-30 ">
+                          Product
+                      </div>
+                      <div class="w-10">
+                          Total Orders
+                      </div>
+                      <div class="w-10">
+                          Status
+                      </div>
+                      <div class="w-10">
+                        Time
+                    </div>
+                      <div class="w-10">
+                          Countdown
+                      </div>
+                      <div class="w-10 " >
+                              <div class="dropdown">
+                                      <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                          Transport
+                                      </div>
+                                      <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                      <a class="dropdown-item active" href="#"> J&T Express </a>
+                                      <a class="dropdown-item " href="#"> Viettel Post </a>
+                                      <a class="dropdown-item " href="#"> Fast delivery </a>
+                                      <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                      <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                      <a class="dropdown-item " href="#"> VNPost Express </a>
+                                      <a class="dropdown-item " href="#"> Other</a>
+                                      </div>
+                              </div>
+                      </div>
+                      <div class="w-20">
+                          Actions
+                      </div>
+                  </div>
+                  <div class="row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item of listOrder " >
+
+                      <div class="w-30 ">
+                          <div class="row m-0">
+                              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                  <img class="img-pro" src="{{item.Img1}}">
+                              </div>
+                              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                  <div class="bg-warning p-2 m-1  point">{{item.Nameproduct}}</div>
+                                  <div class="bg-success p-2 m-1  point" >Total Money: {{item.price}}</div>
+                                  <div class="bg-primary  p-2 m-1  point">ID: {{item.id}}</div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="w-10">
+                          {{item.Number*item.price}}
+                      </div>
+                      <div class="w-10">
+                          {{item.Status}}
+                      </div>
+                      <div class="w-10">
+                        {{item.time}}
+                    </div>
+                      <div class="w-10">
+                          Countdown
+                      </div>
+                      <div class="w-10 " >
+                              <div class="dropdown">
+                                      <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                          {{item.Transport}}
+                                      </div>
+                                      <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                      <a class="dropdown-item active" href="#"> J&T Express </a>
+                                      <a class="dropdown-item " href="#"> Viettel Post </a>
+                                      <a class="dropdown-item " href="#"> Fast delivery </a>
+                                      <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                      <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                      <a class="dropdown-item " href="#"> VNPost Express </a>
+                                      <a class="dropdown-item " href="#"> Other</a>
+                                      </div>
+                              </div>
+                      </div>
+                      <div class="w-20">
+                          <div *ngIf="item.Status==1">
+                              <a type="button" class="bg-danger w-40" (click)="sent(item)">Confirm</a>
+                          </div>
+                          <div *ngIf="item.Status=='2' || item.Status=='2.1'">
+                              <a type="button" class="bg-oranges w-40" (click)="sent(item)">Sent</a>
+                          </div>
+                          <div *ngIf="item.Status==3">
+                              <a type="button" class="bg-aqua  w-40" (click)="sent(item)">Info</a>
+                          </div>
+                          <div *ngIf="item.Status==4">
+                              <a type="button" class="bg-success  w-40" (click)="sent(item)">Success</a>
+                          </div>
+                          <div *ngIf="item.Status==5">
+                              <a type="button" class="bg-reds  w-40" (click)="sent(item)">Cancel</a>
+                          </div>
+                          <div *ngIf="item.Status=='6'|| item.Status=='6.1' || item.Status=='6.3'">
+                              <a type="button" class="addWn  w-40" (click)="sent(item)">return</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div *ngSwitchCase="'Confirmation'">
+                      <div class="row mx-0 mt-3 mb-5 d-flex justify-content-between">
+                        <div class="search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Find orders" aria-label="Input group example" aria-describedby="btnGroupAddon"  [(ngModel)]="searchId" (keyup)="Search($event,'1')">
+                                <!-- <div class="input-group-prepend">
+                                    <div class="input-group-text" id="btnGroupAddon"><i class="fa fa-search"></i></div>
+                                  </div> -->
+                            </div>
+                        </div>
+                        <div class="time row mx-0 ">
+                          <div class="d-flex align-items-center font-weight-bold">Date</div>
+                          <div class="ml-2">
+                              <input type="date" class="form-control" [value]="now | date:'yyyy-MM-dd'" [(ngModel)]="dateStart">
+                          </div>
+                          <span class=" d-flex align-items-center mx-2 font-weight-bold">-</span>
+                          <div>
+                              <input type="date" class="form-control" [value]="now | date:'yyyy-MM-dd'"  [(ngModel)]="dateEnd">
+                          </div>
+                          <div  (click)="searchDate($event)" class="input-group-text" id="btnGroupAddon1"><i class="fa fa-search"></i></div>
+                      </div>
+                    </div>
+                    <div *ngIf="listSearch.length>0">
+                      <div class="row font-size-2r text-success d-flex justify-content-center">Items Search</div>
+                    </div>
+                    <div class=" row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item of listSearch ">
+                      <div class="w-30 ">
+                          <div class="row m-0">
+                              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                  <img class="img-pro" src="{{item.Img1}}">
+                              </div>
+                              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                  <div class="bg-warning p-2 m-1  point">{{item.Nameproduct}}</div>
+                                  <div class="bg-success p-2 m-1  point" >Total Money: {{item.price}}</div>
+                                  <div class="bg-primary  p-2 m-1  point">ID: {{item.id}}</div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="w-10">
+                          {{item.Number*item.price}}
+                      </div>
+                      <div class="w-10">
+                          {{item.Status}}
+                      </div>
+                      <div class="w-10">
+                        {{item.time}}
+                    </div>
+                      <div class="w-10">
+                          Countdown
+                      </div>
+                      <div class="w-10 " >
+                              <div class="dropdown">
+                                      <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                          {{item.Transport}}
+                                      </div>
+                                      <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                      <a class="dropdown-item active" href="#"> J&T Express </a>
+                                      <a class="dropdown-item " href="#"> Viettel Post </a>
+                                      <a class="dropdown-item " href="#"> Fast delivery </a>
+                                      <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                      <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                      <a class="dropdown-item " href="#"> VNPost Express </a>
+                                      <a class="dropdown-item " href="#"> Other</a>
+                                      </div>
+                              </div>
+                      </div>
+                      <div class="w-20">
+                          <div *ngIf="item.Status==1">
+                              <a type="button" class="bg-danger w-40" (click)="sent(item)">Confirm</a>
+                          </div>
+                          <div *ngIf="item.Status==2">
+                              <a type="button" class="bg-oranges w-40" (click)="sent(item)">Sent</a>
+                          </div>
+                          <div *ngIf="item.Status==3">
+                              <a type="button" class="bg-aqua  w-40" (click)="sent(item)">Info</a>
+                          </div>
+                          <div *ngIf="item.Status==4">
+                              <a type="button" class="bg-success  w-40" (click)="sent(item)">Success</a>
+                          </div>
+                          <div *ngIf="item.Status==5">
+                              <a type="button" class="bg-reds  w-40" (click)="sent(item)">Cancel</a>
+                          </div>
+                          <div *ngIf="item.Status=='6'|| item.Status=='6.1' || item.Status=='6.3'">
+                              <a type="button" class="addWn  w-40" (click)="sent(item)">return</a>
+                          </div>
+                      </div>
+                  </div>
+                      <div class="row mx-0 my-3 d-flex justify-content-between">
+                        <div class="font-size-2r font-weight-bold">
+                          <span class="mr-3">{{Status1.length}}</span>
+                          <span>Orders</span>
+                        </div>
+                        <div>
+                          <a type="button" class=" form-control bg-orangess">
+                              Select date / Print batch delivery form</a>
+                        </div>
+                      </div>
+                      <div class="row mx-0 list-order text-center bg-gray-s py-3 d-flex align-items-center">
+
+                        <div class="w-30 ">
+                            Product
+                        </div>
+                        <div class="w-10">
+                            Total Orders
+                        </div>
+                        <div class="w-10">
+                            Status
+                        </div>
+                        <div class="w-10">
+                            Time
+                        </div>
+                        <div class="w-10">
+                            Countdown
+                        </div>
+                        <div class="w-10 " >
+                            <div class="dropdown">
+                                <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                    Transport
+                                </div>
+                              <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                <a class="dropdown-item active" href="#"> J&T Express </a>
+                                <a class="dropdown-item " href="#"> Viettel Post </a>
+                                <a class="dropdown-item " href="#"> Fast delivery </a>
+                                <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                <a class="dropdown-item " href="#"> VNPost Express </a>
+                                <a class="dropdown-item " href="#"> Other</a>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="w-20">
+                            Actions
+                        </div>
+                      </div>
+                      <div class="row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item1 of Status1 " >
+
+                        <div class="w-30 ">
+                          <div class="row m-0">
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <img class="img-pro" src="{{item1.Img1}}">
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <div class="bg-warning p-2 m-1 point">{{item1.Nameproduct}}</div>
+                                <div class="bg-success p-2 m-1 point" >Total Money: {{item1.price}}</div>
+                                <div class="bg-primary  p-2 m-1 point">ID: {{item1.id}}</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="w-10">
+                            {{item1.Number*item1.price}}
+                        </div>
+                        <div class="w-10">
+                            {{item1.Status}}
+                        </div>
+                        <div class="w-10">
+                            {{item1.time}}
+                        </div>
+                        <div class="w-10">
+                            Countdown
+                        </div>
+                        <div class="w-10 " >
+                            <div class="dropdown">
+                                <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                    {{item1.Transport}}
+                                </div>
+                              <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                <a class="dropdown-item active" href="#"> J&T Express </a>
+                                <a class="dropdown-item " href="#"> Viettel Post </a>
+                                <a class="dropdown-item " href="#"> Fast delivery </a>
+                                <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                <a class="dropdown-item " href="#"> VNPost Express </a>
+                                <a class="dropdown-item " href="#"> Other</a>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="w-20">
+                            <a type="button" class="bg-danger  w-40" (click)="sent(item1)">Confirm</a>
+                        </div>
+                      </div>
+              </div>
+
+              <div *ngSwitchCase="'Waiting'">
+                      <div class="row mx-0 mt-3 mb-5 d-flex justify-content-between">
+                          <div class="search">
+                              <div class="input-group">
+                                  <input type="text" class="form-control" placeholder="Find orders" aria-label="Input group example" aria-describedby="btnGroupAddon"  [(ngModel)]="searchId" (keyup)="Search($event,'2')">
+                                  <!-- <div class="input-group-prepend">
+                                      <div class="input-group-text" id="btnGroupAddon"><i class="fa fa-search"></i></div>
+                                    </div> -->
+                              </div>
+                          </div>
+                          <div class="time row mx-0 ">
+                            <div class="d-flex align-items-center font-weight-bold">Date</div>
+                            <div class="ml-2">
+                                <input type="date" class="form-control" [value]="now | date:'yyyy-MM-dd'" [(ngModel)]="dateStart">
+                            </div>
+                            <span class=" d-flex align-items-center mx-2 font-weight-bold">-</span>
+                            <div>
+                                <input type="date" class="form-control" [value]="now | date:'yyyy-MM-dd'"  [(ngModel)]="dateEnd">
+                            </div>
+                            <div  (click)="searchDate($event)" class="input-group-text" id="btnGroupAddon1"><i class="fa fa-search"></i></div>
+                        </div>
+                      </div>
+                      <div *ngIf="listSearch.length>0">
+                        <div class="row font-size-2r text-success d-flex justify-content-center">Items Search</div>
+                      </div>
+                      <div class=" row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item of listSearch ">
+                        <div class="w-30 ">
+                            <div class="row m-0">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <img class="img-pro" src="{{item.Img1}}">
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="bg-warning p-2 m-1 point">{{item.Nameproduct}}</div>
+                                    <div class="bg-success p-2 m-1 point" >Total Money: {{item.price}}</div>
+                                    <div class="bg-primary  p-2 m-1 point">ID: {{item.id}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-10">
+                            {{item.Number*item.price}}
+                        </div>
+                        <div class="w-10">
+                            {{item.Status}}
+                        </div>
+                        <div class="w-10">
+                          {{item.time}}
+                      </div>
+                        <div class="w-10">
+                            Countdown
+                        </div>
+                        <div class="w-10 " >
+                                <div class="dropdown">
+                                        <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                            {{item.Transport}}
+                                        </div>
+                                        <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                        <a class="dropdown-item active" href="#"> J&T Express </a>
+                                        <a class="dropdown-item " href="#"> Viettel Post </a>
+                                        <a class="dropdown-item " href="#"> Fast delivery </a>
+                                        <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                        <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                        <a class="dropdown-item " href="#"> VNPost Express </a>
+                                        <a class="dropdown-item " href="#"> Other</a>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="w-20">
+                            <div *ngIf="item.Status==1">
+                                <a type="button" class="bg-danger w-40" (click)="sent(item)">Confirm</a>
+                            </div>
+                            <div *ngIf="item.Status==2">
+                                <a type="button" class="bg-oranges w-40" (click)="sent(item)">Sent</a>
+                            </div>
+                            <div *ngIf="item.Status==3">
+                                <a type="button" class="bg-aqua  w-40" (click)="sent(item)">Info</a>
+                            </div>
+                            <div *ngIf="item.Status==4">
+                                <a type="button" class="bg-success  w-40" (click)="sent(item)">Success</a>
+                            </div>
+                            <div *ngIf="item.Status==5">
+                                <a type="button" class="bg-reds  w-40" (click)="sent(item)">Cancel</a>
+                            </div>
+                            <div *ngIf="item.Status=='6'|| item.Status=='6.1' || item.Status=='6.3'">
+                                <a type="button" class="addWn  w-40" (click)="sent(item)">return</a>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="row mx-0 mt-3 mb-5">
+                      <div class="container">
+                          <!-- Nav tabs -->
+                          <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                              <a class="nav-link active text-black" data-toggle="tab" href="#home">All <span>0</span></a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link  text-black" data-toggle="tab" href="#menu1">Not processed yet <span>0</span> </a>
+                            </li>
+                            <li class="nav-item">
+                              <a class="nav-link  text-black" data-toggle="tab" href="#menu2">Has been processed <span>0</span> </a>
+                            </li>
+                          </ul>
+                          <div class="tab-content">
+                            <div id="home" class="container tab-pane active"><br>
+                              <div class="row mx-0 my-3 d-flex justify-content-between">
+                                  <div class="font-size-2r font-weight-bold">
+                                    <span class="mr-3">{{Status2.length}}</span>
+                                    <span>Orders</span>
+                                  </div>
+                                  <div>
+                                    <a type="button" class=" form-control bg-orangess">
+                                        Select date / Print batch delivery form</a>
+                                  </div>
+                              </div>
+                              <div class="row mx-0 list-order text-center bg-gray-s py-3 d-flex align-items-center">
+
+                                  <div class="w-30 ">
+                                      Product
+                                  </div>
+                                  <div class="w-10">
+                                      Total Orders
+                                  </div>
+                                  <div class="w-10">
+                                      Status
+                                  </div>
+                                  <div class="w-10">
+                                      Time
+                                  </div>
+                                  <div class="w-10">
+                                      Countdown
+                                  </div>
+                                  <div class="w-10 " >
+                                      <div class="dropdown">
+                                          <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                              Transport
+                                          </div>
+                                        <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                          <a class="dropdown-item active" href="#"> J&T Express </a>
+                                          <a class="dropdown-item " href="#"> Viettel Post </a>
+                                          <a class="dropdown-item " href="#"> Fast delivery </a>
+                                          <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                          <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                          <a class="dropdown-item " href="#"> VNPost Express </a>
+                                          <a class="dropdown-item " href="#"> Other</a>
+                                        </div>
+                                      </div>
+                                  </div>
+                                  <div class="w-20">
+                                      Actions
+                                  </div>
+                              </div>
+                              <div class="row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item1 of Status2 " >
+
+                                <div class="w-30 ">
+                                  <div class="row m-0">
+
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                        <img class="img-pro" src="{{item1.Img1}}">
+                                    </div>
+
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="bg-warning p-2 m-1 point">{{item1.Nameproduct}}</div>
+                                        <div class="bg-success p-2 m-1 point" >Total Money: {{item1.price}}</div>
+                                        <div class="bg-primary  p-2 m-1 point">ID: {{item1.id}}</div>
+                                    </div>
+
+                                  </div>
+                                </div>
+                                <div class="w-10">
+                                    {{item1.Number*item1.price}}
+                                </div>
+                                <div class="w-10">
+                                    {{item1.Status}}
+                                </div>
+                                <div class="w-10">
+                                    {{item1.time}}
+                                </div>
+                                <div class="w-10">
+                                    Countdown
+                                </div>
+                                <div class="w-10 " >
+                                    <div class="dropdown">
+                                        <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                            {{item1.Transport}}
+                                        </div>
+                                      <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                        <a class="dropdown-item active" href="#"> J&T Express </a>
+                                        <a class="dropdown-item " href="#"> Viettel Post </a>
+                                        <a class="dropdown-item " href="#"> Fast delivery </a>
+                                        <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                        <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                        <a class="dropdown-item " href="#"> VNPost Express </a>
+                                        <a class="dropdown-item " href="#"> Other</a>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="w-20">
+                                    <a type="button" class="bg-oranges  w-40" (click)="sent(item1)">Sent</a>
+                                </div>
+                              </div>
+                           </div>
+                            <div id="menu1" class="container tab-pane fade"><br>
+                              <div class="row mx-0 my-3 d-flex justify-content-between">
+                                  <div class="font-size-2r font-weight-bold">
+                                    <span class="mr-3">{{Status2_1.length}}</span>
+                                    <span>Orders</span>
+                                  </div>
+                                  <div>
+                                    <a type="button" class=" form-control bg-orangess">
+                                        Select date / Print batch delivery form</a>
+                                  </div>
+                              </div>
+                              <div class="row mx-0 list-order text-center bg-gray-s py-3 d-flex align-items-center">
+
+                                  <div class="w-30 ">
+                                      Product
+                                  </div>
+                                  <div class="w-10">
+                                      Total Orders
+                                  </div>
+                                  <div class="w-10">
+                                      Status
+                                  </div>
+                                  <div class="w-10">
+                                      Time
+                                  </div>
+                                  <div class="w-10">
+                                      Countdown
+                                  </div>
+                                  <div class="w-10 " >
+                                      <div class="dropdown">
+                                        <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                              Transport
+                                        </div>
+                                        <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                          <a class="dropdown-item active" href="#"> J&T Express </a>
+                                          <a class="dropdown-item " href="#"> Viettel Post </a>
+                                          <a class="dropdown-item " href="#"> Fast delivery </a>
+                                          <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                          <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                          <a class="dropdown-item " href="#"> VNPost Express </a>
+                                          <a class="dropdown-item " href="#"> Other</a>
+                                        </div>
+                                      </div>
+                                  </div>
+                                  <div class="w-20">
+                                      Actions
+                                  </div>
+                              </div>
+                              <div class="row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item21 of Status2_1 " >
+
+                                <div class="w-30 ">
+                                  <div class="row m-0">
+
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                        <img class="img-pro" src="{{item21.Img1}}">
+                                    </div>
+
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="bg-warning p-2 m-1 point">{{item21.Nameproduct}}</div>
+                                        <div class="bg-success p-2 m-1 point" >Total Money: {{item21.price}}</div>
+                                        <div class="bg-primary  p-2 m-1 point">ID: {{item21.id}}</div>
+                                    </div>
+
+                                  </div>
+                                </div>
+                                <div class="w-10">
+                                    {{item21.Number*item21.price}}
+                                </div>
+                                <div class="w-10">
+                                    {{item21.Status}}
+                                </div>
+                                <div class="w-10">
+                                    {{item21.time}}
+                                </div>
+                                <div class="w-10">
+                                    Countdown
+                                </div>
+                                <div class="w-10 " >
+                                    <div class="dropdown">
+                                        <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                            {{item21.Transport}}
+                                        </div>
+                                      <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                        <a class="dropdown-item active" href="#"> J&T Express </a>
+                                        <a class="dropdown-item " href="#"> Viettel Post </a>
+                                        <a class="dropdown-item " href="#"> Fast delivery </a>
+                                        <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                        <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                        <a class="dropdown-item " href="#"> VNPost Express </a>
+                                        <a class="dropdown-item " href="#"> Other</a>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="w-20">
+                                    <a type="button" class="bg-oranges  w-40" (click)="sent(item21)">Sent</a>
+                                </div>
+                              </div>
+                            </div>
+                            <div id="menu2" class="container tab-pane fade"><br>
+                              <div class="row mx-0 my-3 d-flex justify-content-between">
+                                  <div class="font-size-2r font-weight-bold">
+                                    <span class="mr-3">{{Status2_2.length}}</span>
+                                    <span>Orders</span>
+                                  </div>
+                                  <div>
+                                    <a type="button" class=" form-control bg-orangess">
+                                        Select date / Print batch delivery form</a>
+                                  </div>
+                              </div>
+                              <div class="row mx-0 list-order text-center bg-gray-s py-3 d-flex align-items-center">
+
+                                  <div class="w-30 ">
+                                      Product
+                                  </div>
+                                  <div class="w-10">
+                                      Total Orders
+                                  </div>
+                                  <div class="w-10">
+                                      Status
+                                  </div>
+                                  <div class="w-10">
+                                      Time
+                                  </div>
+                                  <div class="w-10">
+                                      Countdown
+                                  </div>
+                                  <div class="w-10 " >
+                                      <div class="dropdown">
+                                        <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                              Transport
+                                        </div>
+                                        <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                          <a class="dropdown-item active" href="#"> J&T Express </a>
+                                          <a class="dropdown-item " href="#"> Viettel Post </a>
+                                          <a class="dropdown-item " href="#"> Fast delivery </a>
+                                          <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                          <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                          <a class="dropdown-item " href="#"> VNPost Express </a>
+                                          <a class="dropdown-item " href="#"> Other</a>
+                                        </div>
+                                      </div>
+                                  </div>
+                                  <div class="w-20">
+                                      Actions
+                                  </div>
+                              </div>
+                              <div class="row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item21 of Status2_2 " >
+
+                                <div class="w-30 ">
+                                  <div class="row m-0">
+
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                        <img class="img-pro" src="{{item21.Img1}}">
+                                    </div>
+
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="bg-warning p-2 m-1 point">{{item21.Nameproduct}}</div>
+                                        <div class="bg-success p-2 m-1 point" >Total Money: {{item21.price}}</div>
+                                        <div class="bg-primary  p-2 m-1 point">ID: {{item21.id}}</div>
+                                    </div>
+
+                                  </div>
+                                </div>
+                                <div class="w-10">
+                                    {{item21.Number*item21.price}}
+                                </div>
+                                <div class="w-10">
+                                    {{item21.Status}}
+                                </div>
+                                <div class="w-10">
+                                    {{item21.time}}
+                                </div>
+                                <div class="w-10">
+                                    Countdown
+                                </div>
+                                <div class="w-10 " >
+                                    <div class="dropdown">
+                                        <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                            {{item21.Transport}}
+                                        </div>
+                                      <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                        <a class="dropdown-item active" href="#"> J&T Express </a>
+                                        <a class="dropdown-item " href="#"> Viettel Post </a>
+                                        <a class="dropdown-item " href="#"> Fast delivery </a>
+                                        <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                        <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                        <a class="dropdown-item " href="#"> VNPost Express </a>
+                                        <a class="dropdown-item " href="#"> Other</a>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="w-20">
+                                    <a type="button" class="bg-oranges  w-40" (click)="sent(item21)">Sent</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      </div>
+              </div>
+
+              <div *ngSwitchCase="'Delivering'" >
+                      <div class="row mx-0 mt-3 mb-5 d-flex justify-content-between">
+                          <div class="search">
+                              <div class="input-group">
+                                  <input type="text" class="form-control" placeholder="Find orders" aria-label="Input group example" aria-describedby="btnGroupAddon"  [(ngModel)]="searchId" (keyup)="Search($event,'3')">
+                                    <!-- <div class="input-group-prepend">
+                                      <div class="input-group-text" id="btnGroupAddon"><i class="fa fa-search"></i></div>
+                                    </div> -->
+                              </div>
+                          </div>
+                          <div class="time row mx-0 ">
+                            <div class="d-flex align-items-center font-weight-bold">Date</div>
+                            <div class="ml-2">
+                                <input type="date" class="form-control" [value]="now | date:'yyyy-MM-dd'" [(ngModel)]="dateStart">
+                            </div>
+                            <span class=" d-flex align-items-center mx-2 font-weight-bold">-</span>
+                            <div>
+                                <input type="date" class="form-control" [value]="now | date:'yyyy-MM-dd'"  [(ngModel)]="dateEnd">
+                            </div>
+                            <div  (click)="searchDate($event)" class="input-group-text" id="btnGroupAddon1"><i class="fa fa-search"></i></div>
+                        </div>
+                      </div>
+                      <div *ngIf="listSearch.length>0">
+                        <div class="row font-size-2r text-success d-flex justify-content-center">Items Search</div>
+                      </div>
+                      <div class=" row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item of listSearch ">
+                        <div class="w-30 ">
+                            <div class="row m-0">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <img class="img-pro" src="{{item.Img1}}">
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="bg-warning p-2 m-1 point">{{item.Nameproduct}}</div>
+                                    <div class="bg-success p-2 m-1 point" >Total Money: {{item.price}}</div>
+                                    <div class="bg-primary  p-2 m-1 point">ID: {{item.id}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-10">
+                            {{item.Number*item.price}}
+                        </div>
+                        <div class="w-10">
+                            {{item.Status}}
+                        </div>
+                        <div class="w-10">
+                          {{item.time}}
+                      </div>
+                        <div class="w-10">
+                            Countdown
+                        </div>
+                        <div class="w-10 " >
+                                <div class="dropdown">
+                                        <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                            {{item.Transport}}
+                                        </div>
+                                        <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                        <a class="dropdown-item active" href="#"> J&T Express </a>
+                                        <a class="dropdown-item " href="#"> Viettel Post </a>
+                                        <a class="dropdown-item " href="#"> Fast delivery </a>
+                                        <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                        <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                        <a class="dropdown-item " href="#"> VNPost Express </a>
+                                        <a class="dropdown-item " href="#"> Other</a>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="w-20">
+                            <div *ngIf="item.Status==1">
+                                <a type="button" class="bg-danger w-40" (click)="sent(item)">Confirm</a>
+                            </div>
+                            <div *ngIf="item.Status==2">
+                                <a type="button" class="bg-oranges w-40" (click)="sent(item)">Sent</a>
+                            </div>
+                            <div *ngIf="item.Status==3">
+                                <a type="button" class="bg-aqua  w-40" (click)="sent(item)">Info</a>
+                            </div>
+                            <div *ngIf="item.Status==4">
+                                <a type="button" class="bg-success  w-40" (click)="sent(item)">Success</a>
+                            </div>
+                            <div *ngIf="item.Status==5">
+                                <a type="button" class="bg-reds  w-40" (click)="sent(item)">Cancel</a>
+                            </div>
+                            <div *ngIf="item.Status=='6'|| item.Status=='6.1' || item.Status=='6.3'">
+                                <a type="button" class="addWn  w-40" (click)="sent(item)">return</a>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="row mx-0 my-3 d-flex justify-content-between">
+                          <div class="font-size-2r font-weight-bold">
+                            <span class="mr-3">{{Status3.length}}</span>
+                            <span>Orders</span>
+                          </div>
+                          <div>
+                            <a type="button" class=" form-control bg-orangess">
+                                Select date / Print batch delivery form</a>
+                          </div>
+                      </div>
+                      <div class="row mx-0 list-order text-center bg-gray-s py-3 d-flex align-items-center">
+
+                          <div class="w-30 ">
+                              Product
+                          </div>
+                          <div class="w-10">
+                              Total Orders
+                          </div>
+                          <div class="w-10">
+                              Status
+                          </div>
+                          <div class="w-10">
+                              Time
+                          </div>
+                          <div class="w-10">
+                              Countdown
+                          </div>
+                          <div class="w-10 " >
+                              <div class="dropdown">
+                                  <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                      Transport
+                                  </div>
+                                <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                  <a class="dropdown-item active" href="#"> J&T Express </a>
+                                  <a class="dropdown-item " href="#"> Viettel Post </a>
+                                  <a class="dropdown-item " href="#"> Fast delivery </a>
+                                  <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                  <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                  <a class="dropdown-item " href="#"> VNPost Express </a>
+                                  <a class="dropdown-item " href="#"> Other</a>
+                                </div>
+                              </div>
+                          </div>
+                          <div class="w-20">
+                              Actions
+                          </div>
+
+                      </div>
+                      <div class="row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item3 of Status3 " >
+
+                        <div class="w-30 ">
+                          <div class="row m-0">
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <img class="img-pro" src="{{item3.Img1}}">
+                            </div>
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <div class="bg-warning p-2 m-1 point">{{item3.Nameproduct}}</div>
+                              <div class="bg-success p-2 m-1 point" >Total Money: {{item3.price}}</div>
+                              <div class="bg-primary  p-2 m-1 point">ID: {{item3.id}}</div>
+                            </div>
+
+                          </div>
+                        </div>
+                        <div class="w-10">
+                            {{item3.Number*item3.price}}
+                        </div>
+                        <div class="w-10">
+                            {{item3.Status}}
+                        </div>
+                        <div class="w-10">
+                            {{item3.time}}
+                        </div>
+                        <div class="w-10">
+                            Countdown
+                        </div>
+                        <div class="w-10 " >
+                            <div class="dropdown">
+                                <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                    {{item3.Transport}}
+                                </div>
+                              <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                <a class="dropdown-item active" href="#"> J&T Express </a>
+                                <a class="dropdown-item " href="#"> Viettel Post </a>
+                                <a class="dropdown-item " href="#"> Fast delivery </a>
+                                <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                <a class="dropdown-item " href="#"> VNPost Express </a>
+                                <a class="dropdown-item " href="#"> Other</a>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="w-20">
+                            <a type="button" class="bg-aqua  w-40" (click)="sent(item3)">Info</a>
+                        </div>
+
+                      </div>
+              </div>
+
+              <div *ngSwitchCase="'Delivered'" >
+                      <div class="row mx-0 mt-3 mb-5 d-flex justify-content-between">
+                          <div class="search">
+                              <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Find orders" aria-label="Input group example" aria-describedby="btnGroupAddon"  [(ngModel)]="searchId" (keyup)="Search($event,'4')">
+                                    <!-- <div class="input-group-prepend">
+                                      <div class="input-group-text" id="btnGroupAddon"><i class="fa fa-search"></i></div>
+                                    </div> -->
+                              </div>
+                          </div>
+                          <div class="time row mx-0 ">
+                            <div class="d-flex align-items-center font-weight-bold">Date</div>
+                            <div class="ml-2">
+                                <input type="date" class="form-control" [value]="now | date:'yyyy-MM-dd'" [(ngModel)]="dateStart">
+                            </div>
+                            <span class=" d-flex align-items-center mx-2 font-weight-bold">-</span>
+                            <div>
+                                <input type="date" class="form-control" [value]="now | date:'yyyy-MM-dd'"  [(ngModel)]="dateEnd">
+                            </div>
+                            <div  (click)="searchDate($event)" class="input-group-text" id="btnGroupAddon1"><i class="fa fa-search"></i></div>
+                        </div>
+                      </div>
+                      <div *ngIf="listSearch.length>0">
+                        <div class="row font-size-2r text-success d-flex justify-content-center">Items Search</div>
+                      </div>
+                      <div class=" row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item of listSearch ">
+                        <div class="w-30 ">
+                            <div class="row m-0">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <img class="img-pro" src="{{item.Img1}}">
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="bg-warning p-2 m-1 point">{{item.Nameproduct}}</div>
+                                    <div class="bg-success p-2 m-1 point" >Total Money: {{item.price}}</div>
+                                    <div class="bg-primary  p-2 m-1 point">ID: {{item.id}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-10">
+                            {{item.Number*item.price}}
+                        </div>
+                        <div class="w-10">
+                            {{item.Status}}
+                        </div>
+                        <div class="w-10">
+                          {{item.time}}
+                      </div>
+                        <div class="w-10">
+                            Countdown
+                        </div>
+                        <div class="w-10 " >
+                                <div class="dropdown">
+                                        <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                            {{item.Transport}}
+                                        </div>
+                                        <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                        <a class="dropdown-item active" href="#"> J&T Express </a>
+                                        <a class="dropdown-item " href="#"> Viettel Post </a>
+                                        <a class="dropdown-item " href="#"> Fast delivery </a>
+                                        <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                        <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                        <a class="dropdown-item " href="#"> VNPost Express </a>
+                                        <a class="dropdown-item " href="#"> Other</a>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="w-20">
+                            <div *ngIf="item.Status==1">
+                                <a type="button" class="bg-danger w-40" (click)="sent(item)">Confirm</a>
+                            </div>
+                            <div *ngIf="item.Status==2">
+                                <a type="button" class="bg-oranges w-40" (click)="sent(item)">Sent</a>
+                            </div>
+                            <div *ngIf="item.Status==3">
+                                <a type="button" class="bg-aqua  w-40" (click)="sent(item)">Info</a>
+                            </div>
+                            <div *ngIf="item.Status==4">
+                                <a type="button" class="bg-success  w-40" (click)="sent(item)">Success</a>
+                            </div>
+                            <div *ngIf="item.Status==5">
+                                <a type="button" class="bg-reds  w-40" (click)="sent(item)">Cancel</a>
+                            </div>
+                            <div *ngIf="item.Status=='6'|| item.Status=='6.1' || item.Status=='6.3'">
+                                <a type="button" class="addWn  w-40" (click)="sent(item)">return</a>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="row mx-0 my-3 d-flex justify-content-between">
+                          <div class="font-size-2r font-weight-bold">
+                            <span class="mr-3">{{Status4.length}}</span>
+                            <span>Orders</span>
+                          </div>
+                          <div>
+                            <a type="button" class=" form-control bg-orangess">
+                                Select date / Print batch delivery form</a>
+                          </div>
+                      </div>
+                      <div class="row mx-0 list-order text-center bg-gray-s py-3 d-flex align-items-center">
+
+                          <div class="w-30 ">
+                              Product
+                          </div>
+                          <div class="w-10">
+                              Total Orders
+                          </div>
+                          <div class="w-10">
+                              Status
+                          </div>
+                          <div class="w-10">
+                              Time
+                          </div>
+                          <div class="w-10">
+                              Countdown
+                          </div>
+                          <div class="w-10 " >
+                              <div class="dropdown">
+                                  <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                      Transport
+                                  </div>
+                                <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                  <a class="dropdown-item active" href="#"> J&T Express </a>
+                                  <a class="dropdown-item " href="#"> Viettel Post </a>
+                                  <a class="dropdown-item " href="#"> Fast delivery </a>
+                                  <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                  <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                  <a class="dropdown-item " href="#"> VNPost Express </a>
+                                  <a class="dropdown-item " href="#"> Other</a>
+                                </div>
+                              </div>
+                          </div>
+                          <div class="w-20">
+                              Actions
+                          </div>
+
+                      </div>
+                      <div class="row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item4 of Status4 " >
+
+                        <div class="w-30 ">
+                          <div class="row m-0">
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <img class="img-pro" src="{{item4.Img1}}">
+                            </div>
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <div class="bg-warning p-2 m-1 point">{{item4.Nameproduct}}</div>
+                              <div class="bg-success p-2 m-1 point" >Total Money: {{item4.price}}</div>
+                              <div class="bg-primary  p-2 m-1 point">ID: {{item4.id}}</div>
+                            </div>
+
+                          </div>
+                        </div>
+                        <div class="w-10">
+                            {{item4.Number*item4.price}}
+                        </div>
+                        <div class="w-10">
+                            {{item4.Status}}
+                        </div>
+                        <div class="w-10">
+                            {{item4.time}}
+                        </div>
+                        <div class="w-10">
+                            Countdown
+                        </div>
+                        <div class="w-10 " >
+                            <div class="dropdown">
+                                <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                    {{item4.Transport}}
+                                </div>
+                              <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                <a class="dropdown-item active" href="#"> J&T Express </a>
+                                <a class="dropdown-item " href="#"> Viettel Post </a>
+                                <a class="dropdown-item " href="#"> Fast delivery </a>
+                                <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                <a class="dropdown-item " href="#"> VNPost Express </a>
+                                <a class="dropdown-item " href="#"> Other</a>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="w-20">
+                            <a type="button" class="bg-success  w-40" (click)="sent(item4)">Success</a>
+                        </div>
+
+                      </div>
+              </div>
+
+              <div *ngSwitchCase="'Canceled'" >
+                      <div class="row mx-0 mt-3 mb-5 d-flex justify-content-between">
+                          <div class="search">
+                              <div class="input-group">
+                                   <input type="text" class="form-control" placeholder="Find orders" aria-label="Input group example" aria-describedby="btnGroupAddon"  [(ngModel)]="searchId" (keyup)="Search($event,'5')">
+                                   <!-- <div class="input-group-prepend">
+                                      <div class="input-group-text" id="btnGroupAddon"><i class="fa fa-search"></i></div>
+                                    </div> -->
+                              </div>
+                          </div>
+                          <div class="time row mx-0 ">
+                            <div class="d-flex align-items-center font-weight-bold">Date</div>
+                            <div class="ml-2">
+                                <input type="date" class="form-control" [value]="now | date:'yyyy-MM-dd'" [(ngModel)]="dateStart">
+                            </div>
+                            <span class=" d-flex align-items-center mx-2 font-weight-bold">-</span>
+                            <div>
+                                <input type="date" class="form-control" [value]="now | date:'yyyy-MM-dd'"  [(ngModel)]="dateEnd">
+                            </div>
+                            <div  (click)="searchDate($event)" class="input-group-text" id="btnGroupAddon1"><i class="fa fa-search"></i></div>
+                        </div>
+                      </div>
+                      <div *ngIf="listSearch.length>0">
+                        <div class="row font-size-2r text-success d-flex justify-content-center">Items Search</div>
+                      </div>
+                      <div class=" row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item of listSearch ">
+                        <div class="w-30 ">
+                            <div class="row m-0">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <img class="img-pro" src="{{item.Img1}}">
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="bg-warning p-2 m-1 point">{{item.Nameproduct}}</div>
+                                    <div class="bg-success p-2 m-1 point" >Total Money: {{item.price}}</div>
+                                    <div class="bg-primary  p-2 m-1 point">ID: {{item.id}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-10">
+                            {{item.Number*item.price}}
+                        </div>
+                        <div class="w-10">
+                            {{item.Status}}
+                        </div>
+                        <div class="w-10">
+                          {{item.time}}
+                      </div>
+                        <div class="w-10">
+                            Countdown
+                        </div>
+                        <div class="w-10 " >
+                                <div class="dropdown">
+                                        <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                            {{item.Transport}}
+                                        </div>
+                                        <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                        <a class="dropdown-item active" href="#"> J&T Express </a>
+                                        <a class="dropdown-item " href="#"> Viettel Post </a>
+                                        <a class="dropdown-item " href="#"> Fast delivery </a>
+                                        <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                        <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                        <a class="dropdown-item " href="#"> VNPost Express </a>
+                                        <a class="dropdown-item " href="#"> Other</a>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="w-20">
+                            <div *ngIf="item.Status==1">
+                                <a type="button" class="bg-danger w-40" (click)="sent(item)">Confirm</a>
+                            </div>
+                            <div *ngIf="item.Status==2">
+                                <a type="button" class="bg-oranges w-40" (click)="sent(item)">Sent</a>
+                            </div>
+                            <div *ngIf="item.Status==3">
+                                <a type="button" class="bg-aqua  w-40" (click)="sent(item)">Info</a>
+                            </div>
+                            <div *ngIf="item.Status==4">
+                                <a type="button" class="bg-success  w-40" (click)="sent(item)">Success</a>
+                            </div>
+                            <div *ngIf="item.Status==5">
+                                <a type="button" class="bg-reds  w-40" (click)="sent(item)">Cancel</a>
+                            </div>
+                            <div *ngIf="item.Status=='6'|| item.Status=='6.1' || item.Status=='6.3'">
+                                <a type="button" class="addWn  w-40" (click)="sent(item)">return</a>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="row mx-0 my-3 d-flex justify-content-between">
+                          <div class="font-size-2r font-weight-bold">
+                            <span class="mr-3">{{Status5.length}}</span>
+                            <span>Orders</span>
+                          </div>
+                          <div>
+                            <a type="button" class=" form-control bg-orangess">
+                                Select date / Print batch delivery form</a>
+                          </div>
+                      </div>
+                      <div class="row mx-0 list-order text-center bg-gray-s py-3 d-flex align-items-center">
+
+                          <div class="w-30 ">
+                              Product
+                          </div>
+                          <div class="w-10">
+                              Total Orders
+                          </div>
+                          <div class="w-10">
+                              Status
+                          </div>
+                          <div class="w-10">
+                              Time
+                          </div>
+                          <div class="w-10">
+                              Countdown
+                          </div>
+                          <div class="w-10 " >
+                              <div class="dropdown">
+                                  <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                      Transport
+                                  </div>
+                                <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                  <a class="dropdown-item active" href="#"> J&T Express </a>
+                                  <a class="dropdown-item " href="#"> Viettel Post </a>
+                                  <a class="dropdown-item " href="#"> Fast delivery </a>
+                                  <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                  <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                  <a class="dropdown-item " href="#"> VNPost Express </a>
+                                  <a class="dropdown-item " href="#"> Other</a>
+                                </div>
+                              </div>
+                          </div>
+                          <div class="w-20">
+                              Actions
+                          </div>
+
+                      </div>
+                      <div class="row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item5 of Status5 " >
+
+                        <div class="w-30 ">
+                          <div class="row m-0">
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <img class="img-pro" src="{{item5.Img1}}">
+                            </div>
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <div class="bg-warning p-2 m-1 point">{{item5.Nameproduct}}</div>
+                              <div class="bg-success p-2 m-1 point" >Total Money: {{item5.price}}</div>
+                              <div class="bg-primary  p-2 m-1 point">ID: {{item5.id}}</div>
+                            </div>
+
+                          </div>
+                        </div>
+                        <div class="w-10">
+                            {{item5.Number*item5.price}}
+                        </div>
+                        <div class="w-10">
+                            {{item5.Status}}
+                        </div>
+                        <div class="w-10">
+                            {{item5.time}}
+                        </div>
+                        <div class="w-10">
+                            Countdown
+                        </div>
+                        <div class="w-10 " >
+                            <div class="dropdown">
+                                <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                    {{item5.Transport}}
+                                </div>
+                              <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                <a class="dropdown-item active" href="#"> J&T Express </a>
+                                <a class="dropdown-item " href="#"> Viettel Post </a>
+                                <a class="dropdown-item " href="#"> Fast delivery </a>
+                                <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                <a class="dropdown-item " href="#"> VNPost Express </a>
+                                <a class="dropdown-item " href="#"> Other</a>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="w-20">
+                            <a type="button" class="bg-reds  w-40" (click)="sent(item5)">Cancel</a>
+                        </div>
+
+                      </div>
+              </div>
+
+              <div *ngSwitchCase="'Return'" >
+                      <div class="row mx-0 mt-3 mb-5 d-flex justify-content-between">
+                          <div class="search">
+                              <div class="input-group">
+                                  <input type="text" class="form-control" placeholder="Find orders" aria-label="Input group example" aria-describedby="btnGroupAddon"  [(ngModel)]="searchId" (keyup)="Search($event,'6')">
+                                  <!-- <div class="input-group-prepend">
+                                      <div class="input-group-text" id="btnGroupAddon"><i class="fa fa-search"></i></div>
+                                    </div> -->
+                              </div>
+                          </div>
+                          <div class="time row mx-0 ">
+                            <div class="d-flex align-items-center font-weight-bold">Date</div>
+                            <div class="ml-2">
+                                <input type="date" class="form-control" [value]="now | date:'yyyy-MM-dd'" [(ngModel)]="dateStart">
+                            </div>
+                            <span class=" d-flex align-items-center mx-2 font-weight-bold">-</span>
+                            <div>
+                                <input type="date" class="form-control" [value]="now | date:'yyyy-MM-dd'"  [(ngModel)]="dateEnd">
+                            </div>
+                            <div  (click)="searchDate($event)" class="input-group-text" id="btnGroupAddon1"><i class="fa fa-search"></i></div>
+                        </div>
+                      </div>
+                      <div *ngIf="listSearch.length>0">
+                        <div class="row font-size-2r text-success d-flex justify-content-center">Items Search</div>
+                      </div>
+                      <div class=" row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item of listSearch ">
+                        <div class="w-30 ">
+                            <div class="row m-0">
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <img class="img-pro" src="{{item.Img1}}">
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="bg-warning p-2 m-1 point">{{item.Nameproduct}}</div>
+                                    <div class="bg-success p-2 m-1 point" >Total Money: {{item.price}}</div>
+                                    <div class="bg-primary  p-2 m-1 point">ID: {{item.id}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-10">
+                            {{item.Number*item.price}}
+                        </div>
+                        <div class="w-10">
+                            {{item.Status}}
+                        </div>
+                        <div class="w-10">
+                          {{item.time}}
+                      </div>
+                        <div class="w-10">
+                            Countdown
+                        </div>
+                        <div class="w-10 " >
+                                <div class="dropdown">
+                                        <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                            {{item.Transport}}
+                                        </div>
+                                        <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                        <a class="dropdown-item active" href="#"> J&T Express </a>
+                                        <a class="dropdown-item " href="#"> Viettel Post </a>
+                                        <a class="dropdown-item " href="#"> Fast delivery </a>
+                                        <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                        <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                        <a class="dropdown-item " href="#"> VNPost Express </a>
+                                        <a class="dropdown-item " href="#"> Other</a>
+                                        </div>
+                                </div>
+                        </div>
+                        <div class="w-20">
+                            <div *ngIf="item.Status==1">
+                                <a type="button" class="bg-danger w-40" (click)="sent(item)">Confirm</a>
+                            </div>
+                            <div *ngIf="item.Status==2">
+                                <a type="button" class="bg-oranges w-40" (click)="sent(item)">Sent</a>
+                            </div>
+                            <div *ngIf="item.Status==3">
+                                <a type="button" class="bg-aqua  w-40" (click)="sent(item)">Info</a>
+                            </div>
+                            <div *ngIf="item.Status==4">
+                                <a type="button" class="bg-success  w-40" (click)="sent(item)">Success</a>
+                            </div>
+                            <div *ngIf="item.Status==5">
+                                <a type="button" class="bg-reds  w-40" (click)="sent(item)">Cancel</a>
+                            </div>
+                            <div *ngIf="item.Status=='6'|| item.Status=='6.1' || item.Status=='6.3'">
+                                <a type="button" class="addWn  w-40" (click)="sent(item)">return</a>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="row mx-0 mt-3 mb-5">
+                          <div class="container">
+                              <!-- Nav tabs -->
+                              <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                  <a class="nav-link active text-black" data-toggle="tab" href="#home1">All <span>0</span></a>
+                                </li>
+                                <li class="nav-item">
+                                  <a class="nav-link  text-black" data-toggle="tab" href="#menu12">No process <span>0</span> </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link  text-black" data-toggle="tab" href="#menu13">processing <span>0</span> </a>
+                                  </li>
+                                <li class="nav-item">
+                                  <a class="nav-link  text-black" data-toggle="tab" href="#menu22">Pocessed <span>0</span> </a>
+                                </li>
+                              </ul>
+
+                              <!-- Tab panes -->
+                              <div class="tab-content">
+                                <div id="home1" class="container tab-pane active"><br>
+                                  <div class="row mx-0 my-3 d-flex justify-content-between">
+                                      <div class="font-size-2r font-weight-bold">
+                                        <span class="mr-3">{{Status6.length}}</span>
+                                        <span>Orders</span>
+                                      </div>
+                                      <div>
+                                        <a type="button" class=" form-control bg-orangess">
+                                            Select date / Print batch delivery form</a>
+                                      </div>
+                                  </div>
+                                  <div class="row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item6 of Status6 " >
+
+                                      <div class="w-30 ">
+                                        <div class="row m-0">
+
+                                          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                              <img class="img-pro" src="{{item6.Img1}}">
+                                          </div>
+
+                                          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                            <div class="bg-warning p-2 m-1 point">{{item6.Nameproduct}}</div>
+                                            <div class="bg-success p-2 m-1 point" >Total Money: {{item6.price}}</div>
+                                            <div class="bg-primary  p-2 m-1 point">ID: {{item6.id}}</div>
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                      <div class="w-10">
+                                          {{item6.Number*item6.price}}
+                                      </div>
+                                      <div class="w-10">
+                                          {{item6.Status}}
+                                      </div>
+                                      <div class="w-10">
+                                          {{item6.time}}
+                                      </div>
+                                      <div class="w-10">
+                                          Countdown
+                                      </div>
+                                      <div class="w-10 " >
+                                          <div class="dropdown">
+                                              <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                                  {{item6.Transport}}
+                                              </div>
+                                            <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                              <a class="dropdown-item active" href="#"> J&T Express </a>
+                                              <a class="dropdown-item " href="#"> Viettel Post </a>
+                                              <a class="dropdown-item " href="#"> Fast delivery </a>
+                                              <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                              <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                              <a class="dropdown-item " href="#"> VNPost Express </a>
+                                              <a class="dropdown-item " href="#"> Other</a>
+                                            </div>
+                                          </div>
+                                      </div>
+                                      <div class="w-20">
+                                          <a type="button" class="addWn p-2  w-100" (click)="sent(item6)">Refund/Return</a>
+                                      </div>
+
+                                    </div>
+
+                              </div>
+                                <div id="menu12" class="container tab-pane fade"><br>
+                                  <div class="row mx-0 my-3 d-flex justify-content-between">
+                                      <div class="font-size-2r font-weight-bold">
+                                        <span class="mr-3">{{Status6_1.length}}</span>
+                                        <span>Orders</span>
+                                      </div>
+                                      <div>
+                                        <a type="button" class=" form-control bg-orangess">
+                                            Select date / Print batch delivery form</a>
+                                      </div>
+                                  </div>
+                                  <div class="row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item6 of Status6_1 " >
+
+                                      <div class="w-30 ">
+                                        <div class="row m-0">
+
+                                          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                              <img class="img-pro" src="{{item6.Img1}}">
+                                          </div>
+
+                                          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                            <div class="bg-warning p-2 m-1">{{item6.Nameproduct}}</div>
+                                            <div class="bg-success p-2 m-1" >Total Money: {{item6.price}}</div>
+                                            <div class="bg-primary  p-2 m-1">ID: {{item6.id}}</div>
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                      <div class="w-10">
+                                          {{item6.Number*item6.price}}
+                                      </div>
+                                      <div class="w-10">
+                                          {{item6.Status}}
+                                      </div>
+                                      <div class="w-10">
+                                          {{item6.time}}
+                                      </div>
+                                      <div class="w-10">
+                                          Countdown
+                                      </div>
+                                      <div class="w-10 " >
+                                          <div class="dropdown">
+                                              <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                                  {{item6.Transport}}
+                                              </div>
+                                            <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                              <a class="dropdown-item active" href="#"> J&T Express </a>
+                                              <a class="dropdown-item " href="#"> Viettel Post </a>
+                                              <a class="dropdown-item " href="#"> Fast delivery </a>
+                                              <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                              <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                              <a class="dropdown-item " href="#"> VNPost Express </a>
+                                              <a class="dropdown-item " href="#"> Other</a>
+                                            </div>
+                                          </div>
+                                      </div>
+                                      <div class="w-20">
+                                          <a type="button" class="addWn p-2  w-100" (click)="sent(item6)">Confirm</a>
+                                      </div>
+
+                                    </div>
+                                </div>
+                                <div id="menu13" class="container tab-pane fade"><br>
+                                  <div class="row mx-0 my-3 d-flex justify-content-between">
+                                      <div class="font-size-2r font-weight-bold">
+                                        <span class="mr-3">{{Status6_3.length}}</span>
+                                        <span>Orders</span>
+                                      </div>
+                                      <div>
+                                        <a type="button" class=" form-control bg-orangess">
+                                            Select date / Print batch delivery form</a>
+                                      </div>
+                                  </div>
+                                  <div class="row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item6 of Status6_3 " >
+
+                                      <div class="w-30 ">
+                                        <div class="row m-0">
+
+                                          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                              <img class="img-pro" src="{{item6.Img1}}">
+                                          </div>
+
+                                          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                            <div class="bg-warning p-2 m-1">{{item6.Nameproduct}}</div>
+                                            <div class="bg-success p-2 m-1" >Total Money: {{item6.price}}</div>
+                                            <div class="bg-primary  p-2 m-1">ID: {{item6.id}}</div>
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                      <div class="w-10">
+                                          {{item6.Number*item6.price}}
+                                      </div>
+                                      <div class="w-10">
+                                          {{item6.Status}}
+                                      </div>
+                                      <div class="w-10">
+                                          {{item6.time}}
+                                      </div>
+                                      <div class="w-10">
+                                          Countdown
+                                      </div>
+                                      <div class="w-10 " >
+                                          <div class="dropdown">
+                                              <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                                  {{item6.Transport}}
+                                              </div>
+                                            <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                              <a class="dropdown-item active" href="#"> J&T Express </a>
+                                              <a class="dropdown-item " href="#"> Viettel Post </a>
+                                              <a class="dropdown-item " href="#"> Fast delivery </a>
+                                              <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                              <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                              <a class="dropdown-item " href="#"> VNPost Express </a>
+                                              <a class="dropdown-item " href="#"> Other</a>
+                                            </div>
+                                          </div>
+                                      </div>
+                                      <div class="w-20">
+                                          <a type="button" class="addWn p-2  w-100" (click)="sent(item6)">Refunding</a>
+                                      </div>
+
+                                    </div>
+                                </div>
+                                <div id="menu22" class="container tab-pane fade"><br>
+                                  <div class="row mx-0 my-3 d-flex justify-content-between">
+                                      <div class="font-size-2r font-weight-bold">
+                                        <span class="mr-3">{{Status6_2.length}}</span>
+                                        <span>Orders</span>
+                                      </div>
+                                      <div>
+                                        <a type="button" class=" form-control bg-orangess">
+                                            Select date / Print batch delivery form</a>
+                                      </div>
+                                  </div>
+                                  <div class="row mx-0 list-order text-center bg-gray-s py-3 d-flex align-items-center">
+
+                                      <div class="w-30 ">
+                                          Product
+                                      </div>
+                                      <div class="w-10">
+                                          Total Orders
+                                      </div>
+                                      <div class="w-10">
+                                          Status
+                                      </div>
+                                      <div class="w-10">
+                                          Time
+                                      </div>
+                                      <div class="w-10">
+                                          Countdown
+                                      </div>
+                                      <div class="w-10 " >
+                                          <div class="dropdown">
+                                              <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                                  Transport
+                                              </div>
+                                            <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                              <a class="dropdown-item active" href="#"> J&T Express </a>
+                                              <a class="dropdown-item " href="#"> Viettel Post </a>
+                                              <a class="dropdown-item " href="#"> Fast delivery </a>
+                                              <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                              <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                              <a class="dropdown-item " href="#"> VNPost Express </a>
+                                              <a class="dropdown-item " href="#"> Other</a>
+                                            </div>
+                                          </div>
+                                      </div>
+                                      <div class="w-20">
+                                          Actions
+                                      </div>
+
+                                  </div>
+                                  <div class="row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item6 of Status6_2 " >
+
+                                    <div class="w-30 ">
+                                      <div class="row m-0">
+
+                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                            <img class="img-pro" src="{{item6.Img1}}">
+                                        </div>
+
+                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                          <div class="bg-warning p-2 m-1">{{item6.Nameproduct}}</div>
+                                          <div class="bg-success p-2 m-1" >Total Money: {{item6.price}}</div>
+                                          <div class="bg-primary  p-2 m-1">ID: {{item6.id}}</div>
+                                        </div>
+
+                                      </div>
+                                    </div>
+                                    <div class="w-10">
+                                        {{item6.Number*item6.price}}
+                                    </div>
+                                    <div class="w-10">
+                                        {{item6.Status}}
+                                    </div>
+                                    <div class="w-10">
+                                        {{item6.time}}
+                                    </div>
+                                    <div class="w-10">
+                                        Countdown
+                                    </div>
+                                    <div class="w-10 " >
+                                        <div class="dropdown">
+                                            <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                                {{item6.Transport}}
+                                            </div>
+                                          <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                            <a class="dropdown-item active" href="#"> J&T Express </a>
+                                            <a class="dropdown-item " href="#"> Viettel Post </a>
+                                            <a class="dropdown-item " href="#"> Fast delivery </a>
+                                            <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                            <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                            <a class="dropdown-item " href="#"> VNPost Express </a>
+                                            <a class="dropdown-item " href="#"> Other</a>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-20">
+                                        <a type="button" class="addWn p-2  w-100" (click)="sent(item6)">Refuned</a>
+                                    </div>
+
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+              </div>
+              <div *ngSwitchDefault >
+                  <div class="row mx-0 mt-3 mb-5 d-flex justify-content-between">
+                      <div class="search">
+                          <div class="input-group">
+                              <input type="text" class="form-control" placeholder="Find orders" aria-label="Input group example" aria-describedby="btnGroupAddon"  [(ngModel)]="searchId" (keyup)="Search($event,'0')">
+                              <!-- <div class="input-group-prepend">
+                                  <div class="input-group-text" id="btnGroupAddon"><i class="fa fa-search"></i></div>
+                              </div> -->
+                          </div>
+                      </div>
+                      <div class="time row mx-0 ">
+                        <div class="d-flex align-items-center font-weight-bold">Date</div>
+                        <div class="ml-2">
+                            <input type="date" class="form-control" [value]="now | date:'yyyy-MM-dd'" [(ngModel)]="dateStart">
+                        </div>
+                        <span class=" d-flex align-items-center mx-2 font-weight-bold">-</span>
+                        <div>
+                            <input type="date" class="form-control" [value]="now | date:'yyyy-MM-dd'"  [(ngModel)]="dateEnd">
+                        </div>
+                        <div  (click)="searchDate($event)" class="input-group-text" id="btnGroupAddon1"><i class="fa fa-search"></i></div>
+                    </div>
+                  </div>
+                  <div *ngIf="listSearch.length>0">
+                    <div class="row font-size-2r text-success d-flex justify-content-center">Items Search</div>
+                  </div>
+                  <div class=" row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item of listSearch ">
+                    <div class="w-30 ">
+                        <div class="row m-0">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <img class="img-pro" src="{{item.Img1}}">
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <div class="bg-warning p-2 m-1">{{item.Nameproduct}}</div>
+                                <div class="bg-success p-2 m-1" >Total Money: {{item.price}}</div>
+                                <div class="bg-primary  p-2 m-1">ID: {{item.id}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-10">
+                        {{item.Number*item.price}}
+                    </div>
+                    <div class="w-10">
+                        {{item.Status}}
+                    </div>
+                    <div class="w-10">
+                      {{item.time}}
+                  </div>
+                    <div class="w-10">
+                        Countdown
+                    </div>
+                    <div class="w-10 " >
+                            <div class="dropdown">
+                                    <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                        {{item.Transport}}
+                                    </div>
+                                    <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                    <a class="dropdown-item active" href="#"> J&T Express </a>
+                                    <a class="dropdown-item " href="#"> Viettel Post </a>
+                                    <a class="dropdown-item " href="#"> Fast delivery </a>
+                                    <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                    <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                    <a class="dropdown-item " href="#"> VNPost Express </a>
+                                    <a class="dropdown-item " href="#"> Other</a>
+                                    </div>
+                            </div>
+                    </div>
+                    <div class="w-20">
+                        <div *ngIf="item.Status==1">
+                            <a type="button" class="bg-danger w-40" (click)="sent(item)">Confirm</a>
+                        </div>
+                        <div *ngIf="item.Status==2|| item.Status=='2.1'">
+                            <a type="button" class="bg-oranges w-40" (click)="sent(item)">Sent</a>
+                        </div>
+                        <div *ngIf="item.Status==3">
+                            <a type="button" class="bg-aqua  w-40" (click)="sent(item)">Info</a>
+                        </div>
+                        <div *ngIf="item.Status==4">
+                            <a type="button" class="bg-success  w-40" (click)="sent(item)">Success</a>
+                        </div>
+                        <div *ngIf="item.Status==5">
+                            <a type="button" class="bg-reds  w-40" (click)="sent(item)">Cancel</a>
+                        </div>
+                        <div *ngIf="item.Status=='6'|| item.Status=='6.1' || item.Status=='6.3'">
+                            <a type="button" class="addWn  w-40" (click)="sent(item)">return</a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="row mx-0 my-3 d-flex justify-content-between">
+                      <div class="font-size-2r font-weight-bold">
+                          <span class="mr-3">{{listOrder.length}}</span>
+                          <span>Odders</span>
+                      </div>
+                      <div>
+                          <a type="button" class=" form-control bg-orangess">
+                              Select date / Print batch delivery form</a>
+                      </div>
+                  </div>
+                  <div class="row mx-0 list-order text-center bg-gray-s py-3 d-flex align-items-center">
+
+                      <div class="w-30 ">
+                          Product
+                      </div>
+                      <div class="w-10">
+                          Total Orders
+                      </div>
+                      <div class="w-10">
+                          Status
+                      </div>
+                      <div class="w-10">
+                          Time
+                      </div>
+                      <div class="w-10">
+                          Countdown
+                      </div>
+                      <div class="w-10 " >
+                              <div class="dropdown">
+                                      <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                          Transport
+                                      </div>
+                                      <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                      <a class="dropdown-item active" href="#"> J&T Express </a>
+                                      <a class="dropdown-item " href="#"> Viettel Post </a>
+                                      <a class="dropdown-item " href="#"> Fast delivery </a>
+                                      <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                      <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                      <a class="dropdown-item " href="#"> VNPost Express </a>
+                                      <a class="dropdown-item " href="#"> Other</a>
+                                      </div>
+                              </div>
+                      </div>
+                      <div class="w-20">
+                          Actions
+                      </div>
+                  </div>
+                  <div class="row mx-0 list-order text-center py-3 d-flex align-items-center border" *ngFor="let item of listOrder; let k= index " >
+
+                      <div class="w-30 ">
+                          <div class="row m-0">
+                              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                  <img class="img-pro" src="{{item.Img1}}">
+                              </div>
+                              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <div class="bg-warning p-2 m-1 point">{{item.Nameproduct}}</div>
+                                <div class="bg-success p-2 m-1 point" >Total Money: {{item.price}}</div>
+                                <div class="bg-primary  p-2 m-1 point">ID: {{item.id}}</div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="w-10">
+                          {{item.Number*item.price}}
+                      </div>
+                      <div class="w-10">
+                          {{item.Status}}
+                      </div>
+                      <div class="w-10">
+                          {{item.time}}
+                      </div>
+                      <div class="w-10">
+                          Countdown
+                      </div>
+                      <div class="w-10 " >
+                              <div class="dropdown">
+                                      <div id="my-dropdown" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                          {{item.Transport}}
+                                      </div>
+                                      <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                      <a class="dropdown-item active" href="#"> J&T Express </a>
+                                      <a class="dropdown-item " href="#"> Viettel Post </a>
+                                      <a class="dropdown-item " href="#"> Fast delivery </a>
+                                      <a class="dropdown-item " href="#"> VNPost Savings </a>
+                                      <a class="dropdown-item " href="#"> Savings Delivery </a>
+                                      <a class="dropdown-item " href="#"> VNPost Express </a>
+                                      <a class="dropdown-item " href="#"> Other</a>
+                                      </div>
+                              </div>
+                      </div>
+                      <div class="w-20">
+                          <div *ngIf="item.Status==1">
+                              <a type="button" class="bg-danger w-40" (click)="sent(item)">Confirm</a>
+                          </div>
+                          <div *ngIf="item.Status==2|| item.Status=='2.1'">
+                              <a type="button" class="bg-oranges w-40" (click)="sent(item)">Sent</a>
+                          </div>
+                          <div *ngIf="item.Status==3">
+                              <a type="button" class="bg-aqua  w-40" (click)="sent(item)">Info</a>
+                          </div>
+                          <div *ngIf="item.Status==4">
+                              <a type="button" class="bg-success text-white  w-40" data-toggle="collapse" href="#item{{k}}" aria-expanded="false" aria-controls="contentId" (click)="sent(item)">Success</a>
+                              <div class="collapse" id="item{{k}}">
+                                <a class="fa fa-trash   bg-danger p-2 mx-2"  aria-hidden="true" (click)="deleteOr(item.id)"></a>
+                              </div>
+                          </div>
+                          <div *ngIf="item.Status==5">
+                              <a type="button" class="bg-reds  w-40" (click)="sent(item)">Cancel</a>
+                          </div>
+                          <div *ngIf="item.Status=='6'|| item.Status=='6.1' || item.Status=='6.3'">
+                              <a type="button" class="addWn  w-40" (click)="sent(item)">return</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+

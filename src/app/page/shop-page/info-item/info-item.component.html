@@ -1,0 +1,194 @@
+<div class="container-fluid">
+    <div class="header d-flex justify-content-center row my-5">
+      <h1>InFO</h1>
+    </div>
+    <div class="body container">
+      <div class="row">
+        <div class="product-detail-left product-images col-xs-12 col-sm-6 col-md-5 col-lg-5">
+            <img class="img" src="{{item.Img2}}">
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <h1 class="title-product" itemprop="name">{{item.Name_Product}}</h1>
+            <div class="group-status">
+                <span class="first_status"><span class="a_name">Trademark:</span> <span class="status_name">
+                    {{item.Trademark}}
+                  </span>
+                  <span class="hidden-xs">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                </span>
+                <span class="first_status"><span class="a_name">Status:</span> <span class="status_name">
+                    {{item.Warehose>0?' in stock':'out of stock'}}
+                  </span></span>
+            </div>
+            <div class="my-4">
+              <a class="addCf p-2" (click)="addBag(item)" (click)="open()">Add to cart</a>
+            </div>
+            <div class="my-4">
+                <a class="addDg p-2" [routerLink]="['/bag']">Go to Cart</a>
+            </div>
+            <div class="my-4">
+                <p>Price: <span class="status_name"> {{item.Price}}</span>/item</p>
+            </div>
+            <div class="my-4">
+                <p>Catefory: <span class="status_name"> {{item.Catefory1}} /{{item.Catefory2}}</span></p>
+            </div>
+            <div class="my-4">
+                <p>Sale: <span class="status_name"> {{item.Sale}}</span></p>
+            </div>
+            <div class="my-4">
+                <p>Details: <span class="status_name"> {{item.Details}}</span></p>
+            </div>
+            <div class="my-4">
+                <p>Point: <span class="status_name"> {{item.Point}}</span></p>
+            </div>
+            <div class="my-4">
+                <p>Material: <span class="status_name"> {{item.Material}}</span></p>
+            </div>
+            <div class="my-4">
+                <p>Origin: <span class="status_name"> {{item.Origin}}</span></p>
+            </div>
+            <div class="my-4">
+                <p>Charity: <span class="status_name"> {{item.Charity}}</span></p>
+            </div>
+            <div class="my-4">
+                <p>Warehose: <span class="status_name"> {{item.Warehose}}</span></p>
+            </div>
+        </div>
+
+      </div>
+      <div class=" my-5">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active text-black" data-toggle="tab" href="#home1">Image details</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  text-black" data-toggle="tab" href="#menu12">Size</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  text-black" data-toggle="tab" href="#menu22">Help buy</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link  text-black" data-toggle="tab" href="#menu32">Comment</a>
+              </li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div id="home1" class="container tab-pane active"><br>
+              <div class="d-flex justify-content-center py-2">
+                  <img class="d-flex justify-content-center" src="{{item.Img1}}">
+              </div>
+              <div class="d-flex justify-content-center py-2">
+                  <img  src="{{item.Img2}}">
+              </div>
+
+          </div>
+            <div id="menu12" class="container tab-pane fade"><br>
+                <div class="row d-flex justify-content-center">
+                    <h1 class="my-5">Table Size</h1>
+                </div>
+                <div class="row">
+                  <div class="row">
+                      <h3 class="d-flex justify-content-center">General information</h3>
+                  </div>
+                  <div class="row">
+                      - Example: Your height is 1m68, weight is 65kg, then your size will be L. <br>
+                      <br>
+                      - However, in some cases, the height is in size M but weight in size L or XL is preferred. For example, 1m55 weighs 70kg, then must choose size L. <br>
+                      <br>
+                      - For clothing Form you should choose wide size to wear more comfortable. <br>
+                      <br>
+                      - In each MYO product will be accompanied by the measurement of each size of the product, you can measure it according to your size. <br>
+                      <br>
+                      - If you have any questions, please chat with support in the right corner of the screen or call us at the hotline: 0777444333 <br>
+                  </div>
+                </div>
+            </div>
+            <div id="menu22" class="container tab-pane fade"><br>
+              <div class=" font-weight-bold">CUSTOMERS IN TP.DN</div>
+              <p>
+                  Currently customers in TP.DN has 2 ways to buy the following:
+              </p>
+              <p class="font-weight-bold">
+                  I / DIRECT BUYING AT SHOP:
+              </p>
+              <p>
+                  - Products are always available at the Shop, many products are imported daily. Please come directly to the store to choose the most satisfactory products
+                  <br>Address: 42 Dang Nhu Mai- Hoa An - Cam Le - Da Nang
+              </p>
+              <p class="font-weight-bold">
+                  II / ORDER THROUGH YOUR PHONE OR BUYER BUTTON
+              </p>
+              <p>
+                  - Or place an order through "Purchase" in each product. Shop will contact you after receiving the order.
+              </p>
+            </div>
+            <div id="menu32" class="container tab-pane fade"><br>
+              <div class=" font-weight-bold">Questions and answers about this product <span class="text-success"> {{lengtComment}} </span></div>
+
+              <div class=" row comment__repply_input my-2"  >
+                <textarea [(ngModel)]="content1" class="w-85" name="comment__content" id="" cols="100" rows="3" placeholder="What questions do you have for this product?" (keydown.enter)="sent_commentPar(item)"></textarea>
+                <a class="w-15 cursor comment__send  d-flex align-items-center ml-2 " (click)="sent_commentPar(item)">
+                  <i class="mx-2 fa fa-2x fa-paper-plane-o" aria-hidden="true"></i>
+                   <span> Send</span>
+                </a>
+            </div>
+
+              <div class="Comment__list">
+                  <div *ngFor="let item of listComment; let i= index">
+                      <div class="row comment p-2 my-3"  *ngIf="item.ID_ComChild=='0'" >
+
+                          <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                            <div class="Comment__ID"></div>
+                          </div>
+
+                          <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 " >
+                            <span class="Comment__Name">{{item.ID_User}}</span>
+                            <p class="font-size-0-8r font-weight-light text-red">{{item.Time}}</p>
+                            <p>{{item.Content}}</p>
+                            <a class="row cursor d-flex justify-content-end" data-toggle="collapse" href="#reply{{i}}" aria-expanded="false" aria-controls="contentId" (click)="resetRepply(i)">
+                             <i class="fa fa-reply text-primary p-2" aria-hidden="true"></i>
+                             <span>Reply</span>
+                            </a>
+                            <div class="comment__scroll">
+                              <div *ngFor="let item1 of listComment" >
+                                <div class="Comment_reply my-2 p-2 row" *ngIf="item1.ID_ComParent==item.ID_ComParent && item1.ID_ComChild!='0'" >
+                                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                        <div class="Comment__ID_repply"></div>
+                                    </div>
+                                    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 ">
+                                        <p class="Comment__Name">{{item1.ID_User}}</p>
+                                        <p>{{item1.Content}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="collapse row comment__repply_input" id="reply{{i}}">
+                                <textarea [(ngModel)]="content" class="w-85" name="comment__content{{i}}" id="" cols="100" rows="3" placeholder="What questions do you have for this product?" (keydown.enter)="sent_comment(item)"></textarea>
+                                <a class="w-15 cursor comment__send  d-flex align-items-center ml-2 " (click)="sent_comment(item)">
+                                  <i class="mx-2 fa fa-2x fa-paper-plane-o" aria-hidden="true"></i>
+                                   <span> Send</span>
+                                </a>
+                            </div>
+                          </div>
+                        </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="check1===false" >
+      <div class="example-wrapper">
+          <kendo-dialog title="Please confirm" *ngIf="opened" (close)="close('cancel')" [minWidth]="250" [width]="450">
+              <p style="margin: 30px; text-align: center;">Are you sure you want to continue?</p>
+              <kendo-dialog-actions>
+                  <button kendoButton (click)="icreaseItem(idAdd)" (click)="close('no')">No</button>
+                  <button kendoButton (click)="divItem(idAdd)" (click)="close('yes')" primary="true">Yes</button>
+              </kendo-dialog-actions>
+          </kendo-dialog>
+        </div>
+  </div>

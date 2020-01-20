@@ -1,0 +1,76 @@
+<div class="container-fluit">
+  <div class="container">
+    <div class="row d-flex justify-content-between">
+      <div class="font-size-3r">
+        <span class="text-primary">S</span>hipping<span class="text-red">+</span>
+      </div>
+      <!-- <section class="">
+        <option value="en">EN</option>
+        <option value="VN">VN</option>
+      </section> -->
+    </div>
+  </div>
+  <div class="row m-0 picture1">
+    <div class=" font-size-3r col-6 offset-2 d-flex align-items-center" >
+      <span class="text-warning">SBS exclusive delivery page</span>
+    </div>
+    <div class="col-4 d-flex align-items-center">
+      <span>
+        <img class="" src="/assets/img/img/ship.png">
+      </span>
+    </div>
+  </div>
+  <div class="row OP m-0 d-flex justify-content-center">
+    <div id="mySidenav" class=" sidenav">
+      <a (click)="type(1)" id="about">Received and delivered</a>
+      <a (click)="type(2)" id="blog">Delivery completed</a>
+      <a (click)="type(3)" id="projects">Delivery canceled</a>
+      <a (click)="type(4)" id="contact">Delivery is returned</a>
+    </div>
+    <div id="board" class="board ">
+      <p class="font-size-2r font-weight-bold">{{title}}</p>
+      <div class="scroll">
+        <table class="table table-hover bg-white">
+          <thead class="bg-black text-white">
+            <tr>
+              <th>ID_Produt</th>
+              <th>Id_Shop</th>
+              <th>ID_Customer</th>
+              <th>Nameproduct</th>
+              <th>Img</th>
+              <th>Time</th>
+              <th>Price</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of listPro; let i=index">
+              <td>{{item.ID_Product}}</td>
+              <td>{{item.ID_Shop}}</td>
+              <td>{{item.ID_Customer}}</td>
+              <td>{{item.Nameproduct}}</td>
+              <td><img class="imgAvatar" src="{{item.Img1}}"></td>
+              <!-- <td><img class="imgAvatar" src="{{item.Img2}}"></td> -->
+              <td>{{item.time}}</td>
+              <td>{{item.price}}</td>
+              <td *ngIf=" title=='Received and delivered'" >
+                <div class="row m-1">
+                  <a (click)="Completed(item)" class="add2 form-control p-2">Completed </a>
+                </div>
+                <div class="row m-1">
+                  <a (click)="Cancel(item)" class="addDg form-control p-2">Cancel </a>
+                </div>
+                <div class="row m-1">
+                  <a (click)="Returned(item)" class="addDN form-control p-2">Refund </a>
+                </div>
+              </td>
+              <td *ngIf="title=='Delivery is returned'">
+                <a (click)="Returned_s(item)" class="addDN form-control p-2">Refunded </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

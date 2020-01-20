@@ -1,0 +1,50 @@
+<div class="b wrapper">
+    <picture
+      ><source
+        media="(min-width: 960px)"
+        srcset={{Link1}}/>
+      <source
+        media="(min-width: 600px)"
+        srcset={{Link2}}/>
+      <source
+        srcset={{Link3}}/>
+      <img
+        src={{img}}
+        class="imgFix"
+    /></picture>
+    <div class=" container-fluit a w-100 h-100 ">
+      <div
+        class="col-xs-12 col-md-5 col-ls-4 mobie offset-xs-0 offset-md-1 offset-ls-3 h-100 d-flex align-items-center pr-5"
+      >
+        <div>
+          <div  *ngIf="checkBt==true" >
+              <div class="ts1 tsWhite">{{lable}}</div>
+              <p class="tsWhite">{{title}}</p>
+            <app-button-now-white [router]="router1" [btname]="bt1"></app-button-now-white>
+            <app-button-now-white [router]="router2" [btname]="bt2"></app-button-now-white>
+          </div>
+          <div  *ngIf="checkBt==false" >
+              <div class="ts1">{{lable}}</div>
+              <p>{{title}}</p>
+            <app-button-now [router]="router1" [btname]="bt1"></app-button-now>
+            <app-button-now [router]="router2" [btname]="bt2" ></app-button-now>
+          </div>
+        </div>
+      </div>
+      <div
+      class="col-12  h-100 d-flex align-items-start flex-column bd-highlight mb-3 pr-5 pb-5 pd1 "
+    >
+      <div class="mt-auto p-2 bd-highlight">
+
+        <div>
+          <div class="ts1">{{lable}}</div>
+          <p class="">
+            {{title}}
+          </p>
+          <app-button-now [btname]="'join now'"></app-button-now>
+          <app-button-now [btname]="'shop now'"></app-button-now>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>

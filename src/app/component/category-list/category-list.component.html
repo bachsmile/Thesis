@@ -1,0 +1,166 @@
+<div class="container bg-secondary">
+  <div class="a ">
+    <div class="d-flex justify-content-around w-100">
+        <div class="dropdown">
+          <a class="px-1 h-100 d-flex align-items-center dropbtn" [routerLink]="['/Shop/Shop-Gender','men']" (change)="go('men')">Men</a>
+          <div class="dropdown-content">
+              <div class="menu" >
+                <ul>
+                  <li><a [routerLink]="['/Shop/mall','ClothesMen']"> Clothes Men</a>
+                    <ul class=""><p [routerLink]="['/Shop/mall','ClothesMen']">Clothes</p>
+                            <div  >
+                                <li class="childe py-2" [routerLink]="['/Shop/mall','TrousersMen']"><i class="fa fa-circle-o text-danger mr-2" ></i>Trousers</li>
+                                <li class="childe py-2" [routerLink]="['/Shop/mall','ShirtMen']"><i class="fa fa-circle-o text-danger mr-2" ></i>Shirt</li>
+                                <li class="childe py-2" [routerLink]="['/Shop/mall','SetMen']"><i class="fa fa-circle-o text-danger mr-2" ></i>Set</li>
+                            </div>
+                      </ul>
+                  </li>
+                  <li [routerLink]="['/Shop/mall','ShoesMen']"><a> Shoes Men</a></li>
+                  <li [routerLink]="['/Shop/mall','HatMen']"><a> Hat Men</a></li>
+                  <li ><a [routerLink]="['/Shop/mall','watchMen']"> watch Men</a>
+                    <ul class=""><p [routerLink]="['/Shop/mall','watchMen']">watch</p>
+                            <div  >
+                                <li class="childe py-2" [routerLink]="['/Shop/mall','BasicWatchMen']"><i class="fa fa-circle-o text-danger mr-2"></i>basic Watch</li>
+                                <li class="childe py-2" [routerLink]="['/Shop/mall','SmartWatchMen']"><i class="fa fa-circle-o text-danger mr-2"></i>smart watch </li>
+                            </div>
+                      </ul>
+                  </li>
+                </ul>
+            </div>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a class="px-1 h-100 d-flex align-items-center dropbtn" [routerLink]="['/Shop/Shop-Gender','women']" (change)="go('women')">Women</a>
+          <div class="dropdown-content">
+              <div class="menu" >
+                  <ul>
+                    <li><a [routerLink]="['/Shop/mall','ClothesWomen']"> Clothes Woment</a>
+                      <ul class=""><p [routerLink]="['/Shop/mall','ClothesWomen']">Clothes</p>
+                              <div  >
+                                  <li class="childe py-2" [routerLink]="['/Shop/mall','TrousersWomen']"><i class="fa fa-circle-o text-danger mr-2" ></i>Trousers</li>
+                                  <li class="childe py-2" [routerLink]="['/Shop/mall','ShirtWomen']"><i class="fa fa-circle-o text-danger mr-2" ></i>Shirt</li>
+                                  <li class="childe py-2" [routerLink]="['/Shop/mall','SetWomen']"><i class="fa fa-circle-o text-danger mr-2" ></i>Set</li>
+                              </div>
+                        </ul>
+                    </li>
+                    <li [routerLink]="['/Shop/mall','ShoesWomen']"><a> Shoes Women</a></li>
+                    <li [routerLink]="['/Shop/mall','HatWomen']"><a> Hat Women</a></li>
+                    <li ><a [routerLink]="['/Shop/mall','watchWomen']"> watch Women</a>
+                      <ul class=""><p [routerLink]="['/Shop/mall','watch']">watch</p>
+                              <div  >
+                                  <li class="childe py-2" [routerLink]="['/Shop/mall','BasicWatchWomen']"><i class="fa fa-circle-o text-danger mr-2"></i>basic Watch</li>
+                                  <li class="childe py-2" [routerLink]="['/Shop/mall','SmartWatchWomen']"><i class="fa fa-circle-o text-danger mr-2"></i>smart watch </li>
+                              </div>
+                        </ul>
+                    </li>
+                  </ul>
+              </div>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a class="px-1 h-100 d-flex align-items-center dropbtn" [routerLink]="['/Shop/Shop-Gender','kids']" (click)="go('kids')">
+            <a class="border-rights d-flex align-items-center pr-2"> Kids </a>
+          </a>
+          <div class="dropdown-content">
+              <div class="menu" >
+                  <ul>
+                    <li><a [routerLink]="['/Shop/mall','ClothesKids']"> Clothes Kids</a>
+                      <ul class=""><p [routerLink]="['/Shop/mall','ClothesKids']">Clothes</p>
+                              <div  >
+                                  <li class="childe py-2" [routerLink]="['/Shop/mall','TrousersKids']"><i class="fa fa-circle-o text-danger mr-2" ></i>Trousers</li>
+                                  <li class="childe py-2" [routerLink]="['/Shop/mall','ShirtKids']"><i class="fa fa-circle-o text-danger mr-2" ></i>Shirt</li>
+                                  <li class="childe py-2" [routerLink]="['/Shop/mall','SetKids']"><i class="fa fa-circle-o text-danger mr-2" ></i>Set</li>
+                              </div>
+                        </ul>
+                    </li>
+                    <li [routerLink]="['/Shop/mall','ShoesKids']"><a> Shoes Kids</a></li>
+                    <li [routerLink]="['/Shop/mall','HatKids']"><a> Hat Kids</a></li>
+                    <li ><a [routerLink]="['/Shop/mall','watchKids']"> watch Kids</a>
+                      <ul class=""><p [routerLink]="['/Shop/mall','watchKids']">watch</p>
+                              <div  >
+                                  <li class="childe py-2" [routerLink]="['/Shop/mall','BasicWatchKids']"><i class="fa fa-circle-o text-danger mr-2"></i>basic Watch</li>
+                                  <li class="childe py-2" [routerLink]="['/Shop/mall','SmartWatchKids']"><i class="fa fa-circle-o text-danger mr-2"></i>smart watch </li>
+                              </div>
+                        </ul>
+                    </li>
+                  </ul>
+              </div>
+          </div>
+        </div>
+        <div class="dropdown">
+          <a class="px-1 h-100 d-flex align-items-center dropbtn">Category</a>
+          <div class="dropdown-content width-content">
+              <div *ngFor="let item of arrList  ; let i=index">
+                  <div class="menu" >
+                      <ul>
+                        <li><a [routerLink]="['/Shop/type',item.parent[0].DanhMuc]"> {{item.parent[0].DanhMuc}}</a>
+                          <ul class=""><p [routerLink]="['/Shop/type',item.parent[0].DanhMuc]">{{item.parent[0].DanhMuc}}</p>
+                                  <div *ngFor="let item1 of item.children" >
+                                      <li class="childe py-2" [routerLink]="['/Shop/type',item1.DanhMuc]"><i class="fa fa-circle-o text-danger mr-2" ></i>{{item1.DanhMuc}}</li>
+                                  </div>
+                            </ul>
+                        </li>
+                      </ul>
+                  </div>
+                  <ng-container *ngIf="item.id_childe =='0'; else elseTemplates">
+                      <div class="menu">
+                          <ul>
+                            <li><a> {{item.parent[0].DanhMuc}}</a>
+                              <ul class=""><p >Kids</p>
+                                       <li class="childe"><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+                                       <li class="childe"><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+                                </ul>
+                            </li>
+                          </ul>
+                      </div>
+                    </ng-container>
+              </div>
+              <ng-template #elseTemplates>
+                  <div class="none"></div>
+                </ng-template>
+            <!-- <div class="row">
+
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                  <a href="#">Link 1</a>
+                  <a href="#">Link 2</a>
+                  <a href="#">Link 3</a>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                  <a href="#">Link 1</a>
+                  <a href="#">Link 2</a>
+                  <a href="#">Link 3</a>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                  <a href="#">Link 1</a>
+                  <a href="#">Link 2</a>
+                  <a href="#">Link 3</a>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                  <a href="#">Link 1</a>
+                  <a href="#">Link 2</a>
+                  <a href="#">Link 3</a>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <div class="dropdown">
+          <a class="px-1 h-100 d-flex align-items-center dropbtn">Brands</a>
+          <div class="dropdown-content">
+              <div class="menu">
+                  <ul>
+                    <li [routerLink]="['/Shop/Shop-Gender','men']"><a> MEN</a></li>
+                    <li [routerLink]="['/Shop/Shop-Gender','women']"><a> WOMEN</a></li>
+                    <li [routerLink]="['/Shop/Shop-Gender','kids']"><a> KIDS</a></li>
+                  </ul>
+              </div>
+          </div>
+        </div>
+        <!-- <div class="dropdown">
+          <a class="px-1 h-100 d-flex align-items-center dropbtn"  [routerLink]="['/home/design-now']">Layout</a>
+        </div>
+        <div class="dropdown">
+            <a class="px-1 h-100 d-flex align-items-center dropbtn"  [routerLink]="['/ChatRoom/room/chat']">Auction</a>
+          </div> -->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,298 @@
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header d-flex justify-content-between">
+      <h1>
+           Dashboard
+      <small class="opacity-0-5 font-size-1r">Control panel</small>
+      </h1>
+      <ul class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Dashboard</a></li>
+      </ul>
+  </section>
+
+  <!-- Main content -->
+  <section class="content m-2">
+      <!-- Small boxes (Stat box) -->
+      <div class="row m-0 my-2">
+          <!-- small box -->
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+              <div class="small-box bg-aqua">
+              <div class="row m-0">
+                  <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 text-center">
+                  <div class="inner pl-2 font-db">
+                      <h3>{{listOrder.length}}</h3>
+                      <p >New Orders</p>
+                  </div>
+                  </div>
+
+                  <div
+                  class="col-xs-12 col-sm-12 col-md-5 col-lg-5 d-flex align-self-center justify-content-center "
+                  >
+                  <div class="icon icon-hide">
+                      <i class="fa fa-shopping-bag fa-4x" aria-hidden="true"></i>
+                  </div>
+                  </div>
+              </div>
+              <a
+                  [routerLink]="['/sale-page/Orders-manage']"
+                  class="small-box-footer bg-aquas d-flex justify-content-center align-self-center"
+                  >More info <i class="fa fa-arrow-circle-right  ml-2 mt-1"></i
+              ></a>
+              </div>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+              <div class="small-box  bg-green">
+              <div class="row m-0">
+                  <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 text-center">
+                  <div class="inner pl-2 font-db">
+                      <h3>{{listProd.length}}</h3>
+                      <p>Products</p>
+                  </div>
+                  </div>
+
+                  <div
+                  class="col-xs-12 col-sm-12 col-md-5 col-lg-5 d-flex align-self-center justify-content-center "
+                  >
+                  <div class="icon icon-hide">
+                      <i class="fa fa-cube fa-4x" aria-hidden="true"></i>
+                  </div>
+                  </div>
+              </div>
+              <a
+                   [routerLink]="['/sale-page/Product-manage']"
+                  class="small-box-footer bg-greens d-flex justify-content-center align-self-center"
+                  >More info <i class="fa fa-arrow-circle-right  ml-2 mt-1"></i
+              ></a>
+              </div>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+              <div class="small-box  bg-orange">
+              <div class="row m-0">
+                  <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 text-center">
+                  <div class="inner pl-2 font-db">
+                      <h3>{{listCus.length}}</h3>
+                      <p>Customer</p>
+                  </div>
+                  </div>
+                  <div
+                  class="col-xs-12 col-sm-12 col-md-5 col-lg-5 d-flex align-self-center justify-content-center "
+                  >
+                  <div class="icon icon-hide">
+                      <i class="fa fa-user-plus fa-4x" aria-hidden="true"></i>
+                  </div>
+                  </div>
+              </div>
+              <a
+              [routerLink]="['/sale-page/Customer-manage']"
+                  class="small-box-footer bg-oranges d-flex justify-content-center align-self-center"
+                  >More info <i class="fa fa-arrow-circle-right  ml-2 mt-1"></i
+              ></a>
+              </div>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+              <div class="small-box  bg-red">
+              <div class="row m-0">
+                  <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 text-center">
+                  <div class="inner pl-2 font-db">
+                      <h3>{{listAuc.length}}</h3>
+                      <p>Auction Products</p>
+                  </div>
+                  </div>
+                  <div
+                  class="col-xs-12 col-sm-12 col-md-5 col-lg-5 d-flex align-self-center justify-content-center "
+                  >
+                  <div class="icon icon-hide">
+                      <i class="fa fa-cube fa-4x" aria-hidden="true"></i>
+                  </div>
+                  </div>
+              </div>
+              <a
+                 [routerLink]="['/sale-page/Auction-manage']"
+                  class="small-box-footer bg-reds d-flex justify-content-center align-self-center"
+                  >More info <i class="fa fa-arrow-circle-right  ml-2 mt-1"></i
+              ></a>
+              </div>
+          </div>
+      </div>
+      <!-- /.row -->
+
+        <!-- row -->
+            <div class="row m-3 p-3  border border-primary">
+
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                  <div class="form-group">
+                    <label for="">Name Company</label>
+                    <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Enter the Name product" [(ngModel)]="info.NameShop">
+                  </div>
+                  <div class="form-group">
+                      <label for="">Address</label>
+                      <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Enter the address " [(ngModel)]="info.Address">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Introduce</label>
+                        <textarea name="preview" class="form-control" rows="3" placeholder="Enter introduce ..." [(ngModel)]="info.Introduce"></textarea>
+                      </div>
+              </div>
+
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                  <div class="form-group">
+                      <label for="">Phone number</label>
+                      <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Enter the phone number" [(ngModel)]="info.Phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Enter Email " [(ngModel)]="info.Mail">
+                      </div>
+                      <div class="form-group">
+                          <label for="">Facebook link</label>
+                          <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Enter the facebook links " [(ngModel)]="info.Link">
+                        </div>
+                      <div class="row d-flex justify-content-center"><a type="button" class="btn-primary p-2 text-white" (click)="updateInfo()">Save</a></div>
+              </div>
+
+            </div>
+
+          <!-- /.row -->
+
+      <!-- Main row -->
+      <div class="row m-0">
+          <!-- Left col -->
+          <section class="col-lg-7 connectedSortable">
+              <!-- /.box -->
+
+              <!-- quick email widget -->
+              <div class="box box-info">
+              <div class="box-header">
+                  <i class="fa fa-envelope"></i>
+
+                  <h3 class="box-title">Quick Email</h3>
+                  <!-- tools box -->
+                  <div class="pull-right box-tools">
+                  <button
+                      type="button"
+                      class="btn btn-info btn-sm"
+                      data-widget="remove"
+                      data-toggle="tooltip"
+                      title="Remove"
+                  >
+                      <i class="fa fa-times"></i>
+                  </button>
+                  </div>
+                  <!-- /. tools -->
+              </div>
+              <div class="box-body">
+                  <form action="#" method="post">
+                  <div class="form-group">
+                      <input
+                      name="To"
+                      type="email"
+                      class="form-control"
+                      name="emailto"
+                      [(ngModel)]="mail.To"
+                      placeholder="Email to:"
+                      />
+                  </div>
+                  <div class="form-group">
+                      <input
+                      name="Subject"
+                      type="text"
+                      class="form-control"
+                      name="subject"
+                      placeholder="Subject"
+                      [(ngModel)]="mail.Subject"
+                      />
+                  </div>
+                  <div>
+                      <textarea
+                      name="Content"
+                      [(ngModel)]="mail.Content"
+                      class="textarea"
+                      placeholder="Message"
+                      style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"
+                      ></textarea>
+                  </div>
+                  </form>
+              </div>
+              <div class="box-footer clearfix">
+                  <button
+                  type="button"
+                  class="pull-right btn btn-default"
+                  id="sendEmail"
+                  (click)="sentMail()"
+                  >
+                  Send <i class="fa fa-arrow-circle-right"></i>
+                  </button>
+              </div>
+              </div>
+          </section>
+          <!-- /.Left col -->
+          <!-- right col (We are only adding the ID to make the widgets sortable)-->
+          <section class="col-lg-5 connectedSortable">
+
+              <!-- PRODUCT LIST -->
+              <div class="box box-primary my-5" >
+              <div class="box-header with-border row m-0 d-flex justify-content-lg-between">
+                  <h3 class="box-title">Announce</h3>
+
+                  <div class="box-tools pull-right">
+                  <button
+                      type="button"
+                      class="btn btn-box-tool"
+                      data-toggle="collapse"
+                      data-target="#contentId"
+                      aria-expanded="false"
+                      aria-controls="contentId"
+                  >
+                      <i class="fa fa-minus"></i>
+                  </button>
+                  <button
+                      type="button"
+                      class="btn btn-box-tool"
+                      data-widget="remove"
+                  >
+                      <i class="fa fa-times"></i>
+                  </button>
+                  </div>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body collapse show" id="contentId">
+                  <ul class="products-list product-list-in-box">
+                  <li class="item px-3" *ngFor="let item of announce" >
+                      <div class="product-img w-100" *ngFor="let item1 of order">
+                        <div *ngIf="item1.id==item.id" class="row m-0">
+                            <img   src="{{item1.Img1}}" alt="Product Image" />
+                            <div class="product-info w-70">
+                              <div class="row m-0 d-flex justify-content-between">
+                                  <a  class="product-title"> {{item.Title}}  {{item.Nameproduct}}</a>
+                                  <span class="label label-warning pull-right text-success" *ngIf="item.id !='#'">{{ item1.id==item.id  ? '+'+item1.price*item1.Number+'$':''}}</span>
+
+                              </div>
+                      <span class="product-description">
+                          {{item.Details}}
+                      </span>
+                      </div>
+                    </div>
+                    </div>
+                  </li>
+                  <!-- /.item -->
+
+                  </ul>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer text-center">
+                  <a href="javascript:void(0)" class="uppercase">View All Products</a>
+              </div>
+              <!-- /.box-footer -->
+              </div>
+
+              <!-- /.box -->
+          </section>
+      <!-- right col -->
+      </div>
+      <!-- /.row (main row) -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

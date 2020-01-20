@@ -1,0 +1,37 @@
+<body class="hold-transition skin-blue sidebar-mini">
+  <!-- Site wrapper -->
+  <div class="wrapper">
+    <header class="main-header row m-0">
+      <!-- Logo -->
+      <a id="header-left"
+        class="col-xs-2 col-sm-2 col-md-2 col-lg-2 logo d-flex justify-content-center align-items-center  "
+      >
+        <span class="logo-lg"><b>{{manager}}</b></span>
+      </a>
+
+      <!-- Header Navbar: style can be found in header.less -->
+
+      <div id="header-right" class="col-xs-10 col-sm-10 col-md-10 col-lg-10 p-0">
+        <div class="topnav d-flex justify-content-md-between" id="myTopnav">
+          <a style="font-size:15px;" (click)="NavEvent()">&#9776;</a>
+          <div class="pr-5">
+            <a [routerLink]="['/home']" class="active">Home</a>
+            <div class="dropdown">
+              <button class="dropbtn">
+                Option
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <a (click)="logout()">Logout</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- =============================================== -->
+    <!-- ./wrapper -->
+  </div>
+</body>

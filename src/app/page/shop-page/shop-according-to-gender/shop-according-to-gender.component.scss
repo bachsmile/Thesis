@@ -1,0 +1,79 @@
+.img{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.page{
+  padding: 1.5rem;
+}
+.diplay-bot{
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.type{
+  position: absolute;
+  bottom:  -40px;;
+  background: white;
+  width: 90%;
+  transform: translate(-50%,-50%);
+  left: 50%;
+  font-size: 2rem;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+.layout1{
+  position: relative;
+}
+.grid{
+  height: 1000px;
+}
+.h-10{
+  height: 10%;
+}
+.h-15{
+  height: 15%;
+}
+.h-20{
+  height: 20%;
+}
+.h-30{
+  height: 30%;
+}
+.h-35{
+  height: 35%;
+}
+.h-40{
+  height: 40%;
+}
+.h-45{
+  height: 45%;
+}
+.h-60{
+  height: 60%;
+}
+.h-65{
+  height: 65%;
+}
+.h-70{
+  height: 70%;
+}
+.DEF653{
+  background: #DEF653;
+}
+.pink{
+  background: pink;
+}
+.img-grid{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 1px solid black;
+}
+.shadowm{
+  box-shadow: 0px 0px 15px 0px black;
+}
+.shadowm1{
+  box-shadow: 0px 0px 15px 5px white;
+}

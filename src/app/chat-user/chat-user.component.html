@@ -1,0 +1,328 @@
+<div id="page">
+  <!-- <app-header-chat></app-header-chat> -->
+  <div *ngFor="let item of AuctionNow">
+    <div id="fullpage">
+      <div class="section">
+        <h1 id="info" class=" row d-flex justify-content-center">Auction</h1>
+        <div class="time-circle">
+          <div class="sun"></div>
+          <div class="moon">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <div class="stars">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <div class="water"></div>
+        </div>
+        <div id="intro-text">
+          <h1 id="mode">Light Mode</h1>
+        </div>
+        <div id="switch" (click)="switch()">
+          <div id="circle"></div>
+        </div>
+        <div class="container">
+          <div class="slide row m-0">
+            <ngx-slick-carousel
+              class="carousel w-100"
+              #slickModal="slick-carousel"
+              [config]="slideConfig"
+            >
+              <div ngxSlickItem class="slide p-2 shadow  ">
+                <img src="{{ item.Img }}" alt="" width="100%" />
+              </div>
+              <div ngxSlickItem class="slide p-2 shadow  ">
+                <img src="{{ item.Img1 }}" alt="" width="100%" />
+              </div>
+              <div ngxSlickItem class="slide p-2 shadow  ">
+                <img src="{{ item.Img2 }}" alt="" width="100%" />
+              </div>
+            </ngx-slick-carousel>
+          </div>
+        </div>
+        <div class="infoProductAction">
+          <div class="nameAction">{{ item.Name_auction }}</div>
+          <div class="text-primary">{{ item.Shop }}</div>
+          <div id="countdown">
+            <div id="tiles">
+              <span class="time">{{ days }}</span>
+              <span class="time">{{ hours }}</span>
+              <span class="time">{{ minutes }}</span>
+              <span class="time">{{ seconds }}</span>
+            </div>
+            <div class="labels">
+              <li>Days</li>
+              <li>Hours</li>
+              <li>Mins</li>
+              <li>Secs</li>
+            </div>
+          </div>
+          <div class="py-4">
+            <div class="row justify-content-around" *ngIf="listUserAuction.length!=0">
+                <div><span><img class="icon1" src="/assets/img/icons/number-1.png"></span> <span class="font-weight-bold text-success font-size-2r"  *ngIf="listUserAuction[0]!=undefined">{{listUserAuction[0].ID_Customer}} : {{listUserAuction[0].Price_Auction}}</span></div>
+                <div><span><img class="icon" src="/assets/img/icons/number-2.png"></span> <span class="font-weight-bold text-primary font-size-2r"  *ngIf="listUserAuction[1]!=undefined">{{listUserAuction[1].ID_Customer}} : {{listUserAuction[1].Price_Auction}}</span></div>
+                <div><span><img class="icon" src="/assets/img/icons/number-3.png"></span> <span class="font-weight-bold text-warning font-size-2r"  *ngIf="listUserAuction[2]!=undefined">{{listUserAuction[2].ID_Customer}} : {{listUserAuction[2].Price_Auction}}</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="button-4">
+              <a href="#">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                {{ datetime1() }}
+              </a>
+            </div>
+          </div>
+          <div class="item5">
+            <h2>Price Start</h2>
+            <div class="button-5">
+              <a href="#">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                {{ item.Price_start }} USD
+              </a>
+            </div>
+          </div>
+          <div class="item6">
+            <h2>Price End</h2>
+            <div class="button-6">
+              <a class="text-success" style="background: #ffb000;">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                {{ item.Price_end }} USD
+              </a>
+            </div>
+          </div>
+
+          <div class="row m-0 d-flex justify-content-center">
+            <div class="input-group w-50 p-4">
+              <input
+                type="number"
+                class="form-control"
+                style="background-color: #3CBC8D;
+            color: white;"
+                id="exampleInputAmount"
+                placeholder="Price bets"
+                name="upPrice"
+                [(ngModel)]="UpPrice"
+                (keydown.enter)="upPrice()"
+              />
+              <span class="input-group-btn">
+                <button
+                  type="button"
+                  class="btn btn-default bg-secondary"
+                  (click)="upPrice()"
+                >
+                  Go!
+                </button>
+              </span>
+            </div>
+          </div>
+          <a class="gotoChat" (click)="goChat()">Go to Chat Room</a>
+        </div>
+      </div>
+    </div>
+    <!-- info action product-->
+    <section class="home mb-5">
+      <div id="overlay-navigation" class="overlay-navigation">
+        <nav role="navigation">
+          <ul>
+            <li>
+              <a
+                (click)="extend(1)"
+                class="extend"
+                data-content="Product introduction"
+                >Introduce</a
+              >
+              <div class="Introduce row m-0" style="opacity: 0;">
+                <div class="">
+                  <table class="table">
+                    <tbody>
+                      <tr class="bg-white">
+                        <td>ID</td>
+                        <td>{{item.ID_auction}}</td>
+                      </tr>
+                      <tr class="bg-success">
+                        <td>Name product</td>
+                        <td>{{item.Name_auction}}</td>
+                      </tr>
+                      <tr class="bg-danger">
+                        <td>Title</td>
+                        <td>{{item.Title}}</td>
+                      </tr>
+                      <tr class="bg-info">
+                        <td>Rate</td>
+                        <td>{{item.Rate}}</td>
+                      </tr>
+                      <tr class="bg-warning">
+                        <td>Auctioneer</td>
+                        <td>{{item.Shop}}</td>
+                      </tr>
+                      <!-- <tr class="bg-secondary">
+                        <td>Size</td>
+                        <td>200 cm X 200cm</td>
+                      </tr> -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </li>
+            <li>
+              <a
+                (click)="extend(2)"
+                class="extend"
+                data-content="How much is charity?"
+                >Charity information</a
+              >
+              <div class=" justify-content-center d-flex" style="opacity: 0; font-size: 7rem !important;">{{item.charity_percent}}%</div>
+
+            </li>
+            <li>
+              <a (click)="extend(3)" class="extend" data-content="You need help"
+                >Contact</a
+              >
+              <div *ngFor="let item of shop" style="opacity: 0; font-size: 1.5rem !important;" class="px-2">
+                <p>Auctioner: {{item.NameShop}}</p>
+                <p>Mail: {{item.Mail}}</p>
+                <p>Phone: {{item.Phone}}</p>
+                <p>Address: {{item.Address}}</p>
+              </div>
+            </li>
+            <li>
+              <a
+                (click)="extend(4)"
+                class="extend"
+                data-content="Details of the entire auction product"
+                >Detail</a
+              >
+              <div style="opacity: 0;" class="px-2">
+                {{item.Detail}}
+              </div>
+            </li>
+            <li>
+              <a
+                (click)="extend(5)"
+                class="extend"
+                data-content="Sharing from the soul?"
+                >Words to share</a
+              >
+              <div style="opacity: 0;" class="px-2">
+                Joining hands for a better life!
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <a target="_blank">Click to see more details -></a>
+      <div class="open-overlay" (click)="info()">
+        <span class="bar-top"></span>
+        <span class="bar-middle"></span>
+        <span class="bar-bottom"></span>
+      </div>
+    </section>
+  </div>
+  <!-- websocket -->
+  <div class="container-fluid bg-dark">
+    <div class="container"></div>
+    <!-- <h1>Wrbsocket</h1>
+  <button (click)="sendMsg()">send message</button> -->
+    <div class="boxed-container">
+      <div class="chat_box">
+        <div class="chat_head" (click)="setIp()" (click)="toggle()">Chat</div>
+        <div id="people" class="chat_body" style="display:none;">
+          <div *ngFor="let item of listPeople">
+            <div class="user" (click)="msg(item.ip, item.name)">
+              {{ item.name }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="box d-flex justify-content-end"
+        *ngFor="let item of room; let i = index"
+      >
+        <div *ngFor="let item of room; let i = index">
+          <div id="chat_box{{ i }}" class="msg_box">
+            <div id="user" class="msg_head" (click)="msgHead()">
+              {{ item.name }}
+              <input
+                style="display:none;"
+                id="ip{{ i }}"
+                value="{{ item.ip }}"
+              />
+              <button
+                (click)="close(item.ip, item.name)"
+                id="close{{ i }}"
+                class="close"
+              >
+                x
+              </button>
+            </div>
+            <div id="content" class="msg_wrap">
+              <div id="msg_body1" class="msg_body">
+                <div *ngFor="let item1 of ListChat">
+                  <div
+                    *ngIf="item1.type === 0 && item.ip == item1.from"
+                    class="row m-0 w-100 d-flex justify-content-between"
+                  >
+                    <div class="d-flex align-self-center font-weight-bold you">
+                      <div class="hero-text-y">
+                        {{ item1.from }}
+                      </div>
+                    </div>
+                    <div class="msg_a w-75">{{ item1.sms }}</div>
+                  </div>
+                  <div
+                    *ngIf="item1.type === 1 && item.ip == item1.to"
+                    class="row m-0 w-100 d-flex justify-content-between"
+                  >
+                    <div class="msg_b w-75">{{ item1.sms }}</div>
+                    <div class="d-flex align-self-center font-weight-bold i">
+                      <div class="hero-text">
+                        {{ item1.from }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="msg_footer">
+                <form>
+                  <input
+                    name="msg{{ i }}"
+                    id="{{ item.ip }}"
+                    type="text"
+                    [value]=""
+                    class="msg_input"
+                    placeholder="Input messenger..."
+                    (keydown.enter)="onSubmit(item.ip, item.sms)"
+                    [(ngModel)]="item.sms"
+                  />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <input
+    class="form-control"
+    type="text"
+    placeholder="Name"
+    [(ngModel)]="ip"
+    (keydown.enter)="setIp($event)"
+  /> -->
+  </div>
+</div>

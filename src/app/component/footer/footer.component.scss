@@ -1,0 +1,153 @@
+.bg-yellow{
+  background: #EDE734;
+}
+.ts1{
+  font-size: 2rem;
+}
+.ts2{
+  font-size: 0.6rem;
+}
+.black{
+  background-color: #3B3B3B;
+}
+.bg-black {
+  background: black;
+  color: white !important;
+}
+.btn-after::after {
+  content: "";
+  display: block;
+  position: absolute;
+  transition: 0.1s cubic-bezier(0.3, 0, 0.45, 1);
+}
+.btn-after::after {
+  border-right: 1px solid #000;
+  border-top: 1px solid #000;
+  height: 100%;
+  right: -3px;
+  top: 3px;
+  width: 3px;
+}
+.btn-after::before {
+  content: "";
+  display: block;
+  position: absolute;
+  transition: 0.1s cubic-bezier(0.3, 0, 0.45, 1);
+}
+.btn-after::before {
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #000;
+  bottom: -3px;
+  height: 3px;
+  left: 3px;
+  width: 100%;
+}
+.ab {
+  position: relative;
+  transition: transform 0.1s cubic-bezier(0.3, 0, 0.45, 1),
+    color 0.1s cubic-bezier(0.3, 0, 0.45, 1),
+    border 0.1s cubic-bezier(0.3, 0, 0.45, 1), background 0.1s cubic-bezier(0.3, 0, 0.45, 1);
+}
+.ab:active {
+
+  transform: translateY(5px) translateX(5px);
+}
+.btn-after:active::after {
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+  height: 100%;
+  right: 0.5px;
+  top: 0px;
+  width: 3px;
+}
+.btn-after:active::before {
+  border-bottom: 1px solid #000;
+  border-left: 1px solid #000;
+  bottom: 0.5px;
+  height: 3px;
+  left: 0px;
+  width: 100%;
+}
+.W80{
+  width: 80%;
+}
+.part{
+  width: 50%;
+  white-space:  nowrap;
+}
+.mg{
+  margin-top: -5px;
+  margin-left: -5px;
+}
+.fix2{
+  width: 1rem;
+}
+.footer2{
+  display: none;
+}
+ul{
+  padding-inline-start: 5px;
+}
+.search-s{
+  flex-wrap:  nowrap !important;
+}
+@media (max-width: 268px) {
+  .mins{
+
+  }
+
+}
+@media (max-width: 338px) {
+
+  .ts1{
+    font-size: 0.6rem !important;
+  }
+}
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 576px) {
+  .footer2{
+    font-size: 0.8rem;
+  }
+
+}
+
+// Medium devices (tablets, 768px and up)
+@media (max-width: 768px) {
+
+  .input-s{
+    width: 80%;
+  }
+  .sign-up{
+    justify-content: center;
+  }
+ }
+
+// Large devices (desktops, 992px and up)
+@media (max-width: 992px) {
+  .mobile{
+    display: none;
+  }
+  .footer2{
+   display:block;
+   color: white;
+ }
+ .black{
+   background: #000;
+ }
+ .bg-auto{
+   background: dimgray;
+ }
+ .ts1{
+   font-size: 1.5rem;
+ }
+ }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (max-width: 1200px) {
+  .list-unstyled{
+    font-size: 0.9rem;
+  }
+  h5{
+    font-size: 1rem;
+  }
+}

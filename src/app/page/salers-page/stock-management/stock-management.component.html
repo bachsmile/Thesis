@@ -1,0 +1,169 @@
+<div id="admin1">
+  <div class="row mx-0 list-order text-center bg-gray-s py-3 d-flex align-items-center justify-content-center font-weight-bold">
+    <div class="w-20 ">
+        Product
+    </div>
+    <div class="w-10">
+        ID Shop
+    </div>
+    <div class="w-10">
+        Total Input
+    </div>
+    <div class="w-10">
+        Total Ouput
+    </div>
+    <div class="w-10">
+        Stock
+    </div>
+    <div class="w-20">
+        Actions
+    </div>
+  </div>
+  <div class="row mx-0 list-order text-center py-3 d-flex align-items-center border justify-content-center" *ngFor="let item1 of listProd; let i = index" >
+        <div class="w-20 ">
+                <div class="row m-0">
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <img class="img-pro" src="{{item1.Img1}}">
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div>{{item1.Name_Product}}</div>
+                    <div>{{item1.ID_Product}}</div>
+                </div>
+                </div>
+        </div>
+        <div class="w-10">
+                {{item1.ID_Shop}}
+        </div>
+        <div class="w-10">
+                {{item1.Input}}
+        </div>
+        <div class="w-10">
+                {{item1.Output}}
+        </div>
+        <div class="w-10">
+                {{item1.Warehose}}
+        </div>
+        <!-- <div class="w-10">
+            Countdown
+        </div> -->
+
+        <div class="w-20 d-flex justify-content-around">
+                <a type="button" class="icon bg-success" title="Add products to stock" data-toggle="collapse" href="#add{{i}}" aria-expanded="false" aria-controls="contentId" ><img class="icon" src="/assets/img/icons/add-product-1-687275.png"> </a>
+                <a type="button" class="icon" title="Sub products to stock" data-toggle="collapse" href="#sub{{i}}" ><img class="icon" src="/assets/img/icons/out1.jpg"> </a>
+                <a type="button" class="icon" title="Edit"data-toggle="collapse" href="#contentId{{i}}" aria-expanded="false" aria-controls="contentId"><img class="icon" src="/assets/img/icons/edit-icon-27.jpg"> </a>
+                <a class="fa fa-trash   bg-danger p-2 awesome"  aria-hidden="true" (click)="delete(item1)"></a>
+        </div>
+
+        <div class="collapse w-100 bg-dark text-white panel-collapse" id="contentId{{i}}">
+                <div class="row mx-0 list-order text-center py-3 d-flex align-items-center border justify-content-center"   >
+
+                        <div class="w-20 ">
+                            <div class="row m-0">
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <img class="img-pro" src="{{item1.Img1}}">
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                {{item1.Name_Product}}
+                            </div>
+                            </div>
+                        </div>
+                        <div class="w-10">
+                            {{item1.ID_Shop}}
+                        </div>
+                        <div class="w-10 px-2">
+                            <input type="number" class="w-100" disiable  placeholder="{{item1.Input}}" [(ngModel)]="in" >
+                        </div>
+                        <div class="w-10 px-2">
+                            <input type="number" class="w-100" disiable  placeholder="{{item1.Output}}" [(ngModel)]="out">
+                        </div>
+                        <div class="w-10">
+                            {{(in!= undefined && out != undefined )? in-out: item1.Input- item1.Output}}
+                        </div>
+                        <!-- <div class="w-10">
+                            Countdown
+                        </div> -->
+                        <div class="w-20 d-flex justify-content-around">
+                            <a type="button" class="icon bg-success" title="Add products to stock" (click)="updateWH(item1,'edit')" ><i class="fa fa-check"></i> </a>
+                        </div>
+                </div>
+        </div>
+        <div class="collapse w-100 bg-dark text-white panel-collapse" id="add{{i}}">
+            <div class="row mx-0 list-order text-center py-3 d-flex align-items-center border justify-content-center"   >
+
+                    <div class="w-20 ">
+                        <div class="row m-0">
+
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <img class="img-pro" src="{{item1.Img1}}">
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            {{item1.Name_Product}}
+                        </div>
+                        </div>
+                    </div>
+                    <div class="w-10">
+                        {{item1.ID_Shop}}
+                    </div>
+                    <div class="w-10">
+                        ADD
+                    </div>
+                    <div class="w-10 px-2">
+                        <input type="number" class="w-100" disiable  placeholder="{{item1.Input}}" [(ngModel)]="in" >
+                    </div>
+                    <div class="w-10">
+                        PRODUCTS
+                    </div>
+                    <!-- <div class="w-10">
+                        Countdown
+                    </div> -->
+                    <div class="w-20 d-flex justify-content-around">
+                        <a type="button" class="icon bg-success" title="Add products to stock" (click)="updateWH(item1,'add',item1.Input,item1.Output)" ><i class="fa fa-check"></i> </a>
+                    </div>
+            </div>
+        </div>
+        <div class="collapse w-100 bg-dark text-white panel-collapse" id="sub{{i}}">
+            <div class="row mx-0 list-order text-center py-3 d-flex align-items-center border justify-content-center"   >
+
+                    <div class="w-20 ">
+                        <div class="row m-0">
+
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <img class="img-pro" src="{{item1.Img1}}">
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            {{item1.Name_Product}}
+                        </div>
+                        </div>
+                    </div>
+                    <div class="w-10">
+                        {{item1.ID_Shop}}
+                    </div>
+                    <div class="w-10">
+                        SUB
+                    </div>
+                    <div class="w-10 px-2">
+                        <input type="number" class="w-100" disiable  placeholder="{{item1.Input}}" [(ngModel)]="out" >
+                    </div>
+                    <div class="w-10">
+                        PRODUCTS
+                    </div>
+                    <!-- <div class="w-10">
+                        Countdown
+                    </div> -->
+                    <div class="w-20 d-flex justify-content-around">
+                        <a type="button" class="icon bg-success" title="Add products to stock" (click)="updateWH(item1,'sub',item1.Input,item1.Output)" ><i class="fa fa-check"></i> </a>
+                    </div>
+            </div>
+        </div>
+  </div>
+</div>
+<div class="bg-loading" id="load1">
+  <div id="demo1"></div>
+  <div class="center-s">
+    <div class="container ">
+      <div class="box"></div>
+    </div>
+  </div>
+</div>

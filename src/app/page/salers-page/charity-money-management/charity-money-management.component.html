@@ -1,0 +1,72 @@
+<div id="admin1">
+  <h1 class="text-black">Charity money management</h1>
+<div class="p-4 m-4 ">
+    <div class="d-flex justify-content-center text-green font-size-2r"> CURENT FUND</div>
+    <div class=" row m-0 d-flex justify-content-center"><h1 class="font-size-3r text-blues">{{AllINPut - AllOutPut}} <span>USD</span></h1></div>
+  </div>
+  <div class="row m-0">
+
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 border p-3">
+      <div class="text-success">Total Money input :<span class="font-weight-bold ml-5 font-size-2r">{{AllINPut}}</span></div>
+      <div class="row m-0">
+
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr >
+                <th>MaID</th>
+                <th>Event in</th>
+                <th>Time</th>
+                <th>Money</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of MoneyInput" class="text-success">
+                <td class="font-size-0-6r">{{item.MaID}}</td>
+                <td class="font-size-0-6r">Has successfully sold product {{item.Name}}</td>
+                <td class="font-size-0-6r">{{item.Time}}</td>
+                <td class="font-size-0-6r">+{{item.Money}} $</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 border p-3">
+        <div class="text-danger">Total Money Output :<span class="font-weight-bold ml-5 font-size-2r">{{AllOutPut}}</span></div>
+        <div class="row m-0">
+
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+                <tr >
+                    <th>MaID</th>
+                    <th>Event in</th>
+                    <th>Time</th>
+                    <th>Money</th>
+                  </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of MoneyOutput" class="text-danger">
+                    <td class="font-size-0-6r">{{item.MaID}}</td>
+                    <td class="font-size-0-6r">Paid for the event {{item.Name}}</td>
+                    <td class="font-size-0-6r">{{item.Time}}</td>
+                    <td class="font-size-0-6r">-{{item.Money}} $</td>
+                  </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="bg-loading" id="load1">
+    <div id="demo1"></div>
+    <div class="center-s">
+      <div class="container ">
+        <div class="box"></div>
+      </div>
+    </div>
+  </div>

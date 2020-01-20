@@ -1,1 +1,356 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$WebSBS-primary: mat-palette($mat-indigo);
+$WebSBS-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$WebSBS-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$WebSBS-theme: mat-light-theme($WebSBS-primary, $WebSBS-accent, $WebSBS-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($WebSBS-theme);
+
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$WebSBS-primary: mat-palette($mat-indigo);
+$WebSBS-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$WebSBS-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$WebSBS-theme: mat-light-theme($WebSBS-primary, $WebSBS-accent, $WebSBS-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($WebSBS-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+//scss stype page
+.top{
+  margin-top: 80px;
+}
+.page{
+  padding-top: 80px;
+}
+//header scroll window service
+.fix{
+  position: fixed;
+  right: -25px;
+  top:50%;
+  transform:  rotate(-90deg);
+}
+.fulls{
+  position: fixed;
+  animation: mymove1 1s;
+  animation-fill-mode: forwards;
+  z-index: 200;
+}
+.full {
+  position: fixed;
+  animation: mymove 1s;
+  animation-fill-mode: forwards;
+  z-index: 200;
+}
+@keyframes mymove {
+  from {top: 0px;}
+  to {top: -100px;}
+}
+@keyframes mymove1 {
+  from {top: -100px;}
+  to {top: 0px;}
+}
+.top{
+  margin-top: 80px;
+}
+/////end scroll header///
+
+/* You can add global styles to this file, and also import other style files */
+////////////////////////////////text color///////////////////////////////////
+.text-nav{
+  color: #4b646f;
+}
+.text-red{
+  color:red
+}
+.text-yellow{
+  color: yellow;
+}
+.text-green{
+  color: green;
+}
+
+.text-blues{
+  color: #00ACD7;
+}
+.text-white{
+  color: white;
+}
+.text-whites{
+  color: white;
+}
+.text-black{
+  color: black;
+}
+////////////////////////////////BACKGROUND////////////////////////////////////
+.bg-menu{
+  background-color: #1a2226;
+}
+.bg-black{
+  background-color: black;
+}
+.bg-red{
+  background-color: red;
+}
+.bg-reds{
+  background: #BC4031;
+}
+.bg-blue{
+  background-color: blue;
+}
+.bg-green{
+  background-color: green;
+}
+.bg-greens{
+  background-color: #008D4D;
+}
+.bg-aqua{
+  background-color: #00c0ef;
+}
+.bg-aquas{
+  background-color: #00ACD7;
+}
+.bg-orange {
+  background-color: #f39c12 !important;
+}
+.bg-oranges{
+  background-color: #CF850F;
+}
+.bg-orangess{
+  background: #CF850F !important;
+}
+.bg-gray-s{
+  background: #ecf0f5;
+}
+.bg-red-s{
+  background: red !important
+}
+//none
+.no-ul-li{
+  list-style-type: none;
+   margin: 0;
+   padding: 0;
+}
+////////////////////////////opacity////////////////////
+.opacity-1{
+  opacity: 1;
+}
+.opacity-0-9{
+  opacity: 0.9;
+}
+.opacity-0-8{
+  opacity: 0.8;
+}
+.opacity-0-7{
+  opacity: 0.7;
+}
+.opacity-0-6{
+  opacity: 0.6;
+}
+.opacity-0-5{
+  opacity: 0.5;
+}
+.opacity-0-4{
+  opacity: 0.4;
+}
+.opacity-0-3{
+  opacity: 0.3;
+}
+.opacity-0-2{
+  opacity: 0.2;
+}
+.opacity-0-1{
+  opacity: 0.1;
+}
+/////////////////////////////////////font size//////////////
+.font-size-1r{
+  font-size:1rem;
+}
+.font-size-2r{
+  font-size:2rem;
+}
+.font-size-3r{
+  font-size:3rem;
+}
+.font-size-4r{
+  font-size:4rem;
+}
+.font-size-5r{
+  font-size:5rem;
+}
+.font-size-0-1r{
+  font-size:0.1rem;
+}
+.font-size-0-2r{
+  font-size:0.2rem;
+}
+.font-size-0-3r{
+  font-size:0.3rem;
+}
+.font-size-0-4r{
+  font-size:0.4rem;
+}
+.font-size-0-5r{
+  font-size:0.5rem;
+}
+.font-size-0-6r{
+  font-size:0.6rem;
+}
+.font-size-0-7r{
+  font-size:0.7rem;
+}
+.font-size-0-8r{
+  font-size:0.8rem;
+}
+.font-size-0-9r{
+  font-size:0.9rem;
+}
+
+////point
+.pointer{
+  cursor: pointer;
+}
+//a
+.a-none{
+  text-decoration: none;
+  color: #000;
+}
+.a-none:hover{
+  text-decoration: none;
+  color: rgb(148, 143, 143);
+}
+//hover
+// .hover-div{
+//   height: 70px;
+// }
+// .hover-divs{
+//   height: 70px;
+// }
+.hover-div:hover{
+  background-color: darkgrey;
+}
+.hover-divs:hover{
+  background-color: lightgrey;
+}
+//height
+
+.height-100vh{
+  height: 100vh;
+}
+html{
+  height: 100%;
+  background-color: #ecf0f5;
+}
+//width
+.w-90{
+  width: 90%;
+}
+.w-80{
+  width: 80%;
+}
+.w-70{
+  width: 70%;
+}
+.w-60{
+  width: 60%;
+}
+.w-40{
+  width: 40%;
+}
+.w-30{
+  width: 30%;
+}
+.w-20{
+  width: 20%;
+}
+.w-10{
+  width: 10%;
+}
+
+.awesome{
+  width: 35px;
+  height: 35px;
+  text-align: center;
+}
+//edit
+.text-align-start{
+  text-align: start !important;
+}
+.upCase{
+  text-transform: uppercase;
+}
+//button
+.add2{
+  border-radius: 5px;
+  background:  linear-gradient(to right, rgb(0, 255, 0) , blue);
+  color: #FFF !important;
+  cursor: pointer;
+}
+.addDg{
+  border-radius: 5px;
+  background:  linear-gradient(to right, rgb(255, 0, 242) , rgb(255, 0, 0));
+  color: #FFF !important;
+  cursor: pointer;
+}
+.addCf{
+  border-radius: 5px;
+  background:  linear-gradient(to right, rgb(255, 72, 0) , rgb(229, 255, 0));
+  color: #FFF !important;
+  cursor: pointer;
+}
+.addDN{
+  border-radius: 5px;
+  background:  linear-gradient(to right, rgb(15, 15, 15) , rgb(228, 228, 226));
+  color: #FFF !important;
+  cursor: pointer;
+}
+.addWn{
+  border-radius: 5px;
+  background:  linear-gradient(to right, rgb(235, 243, 161) , rgb(248, 248, 2));
+  color: rgb(46, 13, 235) !important;
+  cursor: pointer;
+}

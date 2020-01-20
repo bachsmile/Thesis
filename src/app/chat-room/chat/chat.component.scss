@@ -1,0 +1,144 @@
+
+[mat-fab] {
+  position: absolute;
+  right: 2%;
+  top: 35px;
+  z-index: 1;
+}
+
+.chat-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.chat-input {
+  padding-top: 20px;
+  width: 80%;
+}
+
+.chat-list {
+  overflow: auto;
+  position: relative;
+  // top: 90px;
+  // left: 25px;
+  // right: 25px;
+  // bottom: 120px;
+  height: 100%;
+}
+
+.chat-list-item {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  border-radius: 5px;
+  background-color: #E8EAF6;
+}
+
+.main-card {
+  height: 100%;
+}
+
+.chat-footer-container {
+  position: absolute;
+  bottom: -91px;
+  left:25px;
+  right:25px;
+}
+
+.chat-notification {
+  text-align: center;
+}
+.ask{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  cursor: pointer;
+}
+.app-content {
+  width: 100%;
+  height: 73%;
+  box-sizing: border-box;
+}
+.a{
+  position: relative;
+  height: 500px;
+}
+
+
+/*button-23*/
+
+.button-23
+{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 500px;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	font-family: verdana;
+	color: #262626;
+	text-transform: uppercase;
+	text-decoration: none;
+	letter-spacing: 6px;
+	border: 2px solid #262626;
+	font-size: 24px;
+	transition: .5s;
+	overflow: hidden;
+}
+.button-23 .front
+{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: scale(1);
+	transition: .8s;
+}
+.button-23 .back
+{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: scale(5);
+	transition: .5s;
+	background: #262626;
+	color: #fff;
+	opacity: 0;
+}
+.button-23:hover .front
+{
+	transform: scale(0);
+}
+.button-23:hover .back
+{
+	transform: scale(1);
+	opacity: 1;
+}
+.item {
+  width: 100%;
+  height: 100px;
+  background-color: aliceblue;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.collapse{
+  background: repeating-radial-gradient(black, transparent 100px);
+  padding: 50px;
+}
+.contents{
+  height: 87%;
+}
+.smsBox{
+  height: 75%;
+}
+.ng-star-inserted{
+  height: 100%;
+}

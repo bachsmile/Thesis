@@ -1,0 +1,44 @@
+
+<!-- <app-head-admin></app-head-admin> -->
+<div class="container-fluit">
+  <app-header-admin (width_rep)="width_rep($event)" (sent_check_button)="check_button_menu($event)"></app-header-admin>
+    <div class="row m-0 " id="display">
+        <div id="left-admin">
+            <app-menu-left [button]="check_button" [getSignalFromCategory]="signal"  (valueChange)=" displayCounter($event)" ></app-menu-left>
+        </div>
+          <div id="right-admin">
+              <router-outlet></router-outlet>
+
+              <!-- <div [ngSwitch]="display">
+                  <div *ngSwitchCase="'Dashboard'">
+                      <app-dashboard-admin></app-dashboard-admin>
+                    </div>
+                  <div *ngSwitchCase="'Category'">
+                    <app-categoty-admin (OutPutCategirytoMenuLeft)="getSignal()"></app-categoty-admin>
+                  </div>
+                  <div *ngSwitchCase="'User'" class="text-primary">
+                    <app-user-admin></app-user-admin>
+                  </div>
+                  <!-- <div *ngSwitchCase="'Contact'" class="text-danger">
+                    <app-contact></app-contact>
+                  </div> -->
+                  <!--<div *ngSwitchCase="'Product'" class="text-danger">
+                    <app-products-admin></app-products-admin>
+                  </div>
+                  <div *ngSwitchCase="'Auction'" class="text-danger">
+                     <app-auction-admin></app-auction-admin>
+                  </div>
+                  <div *ngSwitchCase="'Charity fund'" class="text-danger">
+                      <app-charity-fund-admin></app-charity-fund-admin>
+                   </div>
+                  <div *ngSwitchCase="'Charity-place'" class="text-danger">
+                    <app-chatity-place-admin></app-chatity-place-admin>
+                  </div>
+                  <div *ngSwitchDefault >
+                    <app-dashboard-admin></app-dashboard-admin>
+                  </div>
+                </div>-->
+          </div>
+    </div>
+</div>
+<!-- <app-footer-admin></app-footer-admin> -->

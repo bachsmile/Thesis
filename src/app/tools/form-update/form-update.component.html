@@ -1,0 +1,207 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()" >
+    <div class="modal fade" data-backdrop="false" id="myModal1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal body -->
+                <div class="modal-body" *ngFor="let item of user" >
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title mt-3 mb-3">Update Info</h4>
+                    <h5 class="border-bottom pb-2">Info user</h5>
+                    <div class="row mt-2 mb-2" formGroupName="infoUser">
+                        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 d-flex justify-content-end">
+                                <span><code>*</code> First Name</span>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9">
+                            <input class="form-control" formControlName="firstName" laceholder="First Name" name="Firstname" [(ngModel)]="item.Firstname">
+                            <div *ngIf="((firstNameControl?.errors?.required) &&(firstNameControl.dirty || firstNameControl.touched || firstNameControl.valid))||( submitted && firstNameControl?.errors?.required) " class="ts1">Chưa nhập First Name</div>
+                            <div *ngIf="firstNameControl?.errors?.minlength" class="ts1">First Name it nhất 8 ký tự</div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2 mb-2" formGroupName="infoUser">
+                        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 d-flex justify-content-end">
+                                <span><code>*</code> Last Name</span>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9">
+                                <input class="form-control" formControlName="lastName" placeholder="Last Name" name="Lastname" [(ngModel)]="item.Lastname">
+                                <div *ngIf="((lastNameControl?.errors?.required) &&(lastNameControl.dirty || lastNameControl.touched || lastNameControl.valid))||( submitted && lastNameControl?.errors?.required) " class="ts1">Chưa nhập First Name</div>
+                                <div *ngIf="lastNameControl?.errors?.minlength" class="ts1">Last Name it nhất 8 ký tự</div>
+
+                        </div>
+                    </div>
+                    <div class="row mt-2 mb-2" formGroupName="infoUser">
+                        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 d-flex justify-content-end">
+                                <span><code>*</code> E-mail</span>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9">
+                                <input class="form-control" formControlName="email" placeholder="E-mail" name="Email" [(ngModel)]="item.Email">
+                                <div *ngIf="((emailNameControl?.errors?.required) &&(emailNameControl.dirty || emailNameControl.touched || emailNameControl.valid))||( submitted && emailNameControl?.errors?.required) " class="ts1">Chưa nhập E-mail</div>
+                                <div *ngIf="emailNameControl?.errors?.minlength" class="ts1">E-mail it nhất 8 ký tự</div>
+
+                        </div>
+                    </div>
+                    <div class="row mt-2 mb-2" formGroupName="infoUser">
+                        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 d-flex justify-content-end">
+                                <span><code>*</code> Telephone</span>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9">
+                                <input class="form-control" formControlName="telephone"  placeholder="Telephone" name="Phone" [(ngModel)]="item.Phone">
+                                <div *ngIf="((telephoneControl?.errors?.required) &&(telephoneControl.dirty || telephoneControl.touched || telephoneControl.valid))||( submitted && telephoneControl?.errors?.required) " class="ts1">Chưa nhập Telephone</div>
+                                <div *ngIf="telephoneControl?.errors?.minlength" class="ts1">Telephone it nhất 8 ký tự</div>
+
+                        </div>
+                    </div>
+                    <h5 class="border-bottom pb-2">Thông tin đăng tài khoản</h5>
+                    <div class="row mt-2 mb-2" formGroupName="infoUsername">
+                        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 d-flex justify-content-end">
+                                <span><code>*</code> Username</span>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9">
+                                <input class="form-control" type="text" formControlName="username" placeholder="Username" name="Username" [(ngModel)]="item.Username">
+                                <div *ngIf="((usernameControl?.errors?.required) &&(usernameControl.dirty || usernameControl.touched || usernameControl.valid))||( submitted && usernameControl?.errors?.required) " class="ts1">Chưa nhập Username</div>
+                                <div *ngIf="usernameControl?.errors?.minlength" class="ts1">Username it nhất 8 ký tự</div>
+
+                        </div>
+                    </div>
+                    <div class="row mt-2 mb-2" formGroupName="infoPassword">
+                        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 d-flex justify-content-end">
+                                <span><code>*</code> Password</span>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9">
+                                <input class="form-control" type="password" formControlName="password" placeholder="Password" name="Password" [(ngModel)]="item.Password">
+                                <div *ngIf="((passwordControl?.errors?.required) &&(passwordControl.dirty || passwordControl.touched || passwordControl.valid))||( submitted && passwordControl?.errors?.required) " class="ts1">Chưa nhập Password</div>
+                                <div *ngIf="passwordControl?.errors?.minlength" class="ts1">Password it nhất 8 ký tự</div>
+
+                        </div>
+                    </div>
+                    <div class="row mt-2 mb-2" formGroupName="infoPassword">
+                        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 d-flex justify-content-end">
+                                <span class="d-flex justify-content-end"><code>*</code> Password <br> Confirm</span>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9">
+                                <input class="form-control" type="password" (keyup)="compare($event)" formControlName="passwordConfirm" placeholder=" Password Confirm">
+                                <div *ngIf="((passwordConfirmControl?.errors?.required) &&(passwordConfirmControl.dirty || passwordConfirmControl.touched || passwordConfirmControl.valid))||( submitted && passwordConfirmControl?.errors?.required) " class="ts1">Chưa nhập Password Confirm</div>
+                                <div *ngIf="passwordConfirmControl?.errors?.minlength" class="ts1">Password Confirm it nhất 8 ký tự</div>
+                               <div *ngIf="(compares===false) &&(passwordConfirmControl.dirty || passwordConfirmControl.touched || passwordConfirmControl.valid)" class="ts1" >Passwords must match</div>
+                        </div>
+                    </div>
+                    <h5 class="border-bottom pb-2">Thông tin khuyễn mãi</h5>
+                    <div class="row mt-2 mb-2">
+                        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 d-flex justify-content-end">
+                                <span ><code>*</code> Subscribe</span>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9">
+                              <div class="row">
+                                <div class="col-md-2"> <input id="raido1" formControlName="subscribe" value="yes" type="radio" name="subscribe">Yes</div>
+                                <div class="col-md-2"> <input id="raido2" formControlName="subscribe" value="no" type="radio" name="subscribe">No</div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                  <div class="form-group modal-footer">
+                      <button (click)="update()" class="btn btn-dark pl-4 pr-4" data-toggle="modal" data-dismiss="modal" data-target="#myDangKySuccess">Update</button>
+                  </div>
+        </div>
+    </div>
+  </div>
+</form>
+
+
+  <form  (ngSubmit)="onSubmit2()" >
+      <div class="modal fade" data-backdrop="false" id="myModal2">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <!-- Modal body -->
+                  <div class="modal-body" *ngFor="let item1 of prod" >
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title mt-3 mb-3">Update Info</h4>
+                      <h5 class="border-bottom pb-2">Info Product</h5>
+                      <div class="row mt-2 mb-2" >
+                          <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 d-flex justify-content-end">
+                                  <span><code>*</code>Name</span>
+                          </div>
+                          <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9">
+                              <input class="form-control" laceholder="Name product" name="name" [(ngModel)]="item1.name">
+                          </div>
+                      </div>
+
+                      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                          <div>
+                            <form [formGroup]="form "  class="w-70 d-flex justify-content-between">
+                              <input
+                                type="file"
+                                name="avatar"
+                                (change)="processSelectedFiles($event)"
+                              />
+                              <div class="ml-5">
+                                  <!-- *ngIf="uploadResponse.status === 'progress'" -->
+                                  <div
+                                    role="progressbar"
+                                    [style.width.%]="uploadResponse.message"
+                                    aria-valuenow="25"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                    class="text-success mb-2"
+                                  >
+                                    {{success }}
+                                  </div>
+                                </div>
+                            </form>
+                          </div>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <form [formGroup]="form "  class="w-70 d-flex justify-content-between">
+                                <input
+                                  type="file"
+                                  name="avatar"
+                                  (change)="processSelectedFiles1($event)"
+                                />
+                                <div class="ml-5">
+                                    <!-- *ngIf="uploadResponse.status === 'progress'" -->
+                                    <div
+                                      role="progressbar"
+                                      [style.width.%]="uploadResponse.message"
+                                      aria-valuenow="25"
+                                      aria-valuemin="0"
+                                      aria-valuemax="100"
+                                      class="text-success mb-2"
+                                    >
+                                      {{success1 }}
+                                    </div>
+                                  </div>
+                              </form>
+                        </div>
+                      <div class="row mt-2 mb-2" >
+                          <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 d-flex justify-content-end">
+                                  <span><code>*</code> Price</span>
+                          </div>
+                          <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9">
+                                  <input class="form-control"placeholder="Price" name="price" [(ngModel)]="item1.price">
+                          </div>
+                      </div>
+                      <div class="row mt-2 mb-2" >
+                          <div class="col-md-3 col-sm-3 col-lg-3 col-xs-3 d-flex justify-content-end">
+                                  <span><code>*</code> Title</span>
+                          </div>
+                          <div class="col-md-9 col-sm-9 col-lg-9 col-xs-9">
+
+                                  <input class="form-control"  placeholder="Telephone" name="title" [(ngModel)]="item1.title">
+                          </div>
+                      </div>
+                  </div>
+                    <div class="form-group modal-footer">
+                        <button (click)="update2()" class="btn btn-dark pl-4 pr-4" data-toggle="modal" data-dismiss="modal" data-target="#myDangKy">Update</button>
+                    </div>
+          </div>
+      </div>
+    </div>
+  </form>
+  <div class="success-checkmark fixdd" style="display: none"  id="loadx" >
+      <div class="check-icon">
+        <span class="icon-line line-tip"></span>
+        <span class="icon-line line-long"></span>
+        <div class="icon-circle"></div>
+        <div class="icon-fix"></div>
+      </div>
+      <div class="d-flex justify-content-center pt-3 pl-1 text-success"><b>SUCCESS</b></div>
+    </div>

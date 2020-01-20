@@ -1,0 +1,577 @@
+<ng-container *ngIf="button; else elseTemplate">
+    <div class=" manager-left">
+        <div id="mySidepanel" class="sidepanel">
+          <div class="icon-bar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+              <div id="image" class="pull-left ">
+                <img
+                  src="https://scontent.fdad3-1.fna.fbcdn.net/v/t1.0-9/67971516_1375808569233348_4761371697481777152_n.jpg?_nc_cat=106&_nc_eui2=AeGZb7_pnLB8G1vxFZ0miWqz0TRmdto11lDzX5gwPx776iK__19oBElhfpF553gAC1xQSuiZRliS42DGiL5zMnKLaohyBgW0MzXbkTfJHGhfYQ&_nc_oc=AQkSC5h-JNE0xrKzqP-LHEothrprAa7ZO4MrC__070BxgEa1MUEKGn6cUptDQThPdRU&_nc_ht=scontent.fdad3-1.fna&oh=859c45ff490c60ad4654e16e0ac40c87&oe=5DFF3A51"
+                  class="img-circle"
+                  alt="User Image"
+                />
+              </div>
+              <div id="name" class="pull-left info extends">
+                <p>Admin</p>
+                <a href="#" class="pt-0"
+                  ><i class="fa fa-circle text-success"></i> Online</a
+                >
+              </div>
+            </div>
+            <!-- search form -->
+            <form action="#" method="get" class="sidebar-form  extends">
+              <div class="input-group mb-3 px-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search..."
+                />
+                <div class="input-group-append">
+                  <span class="input-group-text">
+                    <i class="fa fa-search"></i
+                  ></span>
+                </div>
+              </div>
+            </form>
+            <!-- /.search form -->
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu text-nav no-ul-li px-2" data-widget="tree">
+              <div class="bg-black">
+                <li class="header extends ml-3">MAIN NAVIGATION</li>
+              </div>
+              <li class="treeview">
+                <a
+                  data-toggle="collapse"
+                  data-target="#collapse1"
+                  (click)="rotate('Dashboard')"
+                >
+                  <i class="fa fa-dashboard mr-2"></i>
+                  <span class="extends ">Dashboard</span>
+                </a>
+              </li>
+              <li class="treeview">
+                <a data-toggle="collapse" data-target="#collapse2">
+                  <i class="fa fa-files-o mr-2"></i>
+                  <span class="extends">Layout Options</span>
+                  <span class="pull-right-container extends">
+                    <span class="label label-primary pull-right">4</span>
+                  </span>
+                </a>
+                <ul class="treeview-menu collapse no-ul-li" id="collapse2">
+                  <li>
+                    <a href="../layout/top-nav.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Top Navigation</a
+                    >
+                  </li>
+                  <li>
+                    <a href="../layout/boxed.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Boxed</a
+                    >
+                  </li>
+                  <li>
+                    <a href="../layout/fixed.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Fixed</a
+                    >
+                  </li>
+                  <li>
+                    <a href="../layout/collapsed-sidebar.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Collapsed Sidebar</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="treeview">
+                <a data-toggle="collapse"
+                data-target="#collapse10"
+                (click)="rotate('Category')">
+                  <i class="fa fa-th mr-2"></i>
+                  <span class="extends">Category</span>
+                  <span class="pull-right-container extends">
+                      <i id="Category" class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu collapse no-ul-li" id="collapse10" *ngFor="let item of listCategory" >
+                    <ng-container *ngIf="item.id_childe =='0'; else elseTemplate">
+                        <li>
+                            <a
+                              ><i class="fa fa-circle-o mr-2"></i> {{item.DanhMuc}}</a
+                            >
+                          </li>
+                  </ng-container>
+                  <ng-template #elseTemplate>
+
+                  </ng-template>
+                  </ul>
+              </li>
+              <li class="treeview">
+                  <a data-toggle="collapse"
+                  data-target="#collapse10"
+                  (click)="rotate('Product')">
+                  <i class="fa fa-product-hunt mr-2" aria-hidden="true"></i>
+                    <span class="extends">Product management</span>
+                    <span class="pull-right-container extends">
+                        <i id="Category" class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu collapse no-ul-li" id="collapse10" *ngFor="let item of listCategory" >
+                      <ng-container *ngIf="item.id_childe =='0'; else elseTemplate">
+                          <li>
+                              <a
+                                ><i class="fa fa-circle-o mr-2"></i> {{item.DanhMuc}}</a
+                              >
+                            </li>
+                    </ng-container>
+                    <ng-template #elseTemplate>
+
+                    </ng-template>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a data-toggle="collapse"
+                    data-target="#collapse10"
+                    (click)="rotate('Auction')">
+                    <i class="fa fa-product-hunt mr-2" aria-hidden="true"></i>
+                      <span class="extends">Auction management</span>
+                      <span class="pull-right-container extends">
+                          <i id="Category" class="fa fa-angle-left pull-right"></i>
+                      </span>
+                    </a>
+                    <ul class="treeview-menu collapse no-ul-li" id="collapse10" *ngFor="let item of listCategory" >
+                        <ng-container *ngIf="item.id_childe =='0'; else elseTemplate">
+                            <li>
+                                <a
+                                  ><i class="fa fa-circle-o mr-2"></i> {{item.DanhMuc}}</a
+                                >
+                              </li>
+                      </ng-container>
+                      <ng-template #elseTemplate>
+
+                      </ng-template>
+                      </ul>
+                  </li>
+              <li class="treeview">
+                <a
+                  data-toggle="collapse"
+                  data-target="#collapse3"
+                  (click)="rotate('Charts')"
+                >
+                  <i class="fa fa-pie-chart mr-2"></i>
+                  <span class="extends">Charts</span>
+                  <span class="pull-right-container extends">
+                    <i id="Charts" class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu collapse no-ul-li" id="collapse3">
+                  <li>
+                    <a href="../charts/chartjs.html"
+                      ><i class="fa fa-circle-o mr-2"></i> ChartJS</a
+                    >
+                  </li>
+                  <li>
+                    <a href="../charts/morris.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Morris</a
+                    >
+                  </li>
+                  <li>
+                    <a href="../charts/flot.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Flot</a
+                    >
+                  </li>
+                  <li>
+                    <a href="../charts/inline.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Inline charts</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="treeview">
+                <a
+                  data-toggle="collapse"
+                  data-target="#collapse4"
+                  (click)="rotate('UI')"
+                >
+                  <i class="fa fa-laptop mr-2"></i>
+                  <span class="extends">UI Elements</span>
+                  <span class="pull-right-container extends">
+                    <i id="UI" class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu collapse no-ul-li" id="collapse4">
+                  <li>
+                    <a href="../UI/general.html"
+                      ><i class="fa fa-circle-o mr-2"></i> General</a
+                    >
+                  </li>
+                  <li>
+                    <a href="../UI/icons.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Icons</a
+                    >
+                  </li>
+                  <li>
+                    <a href="../UI/buttons.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Buttons</a
+                    >
+                  </li>
+                  <li>
+                    <a href="../UI/sliders.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Sliders</a
+                    >
+                  </li>
+                  <li>
+                    <a href="../UI/timeline.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Timeline</a
+                    >
+                  </li>
+                  <li>
+                    <a href="../UI/modals.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Modals</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="treeview">
+                <a
+                  data-toggle="collapse"
+                  data-target="#collapse5"
+                  (click)="rotate('Forms')"
+                >
+                  <i class="fa fa-edit mr-2 "></i>
+                  <span class="extends">Forms</span>
+                  <span class="pull-right-container extends">
+                    <i id="Forms" class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu collapse no-ul-li" id="collapse5">
+                  <li>
+                    <a href="../forms/general.html"
+                      ><i class="fa fa-circle-o mr-2"></i> General Elements</a
+                    >
+                  </li>
+                  <li>
+                    <a href="../forms/advanced.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Advanced Elements</a
+                    >
+                  </li>
+                  <li>
+                    <a href="../forms/editors.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Editors</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="treeview">
+                <a
+                  data-toggle="collapse"
+                  data-target="#collapse6"
+                  (click)="rotate('Tables')"
+                >
+                  <i class="fa fa-table mr-2"></i>
+                  <span class="extends">Tables</span>
+                  <span class="pull-right-container extends">
+                    <i id="Tables" class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu collapse no-ul-li" id="collapse6">
+                  <li>
+                    <a href="../tables/simple.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Simple tables</a
+                    >
+                  </li>
+                  <li>
+                    <a href="../tables/data.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Data tables</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="treeview">
+                <a href="../calendar.html">
+                  <i class="fa fa-calendar mr-2"></i>
+                  <span class="extends">Calendar</span>
+                  <span class="pull-right-container extends">
+                    <small class="label pull-right bg-red p-1 mx-2">3</small>
+                    <small class="label pull-right bg-blue mx-2 p-1">17</small>
+                  </span>
+                </a>
+              </li>
+              <li class="treeview">
+                <a
+                  data-toggle="collapse"
+                  data-target="#collapse7"
+                  (click)="rotate('Mailbox')"
+                >
+                  <i class="fa fa-envelope mr-2"></i>
+                  <span class="extends">Mailbox</span>
+                  <span class="pull-right-container extends">
+                    <i id="Mailbox" class="fa fa-angle-left pull-right "></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu collapse no-ul-li" id="collapse7">
+                  <li class="">
+                    <a href="mailbox.html"
+                      >Inbox
+                      <span class="pull-right-container">
+                        <span class="label label-primary pull-right">13</span>
+                      </span>
+                    </a>
+                  </li>
+                  <li><a href="compose.html">Compose</a></li>
+                  <li><a href="read-mail.html">Read</a></li>
+                </ul>
+              </li>
+              <li class="treeview">
+                <a
+                  data-toggle="collapse"
+                  data-target="#collapse8"
+                  (click)="rotate('Examples')"
+                >
+                  <i class="fa fa-folder mr-2"></i>
+                  <span class="extends">Examples</span>
+                  <span class="pull-right-container extends">
+                    <i id="Examples" class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu collapse no-ul-li" id="collapse8">
+                  <li>
+                    <a href="invoice.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Invoice</a
+                    >
+                  </li>
+                  <li>
+                    <a href="profile.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Profile</a
+                    >
+                  </li>
+                  <li>
+                    <a href="login.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Login</a
+                    >
+                  </li>
+                  <li>
+                    <a href="register.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Register</a
+                    >
+                  </li>
+                  <li>
+                    <a href="lockscreen.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Lockscreen</a
+                    >
+                  </li>
+                  <li>
+                    <a href="404.html"
+                      ><i class="fa fa-circle-o mr-2"></i> 404 Error</a
+                    >
+                  </li>
+                  <li>
+                    <a href="500.html"
+                      ><i class="fa fa-circle-o mr-2"></i> 500 Error</a
+                    >
+                  </li>
+                  <li>
+                    <a href="blank.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Blank Page</a
+                    >
+                  </li>
+                  <li>
+                    <a href="pace.html"
+                      ><i class="fa fa-circle-o mr-2"></i> Pace Page</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="treeview">
+                <a
+                  data-toggle="collapse"
+                  data-target="#collapse9"
+                  (click)="rotate('Multilevel')"
+                >
+                  <i class="fa fa-share mr-2"></i>
+                  <span class="extends">Multilevel</span>
+                  <span class="pull-right-container extends">
+                    <i id="Multilevel" class="fa fa-angle-left pull-right"></i>
+                  </span>
+                </a>
+                <ul class="treeview-menu collapse no-ul-li" id="collapse9">
+                  <li>
+                    <a href="#"
+                      ><i class="fa fa-circle-o mr-2"></i> Level One</a
+                    >
+                  </li>
+                  <li class="treeview">
+                    <a
+                      data-toggle="collapse"
+                      data-target="#collapse9_2"
+                      (click)="rotate('One')"
+                      ><i class="fa fa-circle-o mr-2"></i> Level One
+                      <span class="pull-right-container">
+                        <i id="One" class="fa fa-angle-left pull-right"></i>
+                      </span>
+                    </a>
+                    <ul
+                      class="treeview-menu collapse no-ul-li"
+                      id="collapse9_2"
+                    >
+                      <li class="ml-3">
+                        <a href="#"
+                          ><i class="fa fa-circle-o mr-2"></i> Level Two</a
+                        >
+                      </li>
+                      <li class="treeview ml-3">
+                        <a
+                          data-toggle="collapse"
+                          data-target="#collapse9_2_2"
+                          (click)="rotate('Two')"
+                          ><i class="fa fa-circle-o mr-2"></i> Level Two
+                          <span class="pull-right-container ">
+                            <i id="Two" class="fa fa-angle-left pull-right"></i>
+                          </span>
+                        </a>
+                        <ul
+                          class="treeview-menu collapse no-ul-li"
+                          id="collapse9_2_2"
+                        >
+                          <li class="ml-3">
+                            <a href="#"
+                              ><i class="fa fa-circle-o mr-2"></i> Level
+                              Three</a
+                            >
+                          </li>
+                          <li class="ml-3">
+                            <a href="#"
+                              ><i class="fa fa-circle-o mr-2"></i> Level
+                              Three</a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#"
+                      ><i class="fa fa-circle-o mr-2"></i> Level One</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="treeview">
+                <a href="https://adminlte.io/docs"
+                  ><i class="fa fa-book"></i>
+                  <span class="extends">Documentation</span></a
+                >
+              </li>
+              <div class="bg-black">
+                <li class="header extends ml-3">LABELS</li>
+              </div>
+              <li class="treeview">
+                <a href="#"
+                  ><i class="fa fa-circle-o text-red"></i>
+                  <span class="extends">Important</span></a
+                >
+              </li>
+              <li class="treeview">
+                <a href="#"
+                  ><i class="fa fa-circle-o text-yellow"></i>
+                  <span class="extends">Warning</span></a
+                >
+              </li>
+              <li class="treeview">
+                <a href="#"
+                  ><i class="fa fa-circle-o text-green"></i>
+                  <span class="extends">Information</span></a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+</ng-container>
+<ng-template #elseTemplate>
+    <div class="menu">
+        <ul>
+            <li><a ><div id="image"   >
+                <img
+                  src="https://scontent.fdad3-1.fna.fbcdn.net/v/t1.0-9/67971516_1375808569233348_4761371697481777152_n.jpg?_nc_cat=106&_nc_eui2=AeGZb7_pnLB8G1vxFZ0miWqz0TRmdto11lDzX5gwPx776iK__19oBElhfpF553gAC1xQSuiZRliS42DGiL5zMnKLaohyBgW0MzXbkTfJHGhfYQ&_nc_oc=AQkSC5h-JNE0xrKzqP-LHEothrprAa7ZO4MrC__070BxgEa1MUEKGn6cUptDQThPdRU&_nc_ht=scontent.fdad3-1.fna&oh=859c45ff490c60ad4654e16e0ac40c87&oe=5DFF3A51"
+                  class="img-circle"
+                  alt="User Image"
+                />
+              </div></a>
+            </li>
+          <li   (click)="rotate('Dashboard')" [routerLink]="['/admin/Dashboard-manage']"><a > <i class="fa fa-dashboard mr-2"></i></a>
+            <ul class=""><p >Dashboard</p>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+              </ul>
+          </li>
+          <li   (click)="rotate('Category')" [routerLink]="['/admin/Category-manage']"><a>  <i class="fa fa-th mr-2"></i></a>
+            <ul class="" ><p >Category</p>
+              <div *ngFor="let itemM of listCategory">
+                  <ng-container  *ngIf="itemM.id_childe =='0'; else elseTemplatess">
+                      <li class="d-flex justify-content-start"><i class="fa fa-circle-o text-danger mr-2"></i>{{itemM.DanhMuc}}</li>
+                </ng-container>
+                <ng-template #elseTemplatess>
+                </ng-template>
+              </div>
+              </ul>
+
+          </li>
+          <li (click)="rotate('User')" [routerLink]="['/admin/User-manage']"><a> <i class="fa fa-user-o mr-2" aria-hidden="true"></i></a>
+            <ul class=""><p >User management</p>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+              </ul>
+          </li>
+          <li (click)="rotate('Product')" [routerLink]="['/admin/Product-manage']"><a> <i class="fa fa-product-hunt mr-2" aria-hidden="true"></i></a>
+            <ul class=""><p>Product management</p>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+              </ul>
+          </li>
+          <li (click)="rotate('Auction')" [routerLink]="['/admin/Auction-manage']"><a> <i class="fa fa-product-hunt mr-2" aria-hidden="true"></i></a>
+            <ul class=""><p>Auction management</p>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+              </ul>
+          </li>
+          <!-- <li (click)="rotate('Warehouse')"><a> <i class="fa fa-dashboard mr-2"></i></a>
+            <ul class=""><p>Warehouse</p>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+              </ul>
+          </li> -->
+          <!-- <li (click)="rotate('Warehouse')"><a> <i class="fa fa-dashboard mr-2"></i></a>
+            <ul class=""><p>Revenue</p>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+              </ul>
+          </li> -->
+          <!-- <li (click)="rotate('Warehouse')"><a> <i class="fa fa-dashboard mr-2"></i></a>
+            <ul class=""><p>Orders</p>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+              </ul>
+          </li> -->
+          <li (click)="rotate('Event')"[routerLink]="['/admin/Event-manage']"><a> <i class="fa fa-dashboard mr-2"></i></a>
+            <ul class=""><p>Event</p>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+              </ul>
+          </li>
+          <li (click)="rotate('Charity fund')" [routerLink]="['/admin/Charity-Fund-manage']"><a> <i class="fa fa-dashboard mr-2"></i></a>
+            <ul class=""><p>Charity fund</p>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+              </ul>
+          </li>
+          <li (click)="rotate('Charity-place')" [routerLink]="['/admin/Charity-place-manage']"><a> <i class="fa fa-dashboard mr-2"></i></a>
+            <ul class=""><p>Charity place</p>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+                     <li><i class="fa fa-circle-o text-danger mr-2"></i>a</li>
+              </ul>
+          </li>
+        </ul>
+      </div>
+</ng-template>
+
+
+

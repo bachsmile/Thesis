@@ -1,0 +1,531 @@
+<div id="admin1">
+  <div class="container">
+    <div class="Products w-100">
+      <div class="Products-list">
+        <div class="top-card">
+            <ul class="pt-3">
+                <li id="All"><a  (click)="typeChooses('All')" data-text="All products">All products</a></li>
+                <li id="Stocks" (click)="typeChooses('Stocks')"><a   data-text="In stocks">In stocks </a></li>
+                <li id="Sold"><a  (click)="typeChooses('Sold')" data-text="Sold out">Sold out</a></li>
+                <li id="Hide" (click)="typeChooses('Hide')"><a   data-text="Has hidden">Has hidden</a></li>
+            </ul>
+        </div>
+      </div>
+
+      <div  class="p-3">
+          <div [ngSwitch]="type_order">
+              <div *ngSwitchCase="'All'">
+                  <div class="row mx-0 mt-3 mb-5 d-flex justify-content-between">
+                      <div class="sort w-100">
+                          <div class="row m-0">
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <div class="input-group row  my-2 m-0">
+                                <div class="input-group-prepend">
+
+                                  <select style="z-index:1000"  name="" id="input" class="form-control section font-weight-bold" required="required">
+                                    <option value="Name">Name Product</option>
+                                    <option value="code">Product code</option>
+                                  </select>
+
+                                </div>
+                                <input type="text" class="form-control" placeholder="Input" aria-label="Input" aria-describedby="btnGroupAddon" [(ngModel)]="dataSearch">
+                              </div>
+                              <div class="row m-0 my-3 ">
+                                <label class="mr-2 font-weight-bold">Stock</label>
+                                <input class="mr-2" type="number" placeholder="  0" [(ngModel)]="wareHoseStart" (change)="chageWareHose()"> ~ <input class="ml-2" placeholder="  0" type="number" [(ngModel)]="wareHoseEnd" (change)="chageWareHose()">
+                              </div>
+                              <div class="row">
+                                <div class="col-3"><a type="button" class="form-control bg-red-s" (click)="find()">Find</a></div>
+                                <!-- <div class="col-3"><a type="button" class="form-control" (click)="Retype()">Retype</a></div> -->
+                              </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <!-- <div class="input-group  row  my-2 m-0">
+                                <div class="input-group-prepend">
+                                  <div class="form-control font-weight-bold"> Category</div>
+                                </div>
+                                <div class="input-group-prepend w-75">
+
+                                  <select style="z-index:1000" name="" id="input3" class="form-control " required="required" [formControl]="product">
+                                    <option value="Shoes-men">Shoes-men</option>
+                                    <option value="T-Shirt">T-Shirt</option>
+                                    <option value="">Name Product</option>
+                                    <option value="">Product code</option>
+                                  </select>
+
+                                </div>
+                              </div> -->
+                              <div class="row m-0 my-3 px-3">
+                                <label class="mr-2 font-weight-bold">Price</label>
+                                <input class="mr-2" type="number" placeholder="  Input" [(ngModel)]="priceStart" (change)="chagePrice()"> ~ <input class="ml-2" placeholder="  Input" type="number" [(ngModel)]="priceEnd" (change)="chagePrice()">
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row mx-0 my-3 d-flex justify-content-between">
+                    <div class="font-size-2r font-weight-bold">
+                      <span class="mr-3">{{listPros.length}}</span>
+                      <span>Products</span>
+                    </div>
+                    <div class="row m-0 w-25 d-flex justify-content-around">
+                      <a type="button" class=" bg-blue text-white px-3 d-flex align-items-center" [routerLink]="['/sale-page/new-product']">
+                          Add 1 product</a>
+                      <a type="button" class=" px-3 d-flex align-items-center">
+                        <i  class="list-view "><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><g data-name="Layer 1"><path d="M864 256H352a32 32 0 0 1 0-64h512a32 32 0 0 1 0 64zm0 288H352a32 32 0 0 1 0-64h512a32 32 0 0 1 0 64zm0 288H352a32 32 0 0 1 0-64h512a32 32 0 0 1 0 64z"></path><circle cx="176" cy="224" r="48"></circle><circle cx="176" cy="800" r="48"></circle><circle cx="176" cy="512" r="48"></circle></g></svg></i>
+                      </a>
+                      <a type="button" class="px-3 d-flex align-items-center">
+                        <i class="grid-view"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M27 15h-8c-1.1 0-2-1.2-2-2.3V5c0-1.1.9-2 2-2h8.1c1 0 1.9.9 1.9 1.9V13c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1V6zm-14 9H5c-1.1 0-2-1.2-2-2.3V5c0-1.1.9-2 2-2h8.1c1 0 1.9.9 1.9 1.9V13c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1V6zm14 23h-8c-1.1 0-2-1.2-2-2.3V19c0-1.1.9-2 2-2h8.1c1.1 0 1.9.9 1.9 1.9V27c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1v-6zm-14 9H5c-1.1 0-2-1.2-2-2.3V19c0-1.1.9-2 2-2h8.1c1.1 0 1.9.9 1.9 1.9V27c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1v-6z"></path></svg></i>                  </a>
+                    </div>
+                  </div>
+                  <div class="row mx-0  py-3 d-flex align-items-center"  >
+
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" *ngFor="let item of listPros">
+                        <div class="card w-100">
+                            <div class="card-header" [routerLink]="['/sale-page/info',item.ID_Product]">
+                              <div>{{item.Name_Product}}</div>
+                              <img class="img-pro" src="{{item.Img1}}">
+                            </div>
+                            <div class="card-body row m-0 d-flex justify-content-between">
+                              <div>Price: <span>{{item.Price}}</span></div>
+                             <div>Warehose <span>{{item.Warehose}}</span></div>
+                            </div>
+                            <div class="card-footer text-muted">
+                              <div class="px-1 my-1 row m-0">
+                                  <div class="w-50 border-right d-flex justify-content-center"><svg [routerLink]="['/sale-page/update',item.ID_Product]" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><g data-name="Layer 1"><path d="M895.58 969.34h-768a64.06 64.06 0 0 1-64-64v-768a64.06 64.06 0 0 1 64-64h448a32 32 0 1 1 0 64h-448v768h768v-448a32 32 0 1 1 64 0v448a64.06 64.06 0 0 1-64 64z"></path><path d="M264.38 832.54a64.08 64.08 0 0 1-62.8-76.6l20.7-103.4a.37.37 0 0 1 .1-.3 64.37 64.37 0 0 1 17.5-32.5l546.5-546.4a64.25 64.25 0 0 1 90.5-.1l.1.1 82.7 82.7a64.1 64.1 0 0 1 0 90.6L413.08 793a64 64 0 0 1-32.8 17.6L277 831.34h-.1a66.15 66.15 0 0 1-12.52 1.2zm0-64h.1l103.3-20.7.1-.1 546.5-546.4-82.6-82.7c-.1-.1-.1-.1-.2-.1L285.08 665a.77.77 0 0 1-.1.3z"></path></g></svg></div>
+                                  <div class="dropdown open w-50 d-flex justify-content-center">
+                                      <div  id="triggerId{{item.ID_Product}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path d="M224 608a96 96 0 1 1 96-96 96.15 96.15 0 0 1-96 96zm0-128a32 32 0 1 0 32 32 32.09 32.09 0 0 0-32-32zm288 128a96 96 0 1 1 96-96 96.15 96.15 0 0 1-96 96zm0-128a32 32 0 1 0 32 32 32.09 32.09 0 0 0-32-32zm288 128a96 96 0 1 1 96-96 96.15 96.15 0 0 1-96 96zm0-128a32 32 0 1 0 32 32 32.09 32.09 0 0 0-32-32z" data-name="Layer 1"></path></svg></div>
+
+                                    <div class="dropdown-menu" aria-labelledby="triggerId">
+                                      <button class="dropdown-item" >
+                                          <a class="fa fa-trash   bg-danger p-2 awesome"  aria-hidden="true" (click)="deleteItem(item.ID_Product)"></a>
+
+                                      </button>
+                                      <button class="dropdown-item">
+                                          <i *ngIf="item.Display==='show'"  class="fa fa-toggle-on p-2 text-success bg-dark awesome" aria-hidden="true" (click)="display(item,'hide')"></i>
+                                          <i *ngIf="item.Display==='hide'"  class="fa fa-toggle-off p-2 text-red bg-dark awesome" aria-hidden="true" (click)="display(item,'show')"></i>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                    </div>
+
+                  </div>
+              </div>
+              <div *ngSwitchCase="'Stocks'">
+                  <div class="row mx-0 mt-3 mb-5 d-flex justify-content-between">
+                      <div class="sort w-100">
+                          <div class="row m-0">
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <div class="input-group row  my-2 m-0">
+                                <div class="input-group-prepend">
+
+                                  <select style="z-index:1000"  name="" id="input" class="form-control section font-weight-bold" required="required">
+                                    <option value="Name">Name Product</option>
+                                    <option value="code">Product code</option>
+                                  </select>
+
+                                </div>
+                                <input type="text" class="form-control" placeholder="Input" aria-label="Input" aria-describedby="btnGroupAddon" [(ngModel)]="dataSearch">
+                              </div>
+                              <div class="row m-0 my-3 ">
+                                <label class="mr-2 font-weight-bold">Warehouse</label>
+                                <input class="mr-2" type="number" placeholder="  0" [(ngModel)]="wareHoseStart" (change)="chageWareHose()"> ~ <input class="ml-2" placeholder="  0" type="number" [(ngModel)]="wareHoseEnd" (change)="chageWareHose()">
+                              </div>
+                              <div class="row">
+                                <div class="col-3"><a type="button" class="form-control bg-red-s" (click)="find('stock')">Find</a></div>
+                                <!-- <div class="col-3"><a type="button" class="form-control">Retype</a></div> -->
+                              </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <!-- <div class="input-group  row  my-2 m-0">
+                                <div class="input-group-prepend">
+                                  <div class="form-control font-weight-bold"> Category</div>
+                                </div>
+                                <div class="input-group-prepend w-75">
+
+                                  <select style="z-index:1000" name="" id="input3" class="form-control " required="required" [formControl]="product">
+                                    <option value="Shoes-men">Shoes-men</option>
+                                    <option value="T-Shirt">T-Shirt</option>
+                                    <option value="">Name Product</option>
+                                    <option value="">Product code</option>
+                                  </select>
+
+                                </div>
+                              </div> -->
+                              <div class="row m-0 my-3 px-3">
+                                <label class="mr-2 font-weight-bold">Price</label>
+                                <input class="mr-2" type="number" placeholder="  Input" [(ngModel)]="priceStart" (change)="chagePrice()"> ~ <input class="ml-2" placeholder="  Input" type="number" [(ngModel)]="priceEnd" (change)="chagePrice()">
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row mx-0 my-3 d-flex justify-content-between">
+                    <div class="font-size-2r font-weight-bold">
+                      <span class="mr-3">{{listInStock.length}}</span>
+                      <span>Products</span>
+                    </div>
+                    <div class="row m-0 w-25 d-flex justify-content-around">
+                      <a type="button" class=" bg-blue text-white px-3 d-flex align-items-center" [routerLink]="['/sale-page/new-product']">
+                          Add 1 product</a>
+                      <a type="button" class=" px-3 d-flex align-items-center">
+                        <i  class="list-view "><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><g data-name="Layer 1"><path d="M864 256H352a32 32 0 0 1 0-64h512a32 32 0 0 1 0 64zm0 288H352a32 32 0 0 1 0-64h512a32 32 0 0 1 0 64zm0 288H352a32 32 0 0 1 0-64h512a32 32 0 0 1 0 64z"></path><circle cx="176" cy="224" r="48"></circle><circle cx="176" cy="800" r="48"></circle><circle cx="176" cy="512" r="48"></circle></g></svg></i>
+                      </a>
+                      <a type="button" class="px-3 d-flex align-items-center">
+                        <i class="grid-view"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M27 15h-8c-1.1 0-2-1.2-2-2.3V5c0-1.1.9-2 2-2h8.1c1 0 1.9.9 1.9 1.9V13c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1V6zm-14 9H5c-1.1 0-2-1.2-2-2.3V5c0-1.1.9-2 2-2h8.1c1 0 1.9.9 1.9 1.9V13c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1V6zm14 23h-8c-1.1 0-2-1.2-2-2.3V19c0-1.1.9-2 2-2h8.1c1.1 0 1.9.9 1.9 1.9V27c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1v-6zm-14 9H5c-1.1 0-2-1.2-2-2.3V19c0-1.1.9-2 2-2h8.1c1.1 0 1.9.9 1.9 1.9V27c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1v-6z"></path></svg></i>                  </a>
+                    </div>
+                  </div>
+                  <div class="row mx-0  py-3 d-flex align-items-center" >
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" *ngFor="let item of listInStock">
+                      <div class="card w-100" >
+                          <div class="card-header" [routerLink]="['/sale-page/info',item.ID_Product]">
+                            <div>{{item.Name_Product}}</div>
+                            <img class="img-pro" src="{{item.Img1}}">
+                          </div>
+                          <div class="card-body row m-0 d-flex justify-content-between">
+                            <div>Price: <span>{{item.Price}}</span></div>
+                           <div>Warehose <span>{{item.Warehose}}</span></div>
+                          </div>
+                          <div class="card-footer text-muted">
+                            <div class="px-1 my-1 row m-0">
+                                <div class="w-50 border-right d-flex justify-content-center"><svg [routerLink]="['/sale-page/update',item.ID_Product]" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><g data-name="Layer 1"><path d="M895.58 969.34h-768a64.06 64.06 0 0 1-64-64v-768a64.06 64.06 0 0 1 64-64h448a32 32 0 1 1 0 64h-448v768h768v-448a32 32 0 1 1 64 0v448a64.06 64.06 0 0 1-64 64z"></path><path d="M264.38 832.54a64.08 64.08 0 0 1-62.8-76.6l20.7-103.4a.37.37 0 0 1 .1-.3 64.37 64.37 0 0 1 17.5-32.5l546.5-546.4a64.25 64.25 0 0 1 90.5-.1l.1.1 82.7 82.7a64.1 64.1 0 0 1 0 90.6L413.08 793a64 64 0 0 1-32.8 17.6L277 831.34h-.1a66.15 66.15 0 0 1-12.52 1.2zm0-64h.1l103.3-20.7.1-.1 546.5-546.4-82.6-82.7c-.1-.1-.1-.1-.2-.1L285.08 665a.77.77 0 0 1-.1.3z"></path></g></svg></div>
+                                <div class="dropdown open w-50 d-flex justify-content-center">
+                                    <div  id="triggerId{{item.ID_Product}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path d="M224 608a96 96 0 1 1 96-96 96.15 96.15 0 0 1-96 96zm0-128a32 32 0 1 0 32 32 32.09 32.09 0 0 0-32-32zm288 128a96 96 0 1 1 96-96 96.15 96.15 0 0 1-96 96zm0-128a32 32 0 1 0 32 32 32.09 32.09 0 0 0-32-32zm288 128a96 96 0 1 1 96-96 96.15 96.15 0 0 1-96 96zm0-128a32 32 0 1 0 32 32 32.09 32.09 0 0 0-32-32z" data-name="Layer 1"></path></svg></div>
+
+                                  <div class="dropdown-menu" aria-labelledby="triggerId">
+                                    <button class="dropdown-item" >
+                                        <a class="fa fa-trash   bg-danger p-2 awesome"  aria-hidden="true" (click)="deleteItem(item.ID_Product)"></a>
+
+                                    </button>
+                                    <button class="dropdown-item">
+                                        <i *ngIf="item.Display==='show'"  class="fa fa-toggle-on p-2 text-success bg-dark awesome" aria-hidden="true" (click)="display(item,'hide')"></i>
+                                        <i *ngIf="item.Display==='hide'"  class="fa fa-toggle-off p-2 text-red bg-dark awesome" aria-hidden="true" (click)="display(item,'show')"></i>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                  </div>
+                  </div>
+              </div>
+              <div *ngSwitchCase="'Sold'">
+                  <div class="row mx-0 mt-3 mb-5 d-flex justify-content-between">
+                      <div class="sort w-100">
+                          <div class="row m-0">
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <div class="input-group row  my-2 m-0">
+                                <div class="input-group-prepend">
+
+                                  <select style="z-index:1000"  name="" id="input" class="form-control section font-weight-bold" required="required">
+                                    <option value="Name">Name Product</option>
+                                    <option value="code">Product code</option>
+                                  </select>
+
+                                </div>
+                                <input type="text" class="form-control" placeholder="Input" aria-label="Input" aria-describedby="btnGroupAddon" [(ngModel)]="dataSearch">
+                              </div>
+                              <div class="row m-0 my-3 ">
+                                <label class="mr-2 font-weight-bold">Warehouse</label>
+                                <input class="mr-2" type="number" placeholder="  0" [(ngModel)]="wareHoseStart" (change)="chageWareHose()"> ~ <input class="ml-2" placeholder="  0" type="number" [(ngModel)]="wareHoseEnd" (change)="chageWareHose()">
+                              </div>
+                              <div class="row">
+                                <div class="col-3"><a type="button" class="form-control bg-red-s" (click)="find('sold')">Find</a></div>
+                                <!-- <div class="col-3"><a type="button" class="form-control">Retype</a></div> -->
+                              </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <!-- <div class="input-group  row  my-2 m-0">
+                                <div class="input-group-prepend">
+                                  <div class="form-control font-weight-bold"> Category</div>
+                                </div>
+                                <div class="input-group-prepend w-75">
+
+                                  <select style="z-index:1000" name="" id="input3" class="form-control " required="required" [formControl]="product">
+                                    <option value="Shoes-men">Shoes-men</option>
+                                    <option value="T-Shirt">T-Shirt</option>
+                                    <option value="">Name Product</option>
+                                    <option value="">Product code</option>
+                                  </select>
+
+                                </div>
+                              </div> -->
+                              <div class="row m-0 my-3 px-3">
+                                <label class="mr-2 font-weight-bold">Price</label>
+                                <input class="mr-2" type="number" placeholder="  Input" [(ngModel)]="priceStart" (change)="chagePrice()"> ~ <input class="ml-2" placeholder="  Input" type="number" [(ngModel)]="priceEnd" (change)="chagePrice()">
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row mx-0 my-3 d-flex justify-content-between">
+                    <div class="font-size-2r font-weight-bold">
+                      <span class="mr-3">{{listSoldOut.length}}</span>
+                      <span>Products</span>
+                    </div>
+                    <div class="row m-0 w-25 d-flex justify-content-around">
+                      <a type="button" class=" bg-blue text-white px-3 d-flex align-items-center" [routerLink]="['/sale-page/new-product']">
+                          Add 1 product</a>
+                      <a type="button" class=" px-3 d-flex align-items-center">
+                        <i  class="list-view "><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><g data-name="Layer 1"><path d="M864 256H352a32 32 0 0 1 0-64h512a32 32 0 0 1 0 64zm0 288H352a32 32 0 0 1 0-64h512a32 32 0 0 1 0 64zm0 288H352a32 32 0 0 1 0-64h512a32 32 0 0 1 0 64z"></path><circle cx="176" cy="224" r="48"></circle><circle cx="176" cy="800" r="48"></circle><circle cx="176" cy="512" r="48"></circle></g></svg></i>
+                      </a>
+                      <a type="button" class="px-3 d-flex align-items-center">
+                        <i class="grid-view"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M27 15h-8c-1.1 0-2-1.2-2-2.3V5c0-1.1.9-2 2-2h8.1c1 0 1.9.9 1.9 1.9V13c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1V6zm-14 9H5c-1.1 0-2-1.2-2-2.3V5c0-1.1.9-2 2-2h8.1c1 0 1.9.9 1.9 1.9V13c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1V6zm14 23h-8c-1.1 0-2-1.2-2-2.3V19c0-1.1.9-2 2-2h8.1c1.1 0 1.9.9 1.9 1.9V27c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1v-6zm-14 9H5c-1.1 0-2-1.2-2-2.3V19c0-1.1.9-2 2-2h8.1c1.1 0 1.9.9 1.9 1.9V27c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1v-6z"></path></svg></i>                  </a>
+                    </div>
+                  </div>
+                  <div class="row mx-0  py-3 d-flex align-items-center">
+                      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" *ngFor="let item of listSoldOut">
+                          <div class="card w-100" >
+                              <div class="card-header" [routerLink]="['/sale-page/info',item.ID_Product]">
+                                <div>{{item.Name_Product}}</div>
+                                <img class="img-pro" src="{{item.Img1}}">
+                              </div>
+                              <div class="card-body row m-0 d-flex justify-content-between">
+                                <div>Price: <span>{{item.Price}}</span></div>
+                               <div>Warehose <span>{{item.Warehose}}</span></div>
+                              </div>
+                              <div class="card-footer text-muted">
+                                <div class="px-1 my-1 row m-0">
+                                    <div class="w-50 border-right d-flex justify-content-center"><svg [routerLink]="['/sale-page/update',item.ID_Product]" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><g data-name="Layer 1"><path d="M895.58 969.34h-768a64.06 64.06 0 0 1-64-64v-768a64.06 64.06 0 0 1 64-64h448a32 32 0 1 1 0 64h-448v768h768v-448a32 32 0 1 1 64 0v448a64.06 64.06 0 0 1-64 64z"></path><path d="M264.38 832.54a64.08 64.08 0 0 1-62.8-76.6l20.7-103.4a.37.37 0 0 1 .1-.3 64.37 64.37 0 0 1 17.5-32.5l546.5-546.4a64.25 64.25 0 0 1 90.5-.1l.1.1 82.7 82.7a64.1 64.1 0 0 1 0 90.6L413.08 793a64 64 0 0 1-32.8 17.6L277 831.34h-.1a66.15 66.15 0 0 1-12.52 1.2zm0-64h.1l103.3-20.7.1-.1 546.5-546.4-82.6-82.7c-.1-.1-.1-.1-.2-.1L285.08 665a.77.77 0 0 1-.1.3z"></path></g></svg></div>
+                                    <div class="dropdown open w-50 d-flex justify-content-center">
+                                        <div  id="triggerId{{item.ID_Product}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path d="M224 608a96 96 0 1 1 96-96 96.15 96.15 0 0 1-96 96zm0-128a32 32 0 1 0 32 32 32.09 32.09 0 0 0-32-32zm288 128a96 96 0 1 1 96-96 96.15 96.15 0 0 1-96 96zm0-128a32 32 0 1 0 32 32 32.09 32.09 0 0 0-32-32zm288 128a96 96 0 1 1 96-96 96.15 96.15 0 0 1-96 96zm0-128a32 32 0 1 0 32 32 32.09 32.09 0 0 0-32-32z" data-name="Layer 1"></path></svg></div>
+
+                                      <div class="dropdown-menu" aria-labelledby="triggerId">
+                                        <button class="dropdown-item" >
+                                            <a class="fa fa-trash   bg-danger p-2 awesome"  aria-hidden="true" (click)="deleteItem(item.ID_Product)"></a>
+
+                                        </button>
+                                        <button class="dropdown-item">
+                                            <i *ngIf="item.Display==='show'"  class="fa fa-toggle-on p-2 text-success bg-dark awesome" aria-hidden="true" (click)="display(item,'hide')"></i>
+                                            <i *ngIf="item.Display==='hide'"  class="fa fa-toggle-off p-2 text-red bg-dark awesome" aria-hidden="true" (click)="display(item,'show')"></i>
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+                      </div>
+                  </div>
+              </div>
+              <div *ngSwitchCase="'Hide'" >
+                  <div class="row mx-0 mt-3 mb-5 d-flex justify-content-between">
+                      <div class="sort w-100">
+                          <div class="row m-0">
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <div class="input-group row  my-2 m-0">
+                                <div class="input-group-prepend">
+
+                                  <select style="z-index:1000"  name="" id="input" class="form-control section font-weight-bold" required="required">
+                                    <option value="Name">Name Product</option>
+                                    <option value="code">Product code</option>
+                                  </select>
+
+                                </div>
+                                <input type="text" class="form-control" placeholder="Input" aria-label="Input" aria-describedby="btnGroupAddon" [(ngModel)]="dataSearch">
+                              </div>
+                              <div class="row m-0 my-3 ">
+                                <label class="mr-2 font-weight-bold">Warehouse</label>
+                                <input class="mr-2" type="number" placeholder="  0" [(ngModel)]="wareHoseStart" (change)="chageWareHose()"> ~ <input class="ml-2" placeholder="  0" type="number" [(ngModel)]="wareHoseEnd" (change)="chageWareHose()">
+                              </div>
+                              <div class="row">
+                                <div class="col-3"><a type="button" class="form-control bg-red-s" (click)="find('hide')">Find</a></div>
+                                <!-- <div class="col-3"><a type="button" class="form-control">Retype</a></div> -->
+                              </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <!-- <div class="input-group  row  my-2 m-0">
+                                <div class="input-group-prepend">
+                                  <div class="form-control font-weight-bold"> Category</div>
+                                </div>
+                                <div class="input-group-prepend w-75">
+
+                                  <select style="z-index:1000" name="" id="input3" class="form-control " required="required" [formControl]="product">
+                                    <option value="Shoes-men">Shoes-men</option>
+                                    <option value="T-Shirt">T-Shirt</option>
+                                    <option value="">Name Product</option>
+                                    <option value="">Product code</option>
+                                  </select>
+
+                                </div>
+                              </div> -->
+                              <div class="row m-0 my-3 px-3">
+                                <label class="mr-2 font-weight-bold">Price</label>
+                                <input class="mr-2" type="number" placeholder="  Input" [(ngModel)]="priceStart" (change)="chagePrice()"> ~ <input class="ml-2" placeholder="  Input" type="number" [(ngModel)]="priceEnd" (change)="chagePrice()">
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row mx-0 my-3 d-flex justify-content-between">
+                    <div class="font-size-2r font-weight-bold">
+                      <span class="mr-3">{{lishHide.length}}</span>
+                      <span>Products</span>
+                    </div>
+                    <div class="row m-0 w-25 d-flex justify-content-around">
+                      <a type="button" class=" bg-blue text-white px-3 d-flex align-items-center" [routerLink]="['/sale-page/new-product']">
+                          Add 1 product</a>
+                      <!-- <a type="button" class=" px-3 d-flex align-items-center">
+                        <i  class="list-view "><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><g data-name="Layer 1"><path d="M864 256H352a32 32 0 0 1 0-64h512a32 32 0 0 1 0 64zm0 288H352a32 32 0 0 1 0-64h512a32 32 0 0 1 0 64zm0 288H352a32 32 0 0 1 0-64h512a32 32 0 0 1 0 64z"></path><circle cx="176" cy="224" r="48"></circle><circle cx="176" cy="800" r="48"></circle><circle cx="176" cy="512" r="48"></circle></g></svg></i>
+                      </a>
+                      <a type="button" class="px-3 d-flex align-items-center">
+                        <i class="grid-view"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M27 15h-8c-1.1 0-2-1.2-2-2.3V5c0-1.1.9-2 2-2h8.1c1 0 1.9.9 1.9 1.9V13c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1V6zm-14 9H5c-1.1 0-2-1.2-2-2.3V5c0-1.1.9-2 2-2h8.1c1 0 1.9.9 1.9 1.9V13c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1V6zm14 23h-8c-1.1 0-2-1.2-2-2.3V19c0-1.1.9-2 2-2h8.1c1.1 0 1.9.9 1.9 1.9V27c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1v-6zm-14 9H5c-1.1 0-2-1.2-2-2.3V19c0-1.1.9-2 2-2h8.1c1.1 0 1.9.9 1.9 1.9V27c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1v-6z"></path></svg></i>                  </a> -->
+                    </div>
+                  </div>
+                  <div class="row mx-0  py-3 d-flex align-items-center">
+                      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" *ngFor="let item of lishHide">
+                          <div class="card w-100" >
+                              <div class="card-header" [routerLink]="['/sale-page/info',item.ID_Product]">
+                                <div>{{item.Name_Product}}</div>
+                                <img class="img-pro" src="{{item.Img1}}">
+                              </div>
+                              <div class="card-body row m-0 d-flex justify-content-between">
+                                <div>Price: <span>{{item.Price}}</span></div>
+                               <div>Warehose <span>{{item.Warehose}}</span></div>
+                              </div>
+                              <div class="card-footer text-muted">
+                                <div class="px-1 my-1 row m-0">
+                                    <div class="w-50 border-right d-flex justify-content-center"><svg [routerLink]="['/sale-page/update',item.ID_Product]" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><g data-name="Layer 1"><path d="M895.58 969.34h-768a64.06 64.06 0 0 1-64-64v-768a64.06 64.06 0 0 1 64-64h448a32 32 0 1 1 0 64h-448v768h768v-448a32 32 0 1 1 64 0v448a64.06 64.06 0 0 1-64 64z"></path><path d="M264.38 832.54a64.08 64.08 0 0 1-62.8-76.6l20.7-103.4a.37.37 0 0 1 .1-.3 64.37 64.37 0 0 1 17.5-32.5l546.5-546.4a64.25 64.25 0 0 1 90.5-.1l.1.1 82.7 82.7a64.1 64.1 0 0 1 0 90.6L413.08 793a64 64 0 0 1-32.8 17.6L277 831.34h-.1a66.15 66.15 0 0 1-12.52 1.2zm0-64h.1l103.3-20.7.1-.1 546.5-546.4-82.6-82.7c-.1-.1-.1-.1-.2-.1L285.08 665a.77.77 0 0 1-.1.3z"></path></g></svg></div>
+                                    <div class="dropdown open w-50 d-flex justify-content-center">
+                                        <div  id="triggerId{{item.ID_Product}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path d="M224 608a96 96 0 1 1 96-96 96.15 96.15 0 0 1-96 96zm0-128a32 32 0 1 0 32 32 32.09 32.09 0 0 0-32-32zm288 128a96 96 0 1 1 96-96 96.15 96.15 0 0 1-96 96zm0-128a32 32 0 1 0 32 32 32.09 32.09 0 0 0-32-32zm288 128a96 96 0 1 1 96-96 96.15 96.15 0 0 1-96 96zm0-128a32 32 0 1 0 32 32 32.09 32.09 0 0 0-32-32z" data-name="Layer 1"></path></svg></div>
+
+                                      <div class="dropdown-menu" aria-labelledby="triggerId">
+                                        <button class="dropdown-item" >
+                                            <a class="fa fa-trash   bg-danger p-2 awesome"  aria-hidden="true" (click)="deleteItem(item.ID_Product)"></a>
+
+                                        </button>
+                                        <button class="dropdown-item">
+                                            <i *ngIf="item.Display==='show'"  class="fa fa-toggle-on p-2 text-success bg-dark awesome" aria-hidden="true" (click)="display(item,'hide')"></i>
+                                            <i *ngIf="item.Display==='hide'"  class="fa fa-toggle-off p-2 text-red bg-dark awesome" aria-hidden="true" (click)="display(item,'show')"></i>
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+                      </div>
+                  </div>
+              </div>
+              <div *ngSwitchDefault >
+                  <div class="row mx-0 mt-3 mb-5 d-flex justify-content-between">
+                      <div class="sort w-100">
+                          <div class="row m-0">
+
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <div class="input-group row  my-2 m-0">
+                                <div class="input-group-prepend">
+
+                                  <select style="z-index:1000"  name="" id="input" class="form-control section font-weight-bold" required="required">
+                                    <option value="Name">Name Product</option>
+                                    <option value="code">Product code</option>
+                                  </select>
+
+                                </div>
+                                <input type="text" class="form-control" placeholder="Input" aria-label="Input" aria-describedby="btnGroupAddon" [(ngModel)]="dataSearch">
+                              </div>
+                              <div class="row m-0 my-3 ">
+                                <label class="mr-2 font-weight-bold">Warehouse</label>
+                                <input class="mr-2" type="number" placeholder="  0" [(ngModel)]="wareHoseStart" (change)="chageWareHose()"> ~ <input class="ml-2" placeholder="  0" type="number" [(ngModel)]="wareHoseEnd" (change)="chageWareHose()">
+                              </div>
+                              <div class="row">
+                                <div class="col-3"><a type="button" class="form-control bg-red-s" (click)="find('All')">Find</a></div>
+                                <!-- <div class="col-3"><a type="button" class="form-control">Retype</a></div> -->
+                              </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <div class="input-group  row  my-2 m-0">
+                                <div class="input-group-prepend">
+                                  <div class="form-control font-weight-bold"> Category</div>
+                                </div>
+                                <div class="input-group-prepend w-75">
+
+                                  <select style="z-index:1000" name="" id="input3" class="form-control " required="required" [formControl]="product">
+                                    <option value="Shoes-men">Shoes-men</option>
+                                    <option value="T-Shirt">T-Shirt</option>
+                                    <option value="">Name Product</option>
+                                    <option value="">Product code</option>
+                                  </select>
+
+                                </div>
+                              </div>
+                              <div class="row m-0 my-3 px-3">
+                                <label class="mr-2 font-weight-bold">Price</label>
+                                <input class="mr-2" type="number" placeholder="  Input" [(ngModel)]="priceStart" (change)="chagePrice()"> ~ <input class="ml-2" placeholder="  Input" type="number" [(ngModel)]="priceEnd" (change)="chagePrice()">
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row mx-0 my-3 d-flex justify-content-between">
+                    <div class="font-size-2r font-weight-bold">
+                      <span class="mr-3">{{listPros.length}}</span>
+                      <span>Products</span>
+                    </div>
+                    <div class="row m-0 w-25 d-flex justify-content-around">
+                      <a type="button" class=" bg-blue text-white px-3 d-flex align-items-center" [routerLink]="['/sale-page/new-product']">
+                          Add 1 product</a>
+                      <a type="button" class=" px-3 d-flex align-items-center">
+                        <i  class="list-view "><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><g data-name="Layer 1"><path d="M864 256H352a32 32 0 0 1 0-64h512a32 32 0 0 1 0 64zm0 288H352a32 32 0 0 1 0-64h512a32 32 0 0 1 0 64zm0 288H352a32 32 0 0 1 0-64h512a32 32 0 0 1 0 64z"></path><circle cx="176" cy="224" r="48"></circle><circle cx="176" cy="800" r="48"></circle><circle cx="176" cy="512" r="48"></circle></g></svg></i>
+                      </a>
+                      <a type="button" class="px-3 d-flex align-items-center">
+                        <i class="grid-view"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M27 15h-8c-1.1 0-2-1.2-2-2.3V5c0-1.1.9-2 2-2h8.1c1 0 1.9.9 1.9 1.9V13c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1V6zm-14 9H5c-1.1 0-2-1.2-2-2.3V5c0-1.1.9-2 2-2h8.1c1 0 1.9.9 1.9 1.9V13c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1V6zm14 23h-8c-1.1 0-2-1.2-2-2.3V19c0-1.1.9-2 2-2h8.1c1.1 0 1.9.9 1.9 1.9V27c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1h-6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1v-6zm-14 9H5c-1.1 0-2-1.2-2-2.3V19c0-1.1.9-2 2-2h8.1c1.1 0 1.9.9 1.9 1.9V27c0 1.1-.9 2-2 2zm0-9c0-.6-.4-1-1-1H6c-.6 0-1 .4-1 1v6c0 .6.4 1 1 1h6.1c.6 0 .9-.4.9-1v-6z"></path></svg></i>                  </a>
+                    </div>
+                  </div>
+                  <div class="row mx-0  py-3 d-flex align-items-center"  >
+
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" *ngFor="let item of listPros">
+                        <div class="card w-100" >
+                            <div class="card-header" [routerLink]="['/sale-page/info',item.ID_Product]">
+                              <div class="d-flex justify-content-center p-2 bg-gray-s">{{item.Name_Product}}</div>
+                              <img class="img-pro" src="{{item.Img1}}">
+                            </div>
+                            <div class="card-body row m-0 d-flex justify-content-between">
+                              <div>Price: <span>{{item.Price}}</span></div>
+                             <div>Warehose <span>{{item.Warehose}}</span></div>
+                            </div>
+                            <div class="card-footer text-muted">
+                              <div class="px-1 my-1 row m-0">
+                                  <div class="w-50 border-right d-flex justify-content-center"><svg [routerLink]="['/sale-page/update',item.ID_Product]" class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><g data-name="Layer 1"><path d="M895.58 969.34h-768a64.06 64.06 0 0 1-64-64v-768a64.06 64.06 0 0 1 64-64h448a32 32 0 1 1 0 64h-448v768h768v-448a32 32 0 1 1 64 0v448a64.06 64.06 0 0 1-64 64z"></path><path d="M264.38 832.54a64.08 64.08 0 0 1-62.8-76.6l20.7-103.4a.37.37 0 0 1 .1-.3 64.37 64.37 0 0 1 17.5-32.5l546.5-546.4a64.25 64.25 0 0 1 90.5-.1l.1.1 82.7 82.7a64.1 64.1 0 0 1 0 90.6L413.08 793a64 64 0 0 1-32.8 17.6L277 831.34h-.1a66.15 66.15 0 0 1-12.52 1.2zm0-64h.1l103.3-20.7.1-.1 546.5-546.4-82.6-82.7c-.1-.1-.1-.1-.2-.1L285.08 665a.77.77 0 0 1-.1.3z"></path></g></svg></div>
+                                  <div class="dropdown open w-50 d-flex justify-content-center " >
+                                      <div   id="triggerId{{item.ID_Product}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path d="M224 608a96 96 0 1 1 96-96 96.15 96.15 0 0 1-96 96zm0-128a32 32 0 1 0 32 32 32.09 32.09 0 0 0-32-32zm288 128a96 96 0 1 1 96-96 96.15 96.15 0 0 1-96 96zm0-128a32 32 0 1 0 32 32 32.09 32.09 0 0 0-32-32zm288 128a96 96 0 1 1 96-96 96.15 96.15 0 0 1-96 96zm0-128a32 32 0 1 0 32 32 32.09 32.09 0 0 0-32-32z" data-name="Layer 1"></path></svg></div>
+
+                                    <div class="dropdown-menu" aria-labelledby="triggerId">
+                                      <button class="dropdown-item" >
+                                          <a class="fa fa-trash   bg-danger p-2 awesome"  aria-hidden="true" (click)="deleteItem(item.ID_Product)"></a>
+
+                                      </button>
+                                      <button class="dropdown-item">
+                                          <i *ngIf="item.Display==='show'"  class="fa fa-toggle-on p-2 text-success bg-dark awesome" aria-hidden="true" (click)="display(item,'hide')"></i>
+                                          <i *ngIf="item.Display==='hide'"  class="fa fa-toggle-off p-2 text-red bg-dark awesome" aria-hidden="true" (click)="display(item,'show')"></i>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                    </div>
+
+                  </div>
+              </div>
+            </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div class="bg-loading" id="load1">
+  <div id="demo1"></div>
+  <div class="center-s">
+    <div class="container ">
+      <div class="box"></div>
+    </div>
+  </div>
+</div>

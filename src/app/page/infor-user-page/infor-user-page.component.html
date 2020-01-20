@@ -1,0 +1,25 @@
+<div class="page">
+  <div class="row justify-content-center">
+    <div class="card w-30">
+      <img src="/assets/img/img/img_avatar.png" alt="Avatar" style="width:100%">
+
+      <div *ngFor="let item of user" class="px-3 py-2 font-size-2r" >
+        <h4><b>{{item.Username}}</b></h4>
+         <p>{{item.Authorities}}</p>
+         <p>{{item.Email}}</p>
+         <p>{{item.MaAcount}}</p>
+         <p>{{item.Phone}}</p>
+         <input class="w-75" id="pass" disabled type="password" [(ngModel)]="pass"><span class="px-2 w-25"><i class="fa fa-pencil p-2 cursor" aria-hidden="true" type="button" data-toggle="collapse" data-target="#contentId" aria-expanded="false"
+          aria-controls="contentId"></i></span>
+          <div class="collapse w-100" id="contentId">
+            <input id='commit'  [(ngModel)]="commPass" class="w-100 font-size-0-9r" type="text" placeholder="Please enter the correct old password" (keydown.enter)="commit()">
+            <span class="bg-success w-100 font-size-0-9r p-2 text-white"  *ngIf="check">Correct</span>
+            <span class="bg-danger w-100 font-size-0-9r p-2 text-white"  *ngIf="check==false">Please enter the correct old password</span>
+            <input class="font-size-0-9r w-100" type="text" placeholder="Please enter new password" *ngIf="check2"  [(ngModel)]="passNew"  (keydown.enter)="changePass(item)">
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

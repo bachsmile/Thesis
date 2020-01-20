@@ -1,0 +1,51 @@
+
+<!-- <app-head-admin></app-head-admin> -->
+<div class="container-fluit">
+  <app-header-admin (width_rep)="width_rep($event)" (sent_check_button)="check_button_menu($event)"></app-header-admin>
+    <div class="row m-0 " id="display">
+        <div id="left-admin">
+          <app-menu-left-sales [button]="check_button" [getSignalFromCategory]="signal" (nextToLayout)='receiveLayout($event)' (valueChange)=" displayCounter($event)"></app-menu-left-sales>
+        </div>
+          <div id="right-admin" class="p-3">
+            <router-outlet></router-outlet>
+              <!-- <div [ngSwitch]="display">
+                  <div *ngSwitchCase="'Dashboard'">
+                      <app-dashboard-management></app-dashboard-management>
+                    </div>
+                  <div *ngSwitchCase="'Orders'">
+                        <app-orders-management  [layout]="layout" ></app-orders-management>
+                  </div>
+                  <div *ngSwitchCase="'Products'">
+                    <app-product-management></app-product-management>
+                  </div>
+                  <div *ngSwitchCase="'Category'">
+                    <app-category-saller-management (OutPutCategirytoMenuLeft)="getSignal()"></app-category-saller-management>
+                  </div>
+                  <div *ngSwitchCase="'User'" class="text-primary">
+                    <app-customer-management></app-customer-management>
+                  </div>
+                  <div *ngSwitchCase="'Auction'" class="text-danger">
+                      <app-auction-management></app-auction-management>
+                   </div>
+                  <div *ngSwitchCase="'Warehouse'" >
+                      <app-stock-management></app-stock-management>
+                  </div>
+                  <div *ngSwitchCase="'Product'" class="text-danger">
+
+                    <app-product-management></app-product-management>
+                  </div>
+
+                  <div *ngSwitchCase="'Charity fund'" class="text-danger">
+                     <app-charity-money-management></app-charity-money-management>
+                   </div>
+                  <div *ngSwitchCase="'Place'" class="text-danger">
+                    <app-charity-place-management></app-charity-place-management>
+                  </div>
+                  <div *ngSwitchDefault >
+                      <app-dashboard-management></app-dashboard-management>
+                  </div>
+                </div> -->
+          </div>
+    </div>
+</div>
+<!-- <app-footer-admin></app-footer-admin> -->

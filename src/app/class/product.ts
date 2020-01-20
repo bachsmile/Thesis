@@ -1,0 +1,20 @@
+export class Product {
+  ID_Product:string;
+ ID_Shop:string;
+ Name_Product:string;
+ Img1:string;
+ Img2:string;
+ Price:number;
+ Catefory1:string;
+ Catefory2:string;
+ Sale:number;
+ Details:string;
+ Point:number;
+ Trademark:string;
+ Material:string;
+ Origin:string;
+ Warehose:number;
+ Charity:number;
+ Display:string;
+ Gender:string;
+}

@@ -1,0 +1,101 @@
+<div id="admin1" class="p-4">
+    <div class="d-flex justify-content-lg-between py-5">
+        <h3 class="">MANAGE CATEGORY</h3>
+        <!-- Button trigger modal -->
+        <a class="fa fa-plus bg-success p-2 text-white"   data-toggle="modal" data-target="#myModal5" aria-hidden="true" (click)="addItem()">Add Category</a>
+    </div>
+    <div class="update" *ngIf="edit" >
+
+        <form action="" method="POST" role="form">
+          <legend>Form Update</legend>
+
+          <div class="form-group">
+            <label for="">idDM</label>
+            <input name="editID" type="text" disabled class="form-control" id="" placeholder="idDM" [(ngModel)]="itemEdit.idDM">
+          </div>
+          <div class="form-group">
+              <label for="">Name category</label>
+              <input name="editName" type="text" class="form-control" id="" placeholder="Name category" [(ngModel)]="itemEdit.DanhMuc">
+          </div>
+          <button type="submit" class="btn btn-primary" (click)="updateCate()">Submit</button>
+        </form>
+
+    </div>
+      <div class="list-new">
+          <div class="row bg-black text-white m-0 py-2 border-bottom">
+            <div class="col-1">ID</div>
+            <div class="col-6">Name category</div>
+            <!-- <div class="col-3">Pig</div> -->
+            <div class="col-2">Action</div>
+          </div>
+          <div *ngFor="let item of listCategory ; let i=index">
+              <ng-container *ngIf="item.id_childe =='0'; else elseTemplates">
+                  <div  class="row m-0 hover-div py-2 border-bottom" (click)="setIdParen(item.parent_id)">
+                    <a class="col-1 a-none" data-toggle="collapse" (click)="getCategoryChild(item.parent_id)" href="#a{{i}}">{{item.idDM}}</a>
+                    <a class="col-6 a-none" data-toggle="collapse" (click)="getCategoryChild(item.parent_id)" href="#a{{i}}">{{item.DanhMuc}}</a>
+                    <!-- <a class="col-3 a-none" data-toggle="collapse" (click)="getCategoryChild(item.parent_id)" href="#a{{i}}">{{item.parent_id}}</a> -->
+                    <a class="col-2 a-none" data-toggle="collapse" >
+
+                        <a class="bg-success p-2" *ngIf="item.action=='1'" (click)="turn(item)">on</a>
+                        <a class="bg-danger p-2" *ngIf="item.action=='0'" (click)="turn(item)">off</a>
+                        <a class="fa fa-trash   bg-danger p-2 mx-2"  aria-hidden="true" (click)="deleteCategory(item.idDM)"></a>
+                        <a class="fa fa-wrench bg-warning p-2" data-toggle="modal" data-target="#myModal1" aria-hidden="true" (click)="sentIdUpdate(item)"></a>
+
+                      </a>
+                    <div  class="w-100">
+                      <div id="a{{i}}" class="panel-collapse collapse w-100 px-5 py-2">
+                        <!-- Button trigger modal -->
+                     <a class="fa fa-plus bg-success p-2 text-white"   data-toggle="modal" data-target="#addChildCategory" aria-hidden="true" (click)="addItem()">Add Child Category</a>
+
+                    <div class="row bg-black text-white m-0">
+                        <div class="col-1">ID</div>
+                        <div class="col-6">Name category</div>
+                        <!-- <div class="col-3">Pig</div> -->
+                        <div class="col-2">Action</div>
+                      </div>
+                    <div *ngFor="let items of listCategory; let i=index" >
+                      <ng-container *ngIf=" item.parent_id ==items.parent_id && items.id_childe !='0'; else elseTemplate">
+                        <div  class="row m-0 hover-divs py-1 border">
+                                <a class="col-1 a-none">{{items.idDM}}</a>
+                                <a class="col-6 a-none">{{items.DanhMuc}}</a>
+                                <!-- <a class="col-3 a-none">{{items.parent_id}}</a> -->
+                                <a class="col-2 a-none">
+                                    <div class="item">
+                                        <a class="bg-success p-2" *ngIf="item.action=='1'" (click)="turn(item)">on</a>
+                                        <a class="bg-danger p-2" *ngIf="item.action=='0'" (click)="turn(item)">off</a>
+                                        <a class="fa fa-trash   bg-danger p-2 mx-2"  aria-hidden="true" (click)="deleteCategory(items.idDM)"></a>
+                                        <a class="fa fa-wrench bg-warning p-2" data-toggle="modal" data-target="#myModal1" aria-hidden="true" (click)="sentIdUpdate(items)"></a>
+                                    </div>
+                                  </a>
+                              </div>
+                      </ng-container>
+                      <ng-template #elseTemplates>
+                        <div class="none"></div>
+                      </ng-template>
+
+
+                      </div>
+                </div>
+                    </div>
+                        </div>
+                </ng-container>
+                <ng-template #elseTemplate>
+                  <div class="none"></div>
+                </ng-template>
+          </div>
+      </div>
+
+  </div>
+  <div class="bg-loading" id="load1">
+
+      <div id="demo1"></div>
+      <div class="center-s">
+        <div class="container ">
+          <div class="box"></div>
+        </div>
+      </div>
+    </div>
+   <div class="d-flex align-self-center">
+      <app-form-register (update)="update($event)" (sent)="updateDB($event)" [idParen]="idParents"></app-form-register>
+  </div>
+

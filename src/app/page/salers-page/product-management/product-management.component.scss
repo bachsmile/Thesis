@@ -1,0 +1,145 @@
+.Products-list{
+  position: relative;
+  width: 100%;
+  text-align:  start;
+}
+.Products{
+  min-height: calc((100vh - 56px) - 127px);
+  background-color: white;
+}
+.top-card ul{
+  font-size: 0;
+  margin-bottom: 0;
+  border-bottom:1px solid #ecf0f5;
+}
+.top-card li{
+  display: inline-block;
+  padding: 7px 22px;
+}
+.top-card li a {
+  font-size: 1rem;
+  padding-bottom: 20px;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+}
+.top-card li a::before {
+  content:  attr(data-text);
+  border-bottom: 3px solid red;
+  color: red;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 1px 0;
+  transition: all .4s;
+  width: 0%;
+  position: absolute;
+  left: 0;
+  top: -1px;
+  cursor: pointer;
+}
+.top-card li a:hover::before{
+  width: 100%;
+}
+
+
+.dropdown-menu {
+  overflow: scroll;
+}
+.border-bottom-red{
+  border-bottom: 3px solid steelblue;
+  color: red !important;
+}
+.nav-tabs .nav-link.active{
+  color: red;
+}
+
+.icon{
+  width: 15px;
+  height: 15px;
+}
+.card{
+  width: 20%;
+}
+.img-pro{
+  width: 100%;
+  object-fit: cover;
+  height: 315px;
+  cursor: pointer;
+}
+.dropdown-menu {
+
+  min-width: 7rem;
+
+}
+.dropdown-menu.show {
+  transform: translate3d(5px, -141px, 0px) !important;
+}
+.dropdown-item {
+  text-align: center;
+
+}
+/// load
+.bg-loading{
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  //background: rgb(100, 100, 102);
+}
+.dp-none{
+  display: none;
+}
+.dp-block{
+  display: block;
+}
+.center-s{
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+}
+.radial-gradient1 {
+  position:fixed;
+  top:0px;
+  left:0px;
+  height:100%;
+  width:100%;
+  z-index: -5;
+  /*Fallback if gradeints don't work */
+  background: #1793b5;
+
+}
+
+.box {
+  position: relative;
+  box-sizing: border-box;
+  border: 4px solid #FFF;
+  width: 80px;
+  height: 80px;
+  animation: spin 3s infinite linear;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    border: 4px solid #FFF;
+    width: 60px;
+    height: 60px;
+    animation: pulse 1.5s infinite ease;
+  }
+}
+
+@keyframes pulse {
+  50% {
+    border-width: 30px;
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+///////////////end load

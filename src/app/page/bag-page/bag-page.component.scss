@@ -1,0 +1,104 @@
+.card-img-top{
+  width: 100%;
+  height: 10rem;
+}
+.rd{
+  position: relative;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.checker {
+  background-size: auto 100%;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  margin-bottom: 0 !important;
+}
+.opacity{
+  opacity: 0.4 !important;
+}
+.rd:checked + .checker  {
+  /* outline: 2px solid rgb(5, 170, 247); */
+  box-shadow:0px 10px 30px 0px rgba(0,0,0,.1)!important;
+
+  border-color: rgb(0, 119, 255) !important;
+}
+.no-row{
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.ts1{
+  font-size: 1.5rem;
+}
+.bag-container{
+  height: 100%;
+  background: black;
+}
+.bag-container1{
+  height: 100%;
+  background: chocolate;
+}
+.bag-container2{
+  height: 100%;
+  background: pink;
+}
+.w-95{
+  width: 95%;
+  background: red;
+  height: 100px;
+  position: relative;
+ // background-color: #FF4136;
+}
+.w-5{
+  width: 5%;
+  background: blue;
+  height: 100px;
+  position: relative;
+}
+.element {
+  width: 0;
+ // height: 100%;
+  -webkit-animation: pulse 3s;  /* Safari 4.0 - 8.0 */
+  -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+  animation: pulse 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes pulse {
+  0% {
+    //background-color: #001F3F;
+    width:5%;
+  }
+  100% {
+    //background-color: #FF4136;
+    width:95%
+  }
+}
+.element1 {
+  width: 0;
+ // height: 100%;
+  -webkit-animation: pulse1 3s;  /* Safari 4.0 - 8.0 */
+  -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+  animation: pulse1 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes pulse1 {
+  0% {
+   // background-color: #001F3F;
+    width:95%;
+  }
+  100% {
+    //background-color: #FF4136;
+    width:5%
+  }
+}
+.point{
+  cursor: pointer;
+}
+.iconAuction{
+  width: 50px;
+  height: 50px;
+}

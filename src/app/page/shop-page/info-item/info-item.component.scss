@@ -1,0 +1,67 @@
+.product-images{
+  height:auto;
+}
+.img{
+  height: 100%;
+  width: 100%;
+  display: block;
+  background-size: cover;
+}
+.status_name{
+  font-size: 14px;
+    color: #ff8102;
+    line-height: 15px;
+    padding: 0px 0px 0px 5px;
+}
+
+.Comment__ID{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: cadetblue;
+  justify-content: center;
+    // justify-self: center;
+     display: flex;
+    // transform: translate(50%,50%);
+  background-image: url('/assets/img/icons/icons8-user-50.png');
+  object-fit: cover;
+}
+.Comment__ID_repply{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: cadetblue;
+  justify-content: center;
+    // justify-self: center;
+     display: flex;
+    // transform: translate(50%,50%);
+  background-image: url('/assets/img/icons/icons8-user-48.png');
+  object-fit: cover;
+}
+.Comment__Name{
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+.cursor{
+  cursor: pointer;
+}
+.w-85{
+  width: 85%;
+}
+.comment__send:hover{
+  background: slategrey;
+  padding: 10px;
+  color: white;
+}
+.comment{
+  border: 1px solid black;
+}
+.Comment_reply{
+  background: rgb(211, 207, 207);
+
+}
+.comment__scroll{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-height: 320px;
+}

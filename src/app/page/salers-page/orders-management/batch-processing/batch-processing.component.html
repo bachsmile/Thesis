@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="name">
+    <h3>Batch Processing</h3>
+  </div>
+  <div class="processing my-4 row">
+    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+      <div class="title bg-white">
+        <div class="row m-0">
+          <div id="title1" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 py-3" (click)='chooseTitle()'>
+            <i data-v-0e1ec824=""><svg  class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M3.08 26.06a.76.76 0 0 1-.76-.77v-13.9a.76.76 0 0 1 .76-.77H9v8.69h7v-8.69h5.9a.76.76 0 0 1 .76.77v4.8a8.71 8.71 0 0 1 1.95-.19v-5.48a1.69 1.69 0 0 0-.09-.5.94.94 0 0 0 0-.86L20.32.48a1 1 0 0 0-.78-.48H5.53a1 1 0 0 0-.8.45L.54 9.16A.94.94 0 0 0 .5 10a1.69 1.69 0 0 0-.09.5v15.66A1.83 1.83 0 0 0 2.22 28h14.42a8.59 8.59 0 0 1-.55-1.94h-13zM18.77 1.94L22 8.69h-6.26l-1.11-6.75h4.14zm-6.26.32l1.59 6.43h-3.18zm-1.61 8.36h3.23v6.75H10.9v-6.75zM6.25 1.94h4.14L9.28 8.69H3z"></path><path d="M24.64 17.28A7.36 7.36 0 1 0 32 24.64a7.37 7.37 0 0 0-7.36-7.36zm0 12.71A5.35 5.35 0 1 1 30 24.64 5.36 5.36 0 0 1 24.64 30z"></path><path d="M28.45 24.28h-3v-3a.94.94 0 0 0-1.88 0v4a.91.91 0 0 0 .19.55.93.93 0 0 0 .76.39h4a.94.94 0 1 0-.07-1.94z"></path></svg></i>
+            <span class="font-size-2r">Wait for delivery</span>
+          </div>
+        </div>
+        <div class="row m-0  px-2 py-3 border-bottom">
+          <div class="lablel  w-25">
+            <label class="">Sort orders</label>
+          </div>
+         <div class=" w-75">
+          <select name="order" id="inputorder" class="form-control" required="required">
+            <option value="">a</option>
+          </select>
+         </div>
+        </div>
+        <div class="row m-0 py-3">
+          <div class="col-md-6">
+              <label>Processing schedule</label>
+              <select name="" id="input" class="form-control" required="required">
+                <option value="">All orders</option>
+                <option value="">No process</option>
+              </select>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <label>Sorted by</label>
+              <select name="" id="input2" class="form-control" required="required">
+                <option value="">All (Date set: Nearest - furthest)</option>
+                <option value="">Delivery term: Nearest - furthest</option>
+                <option value="">Delivery term: Far - Nearest</option>
+              </select>
+          </div>
+        </div>
+        <div class="row bg-gray-ss m-0 py-3 d-flex justify-content-around align-items-center">
+          <input type="checkbox" [(ngModel)]="theCheckbox"  data-md-icheck (change)="toggleVisibility($event)" >
+          <a>Product</a>
+          <a>Order ID</a>
+          <a>Buyer</a>
+          <a>Shipping unit</a>
+          <a>Order Status</a>
+        </div>
+        <div class="row d-flex justify-content-center py-3">
+            <div class="no-result">
+                <div class="noOrder"></div>
+                <div class="d-flex justify-content-center">No order found!</div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 ">
+        <div class="request row m-0 d-flex justify-content-between align-items-center bg-white">
+            <div class="ml-2">Bulk order preparation</div>
+            <div>
+                <button class="btn" type="button" data-toggle="collapse" data-target="#contentId" aria-expanded="false"
+                    aria-controls="contentId" (click)="rotato()">
+                    <ng-container *ngIf="angel; else elseTemplate">
+                        <i data-toggle="collapse" data-target="#contentId" class="fa fa-angle-up" aria-hidden="true"></i>
+                    </ng-container>
+                    <ng-template #elseTemplate>
+                        <i data-toggle="collapse" data-target="#contentId" class="fa fa-angle-down" aria-hidden="true"></i>
+                    </ng-template>
+                </button>
+              </div>
+        </div>
+        <div class="collapse show bg-white p-3"  id="contentId">
+            <div class="row m-0 mb-4 p-3 ship">
+              <span class="mr-3"><svg class="icon" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M29.92 16.56h-5.33v1.57a3.75 3.75 0 0 1 .74-.07 3.69 3.69 0 0 1 2.95 1.48h2.24zm-5.33-4.43v3h5l-.59-3h-4.41zm-1.48-2.21a.74.74 0 0 0-.74-.74H10.52a.74.74 0 0 0-.74.74v8.88a.74.74 0 0 0 .74.74 3.67 3.67 0 0 1 5.9 0h6a3.73 3.73 0 0 1 .72-.72v-8.9zM13.48 24a2.2 2.2 0 1 0-2.22-2.2 2.21 2.21 0 0 0 2.22 2.2zm11.85 0a2.2 2.2 0 1 0-2.22-2.2 2.21 2.21 0 0 0 2.22 2.2zm5.93-3H29a3.7 3.7 0 1 1-7.33.76 3.76 3.76 0 0 1 .04-.76H17.1a3.7 3.7 0 1 1-7.33.76 3.76 3.76 0 0 1 .08-.76h-.08a1.48 1.48 0 0 1-1.48-1.48V9.16a1.48 1.48 0 0 1 1.48-1.48h13.34a1.48 1.48 0 0 1 1.48 1.48v1.47h5.19a.74.74 0 0 1 .74.74L32 20.26a.74.74 0 0 1-.74.74zM.87 20h5.54a.77.77 0 1 0 0-1.52H.87a.77.77 0 1 0 0 1.52zm1.84-3.39h3.7a.77.77 0 1 0 0-1.52H2.72a.77.77 0 1 0 0 1.52zm1.84-3.39h1.86a.77.77 0 1 0 0-1.52H4.56a.77.77 0 1 0 0 1.52z"></path></svg></span>
+              <span>
+                <div>
+                    Request pick-up
+                </div>
+                <div class="font-size-0-6r">
+                    Confirm and deliver 0 selected orders
+                </div>
+              </span>
+            </div>
+            <div class="row m-0  p-3 ship">
+                <span class="mr-3"><svg class="icon" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M29.92 16.56h-5.33v1.57a3.75 3.75 0 0 1 .74-.07 3.69 3.69 0 0 1 2.95 1.48h2.24zm-5.33-4.43v3h5l-.59-3h-4.41zm-1.48-2.21a.74.74 0 0 0-.74-.74H10.52a.74.74 0 0 0-.74.74v8.88a.74.74 0 0 0 .74.74 3.67 3.67 0 0 1 5.9 0h6a3.73 3.73 0 0 1 .72-.72v-8.9zM13.48 24a2.2 2.2 0 1 0-2.22-2.2 2.21 2.21 0 0 0 2.22 2.2zm11.85 0a2.2 2.2 0 1 0-2.22-2.2 2.21 2.21 0 0 0 2.22 2.2zm5.93-3H29a3.7 3.7 0 1 1-7.33.76 3.76 3.76 0 0 1 .04-.76H17.1a3.7 3.7 0 1 1-7.33.76 3.76 3.76 0 0 1 .08-.76h-.08a1.48 1.48 0 0 1-1.48-1.48V9.16a1.48 1.48 0 0 1 1.48-1.48h13.34a1.48 1.48 0 0 1 1.48 1.48v1.47h5.19a.74.74 0 0 1 .74.74L32 20.26a.74.74 0 0 1-.74.74zM.87 20h5.54a.77.77 0 1 0 0-1.52H.87a.77.77 0 1 0 0 1.52zm1.84-3.39h3.7a.77.77 0 1 0 0-1.52H2.72a.77.77 0 1 0 0 1.52zm1.84-3.39h1.86a.77.77 0 1 0 0-1.52H4.56a.77.77 0 1 0 0 1.52z"></path></svg></span>
+                <span>
+                  <div>
+                      Send the goods at the post office
+                  </div>
+                  <div class="font-size-0-6r">
+                      Confirm and deliver 0 selected orders
+                  </div>
+                </span>
+              </div>
+        </div>
+    </div>
+
+  </div>
+</div>
+

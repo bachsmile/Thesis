@@ -1,0 +1,49 @@
+<div id="admin1">
+  <h1 class="text-black">Customer management</h1>
+<div class="p-4 m-4 ">
+    <div class="d-flex justify-content-center text-green font-size-2r"> CURENT FOLLOW</div>
+    <div class=" row m-0 d-flex justify-content-center"><h1 class="font-size-3r text-red">{{listCustomer.length}} <span class="text-blues">Peoples</span></h1></div>
+  </div>
+  <div class="row m-0">
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border p-3">
+      <div class="row m-0">
+
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr >
+                <th>MaCU</th>
+                <th>Username</th>
+                <th>Point</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>CustomerType</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of listCustomer" class="text-blues">
+                <td>{{item.MaCU}}</td>
+                <td>{{item.Username}}</td>
+                <td>{{item.Point}}</td>
+                <td>{{item.Address}}</td>
+                <td>{{item.Phone}}</td>
+                <td>{{item.CustomerType }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+  <div class="bg-loading" id="load1">
+    <div id="demo1"></div>
+    <div class="center-s">
+      <div class="container ">
+        <div class="box"></div>
+      </div>
+    </div>
+  </div>
